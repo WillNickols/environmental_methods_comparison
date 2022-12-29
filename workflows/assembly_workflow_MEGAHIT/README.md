@@ -20,6 +20,7 @@ This folder contains code for the MEGAHIT-based assembly workflow, which is base
 - MetaBAT: 2.12.1
 - Checkm 2: 1.0.0
 - PhyloPhlAn 3: 3.0.67
+  - Database: SGB.Jul20
 - Mash: 2.3
 
 # Installation
