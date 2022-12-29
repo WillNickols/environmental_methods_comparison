@@ -12,7 +12,7 @@ parser.add_argument("-t", help="Number of processes to run in parallel", type=in
 args = parser.parse_args()
 
 # input
-in_dir = "/" + args.i.strip("/") + "/"
+in_dir = os.path.abspath(args.i.rstrip("/")) + "/"
 
 paths = Path(in_dir).rglob('*.fa')
 
@@ -22,7 +22,7 @@ for path in paths:
 	files.append(path.as_posix())
 
 # output
-out_dir = "/" + args.o.strip("/") + "/"
+out_dir = os.path.abspath(args.o.rstrip("/")) + "/"
 
 if not os.path.exists(out_dir + "tmp/"):
 	os.makedirs(out_dir + "tmp/")

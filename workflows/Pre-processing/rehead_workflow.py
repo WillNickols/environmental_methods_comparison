@@ -11,13 +11,13 @@ workflow = Workflow(version="0.1", description="fix fastq sequence headers")
 workflow.add_argument(name="input-extension", desc="the input file extension", default="fastq.gz")
 args = workflow.parse_args()
 
-paths = Path("/" + (args.input).strip("/") + "/").rglob('*.' + str(args.input_extension))
+paths = Path(os.path.abspath(args.input.rstrip("/")) + "/").rglob('*.' + str(args.input_extension))
 
 files = []
 for path in paths:
 	files.append(path.as_posix())
 
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
 	os.makedirs(output)
 

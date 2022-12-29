@@ -74,11 +74,11 @@ def make_directory(path):
 		os.makedirs(path)
 
 # output
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 make_directory(output)
 
 # scratch directory
-scratch = "/" + args.grid_scratch.strip("/") + "/"
+scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 make_directory(scratch)
 
 deconcatenated_dir = output + "deconcatenated/"
@@ -178,10 +178,10 @@ in_dir = args.input
 
 # Get filepath without paired/unpaired ending
 if paired == "paired":
-	paths = glob.glob("/" + in_dir.strip("/") + "/" + '*.' + input_extension)
+	paths = glob.glob(os.path.abspath(in_dir.rstrip("/")) + "/" + '*.' + input_extension)
 	names = set(file.split('_paired_1')[0].split('_paired_2')[0].split('_unmatched_1')[0].split('_unmatched_2')[0] for file in paths)
 else:
-	paths = glob.glob("/" + in_dir.strip("/") + "/" + '*.' + input_extension)
+	paths = glob.glob(os.path.abspath(in_dir.rstrip("/")) + "/" + '*.' + input_extension)
 	names = set(file.split("." + input_extension)[0] for file in paths)
 
 if len(names) == 0:

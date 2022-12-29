@@ -14,8 +14,8 @@ parser.add_argument("--threads", help="Number of processes to run in parallel", 
 args = parser.parse_args()
 
 checkm = args.checkm
-bins = "/" + args.bins.strip("/") + "/"
-mash = "/" + args.mash.strip("/") + "/"
+bins = os.path.abspath(args.bins.rstrip("/")) + "/"
+mash = os.path.abspath(args.mash.rstrip("/")) + "/"
 threads = args.threads
 
 # function to recursively list files

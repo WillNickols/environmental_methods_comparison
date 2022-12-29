@@ -6,8 +6,8 @@ from pathlib import Path
 import pandas as pd
 import sys as sys
 
-sgb_directory = "/" + str(sys.argv[1]).strip("/") + "/"
-output_path = "/" + str(sys.argv[2]).strip("/") + "/"
+sgb_directory = os.path.abspath(str(sys.argv[1]).rstrip("/")) + "/"
+output_path = os.path.abspath(str(sys.argv[2]).rstrip("/")) + "/"
 
 paths = Path(sgb_directory).rglob("*.fa")
 

@@ -20,7 +20,7 @@ if not os.path.isdir(out_dir + "reads/"):
 if not os.path.isdir(out_dir + "tax/"):
     os.makedirs(out_dir + "tax/")
 
-paths = Path("/" + in_dir.strip("/") + "/").rglob("*anonymous_reads.fq.gz")
+paths = Path(os.path.abspath(in_dir.rstrip("/")) + "/").rglob("*anonymous_reads.fq.gz")
 
 files = [str(path) for path in paths]
 
@@ -32,7 +32,7 @@ def move_fastq(fastq):
 with mp.Pool(processes = threads) as p:
     p.map(move_fastq, files)
 
-paths = Path("/" + in_dir.strip("/") + "/").rglob("*profile_*.txt")
+paths = Path(os.path.abspath(in_dir.rstrip("/")) + "/").rglob("*profile_*.txt")
 
 files = [str(path) for path in paths]
 

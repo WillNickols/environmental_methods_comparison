@@ -18,12 +18,12 @@ args = workflow.parse_args()
 input_extension = args.input_extension
 
 # output
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
 	os.makedirs(output)
 
 # scratch directory
-scratch = "/" + args.grid_scratch.strip("/") + "/"
+scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 
 # grid
 memory = args.mem
@@ -37,14 +37,14 @@ database_folder = args.database_folder
 in_dir = args.input
 
 if paired == "paired":
-	paths = glob.glob("/" + in_dir.strip("/") + "/" + '*.' + input_extension)
+	paths = glob.glob(os.path.abspath(in_dir.rstrip("/")) + "/" + '*.' + input_extension)
 	files = []
 	for path in paths:
 		files.append(path)
 	names = set(file.split('_paired')[0].split('_unmatched')[0] for file in files)
 
 if paired == "unpaired":
-	paths = glob.glob("/" + in_dir.strip("/") + "/" + '*.' + input_extension)
+	paths = glob.glob(os.path.abspath(in_dir.rstrip("/")) + "/" + '*.' + input_extension)
 	files = []
 	for path in paths:
 		files.append(path)

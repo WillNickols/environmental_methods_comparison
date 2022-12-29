@@ -22,7 +22,7 @@ args = parser.parse_args()
 input = args.reference_profile
 output = args.out_folder
 
-output = "/" + output.strip("/") + "/"
+output = os.path.abspath(output.rstrip("/")) + "/"
 if not os.path.isdir(output):
     os.makedirs(output)
 if not os.path.isdir(output + "genomes/"):

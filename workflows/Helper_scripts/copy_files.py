@@ -12,7 +12,7 @@ parser.add_argument("--threads", help="threads", type=int)
 parser.add_argument("--output", help="output")
 args = parser.parse_args()
 
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
     os.makedirs(output)
 

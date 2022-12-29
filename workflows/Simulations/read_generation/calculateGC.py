@@ -20,7 +20,7 @@ threads = args.threads
 
 exclude = [".unbinned.", ".tooShort.", ".lowDepth.", "final.contigs"]
 
-paths = Path("/" + in_dir.strip("/") + "/").rglob("*.fa")
+paths = Path(os.path.abspath(in_dir.rstrip("/")) + "/").rglob("*.fa")
 
 files = []
 for path in paths:

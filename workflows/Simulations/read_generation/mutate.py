@@ -22,11 +22,11 @@ out_dir = args.out_dir
 threads = args.threads
 rate = args.rate
 
-out_dir = "/" + out_dir.strip("/") + "/"
+out_dir = os.path.abspath(out_dir.rstrip("/")) + "/"
 if not os.path.isdir(out_dir):
 	os.makedirs(out_dir)
 
-paths = Path("/" + in_dir.strip("/") + "/").rglob("*.fa")
+paths = Path(os.path.abspath(in_dir.rstrip("/")) + "/").rglob("*.fa")
 files = [str(path) for path in paths]
 
 def mutate(fasta):
