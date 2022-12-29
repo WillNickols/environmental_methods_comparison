@@ -1,0 +1,42 @@
+```
+conda activate download
+centos7/python3/biobakery_workflows/3.0.0-beta-devel-dependsUpdate
+python download_files_grid.py -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/soil_files_to_download.tsv \
+  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/raw_inputs/ \
+  --grid-partition 'shared' \
+  --grid-jobs 96 \
+  --time 480 \
+  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/new_mags/downloads \
+  --grid-options="--account=nguyen_lab"
+
+rm -r /n/holyscratch01/nguyen_lab/wnickols/new_mags/downloads/
+
+conda deactivate
+python rehead_workflow.py -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/raw_inputs/ \
+  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/reheaded/ \
+  --input-extension fastq.gz --local-jobs 16
+
+python kneaddata_workflow_updated.py -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/reheaded/ \
+  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/kneaddata/ \
+  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/new_mags/kneaddata \
+  --grid-partition 'shared' \
+  --grid-jobs 96 --cores 12 \
+  --mem 40000 \
+  --input-extension fastq.gz \
+  --paired paired \
+  --grid-options="--account=nguyen_lab"
+
+rm -r /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/raw_inputs/
+rm -r /n/holyscratch01/nguyen_lab/wnickols/new_mags/kneaddata
+rm -r /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/reheaded/
+
+python assembly_workflow.py \
+  -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/kneaddata/ \
+  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/soil_mag_addition/new_samples/assembly/ \
+  --abundance-type by_sample --input-extension fastq.gz --paired paired \
+  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/new_mags/assembly/ \
+  --grid-partition 'shared' --grid-jobs 96 --cores 8 --time 10000 --mem 60000 \
+  --local-jobs 12 \
+  --grid-options="--account=nguyen_lab" \
+  --skip-placement y
+```

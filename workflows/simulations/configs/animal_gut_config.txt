@@ -1,0 +1,10 @@
+start_date: 2022/05/11
+end_date: 2022/12/27
+threads_per_simulator: 2
+samples: 5
+ns: 75, 150, 300, 600; 300
+sample_sizes: 0.05, 0.5, 1.5, 7.5, 30; 7.5
+ks: 40, 100, 250; 100
+sigmas: 0.5, 1, 2, 4; 1
+unknown_props: 0, 0.25, 0.5, 0.75, 1; 0.5
+mutation_rates: 0, 0.01, 0.02, 0.05; 0
