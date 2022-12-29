@@ -1,13 +1,22 @@
-# assembly_workflow
+# MEGAHIT assembly workflow
 
-> This repository contains code for Will's assembly workflow based on Aaron Walsh's pets assembly workflow and Segata et al. 2019. For queries, contact Will Nickols (email: <willnickols@college.harvard.edu>).
+This folder contains code for the MEGAHIT-based assembly workflow, which is based on Aaron Walsh's pets assembly workflow and Pasolli et al. 2019.  The workflow consists of the following main steps:
+- Create contigs using MEGAHIT with a minimum contig length of 1500
+- Build a bowtie2 index from the contigs and align reads with the flags `--very-sensitive-local` and `--no-unal`
+- Calculate the contig read depth mean and variance with samtools' `view` and `sort` and `jgi_summarize_bam_contig_depths`
+- Bin the contigs with MetaBAT 2 with a minimum contig length of 1500
+- If using the `by_sample` approach, align each sample's reads to its bins with bowtie2 and calculate the relative abundance of each bin (accounting for genome size) with samtools' `view`, `sort`, and `index` and Checkm's `coverage` and `profile` scripts
+- If using the `by_dataset` approach, align each sample's reads to all bins in the dataset with bowtie2 and calculate the relative abundance of each bin (accounting for genome size) with samtools' `view`, `sort`, and `index` and Checkm's `coverage` and `profile` scripts
+- Calculate the n50 of each bin and the completeness and contamination of each bin using Checkm 2
+- Place each bin using PhyloPhlAn 3
+- If the bin has a Mash distance less than 0.05 from an SGB, less than 0.15 from a GGB, or less than 0.3 from a FGB, assign it to that bin
+- Otherwise, recluster all remaining bins into SGBs based on a 0.05 Mash threshold
 
 # Installation
 
-The workflow can be installed with the following commands.  The PhyloPhlAn run will intentionally fail in order to download the database.
+The requirements for the workflow can be installed by cloning this GitHub directory and following the commands below.  The PhyloPhlAn run will intentionally fail in order to download the database.
 ```
-git clone https://github.com/WillNickols/assembly_workflow
-cd assembly_workflow
+cd assembly_workflow_MEGAHIT
 conda env create -f assembly_environment.yml
 conda activate biobakery_assembly
 git clone --recursive https://github.com/chklovski/checkm2.git
@@ -24,99 +33,12 @@ install.packages(c("docopt", "dplyr", "data.table", "stringr", "doParallel", "ti
 q()
 ```
 
-Once the conda environment is created and you are in the `assembly_workflow` directory, you can activate the environment with these commands:
-```
-conda activate biobakery_assembly
-export CHECKM_DATA_PATH=$(pwd)/databases/checkm/
-export PHYLOPHLAN_PATH=$(pwd)/databases/phylophlan/
-```
-
-# Example runs
-
-This command runs the workflow without taxonomically placing the MAGs (it runs only assembly, binning, and quality checking).
+Commands of the following form were run:
 ```
 python assembly_workflow.py \
-  -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_inputs/single_end/ \
-  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_outputs/single_end/ \
-  --abundance-type by_sample --input-extension fastq.gz --paired unpaired \
-  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/mags_and_sgbs_pipeline_testing/single_end/ \
-  --grid-partition 'shared' --grid-jobs 96 --cores 8 --time 10000 --mem 40000 \
-  --local-jobs 12 \
-  --grid-options="--account=nguyen_lab" \
-  --skip-placement y
-```
-
-This command runs a single-end `fastq.gz` file.
-```
-python assembly_workflow.py \
-  -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_inputs/single_end/ \
-  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_outputs/single_end/ \
-  --abundance-type by_sample --input-extension fastq.gz --paired unpaired \
-  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/mags_and_sgbs_pipeline_testing/single_end/ \
-  --grid-partition 'shared' --grid-jobs 96 --cores 8 --time 10000 --mem 40000 \
-  --local-jobs 12 \
-  --remove-intermediate-files y \
-  --grid-options="--account=nguyen_lab"
-```
-
-This command runs a paired-end `fastq` file.
-```
-python assembly_workflow.py \
-  -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_inputs/paired_end/ \
-  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_outputs/paired_end/ \
-  --abundance-type by_sample --input-extension fastq --paired paired \
-  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/mags_and_sgbs_pipeline_testing/paired_end/ \
-  --grid-partition 'shared' --grid-jobs 96 --cores 8 --time 10000 --mem 40000 \
-  --local-jobs 12 \
-  --remove-intermediate-files y \
-  --grid-options="--account=nguyen_lab"
-```
-
-This command runs two concatenated `fastq.gz` files, one of which is single-end and one of which is paired-end.
-```
-python assembly_workflow.py \
-  -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_inputs/concat/ \
-  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_outputs/concat/ \
-  --abundance-type by_sample --input-extension fastq.gz --paired concatenated \
-  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/mags_and_sgbs_pipeline_testing/concat/ \
-  --grid-partition 'shared' --grid-jobs 96 --cores 8 --time 10000 --mem 40000 \
-  --local-jobs 12 \
-  --remove-intermediate-files y \
-  --grid-options="--account=nguyen_lab"
-```
-
-These commands run the `biobakery wmgx` assembly and then this pipeline from the assembled contigs.  The `biobakery_workflows wmgx` command with `--run-assembly` fails in the Prokka step (unrelated to this workflow), but enough of the assembly happens beforehand that the assembly workflow can proceed afterwards.
-```
-hutlab load centos7/python3/biobakery_workflows/3.0.0-beta-devel-dependsUpdate
-biobakery_workflows wmgx \
-  --input /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_inputs/contigs_int_kneaddata/ \
-  --output /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_outputs/contigs_int/ \
-  --bypass-quality-control \
-  --threads 8 \
-  --bypass-functional-profiling \
-  --bypass-strain-profiling \
-  --bypass-taxonomic-profiling \
-  --run-assembly \
-  --grid-jobs 8 \
-  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/mags_and_sgbs_pipeline_testing/contigs_int/ \
-  --grid-partition shared \
-  --input-extension fastq \
-  --grid-options="--account=nguyen_lab"
-  
-hutlab unload
-conda activate biobakery_assembly
-export CHECKM_DATA_PATH=$(pwd)/databases/checkm/
-export PHYLOPHLAN_PATH=$(pwd)/databases/phylophlan/
-
-python assembly_workflow.py \
-  -i /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_inputs/contigs_int_kneaddata/ \
-  -o /n/holylfs05/LABS/nguyen_lab/Everyone/wnickols/mags_and_sgbs_pipeline_testing/test_outputs/contigs_int/ \
-  --abundance-type by_sample --input-extension fastq --paired concatenated \
-  --grid-scratch /n/holyscratch01/nguyen_lab/wnickols/mags_and_sgbs_pipeline_testing/contigs_int/ \
-  --grid-partition 'shared' --grid-jobs 96 --cores 8 --time 10000 --mem 40000 \
-  --local-jobs 12 \
-  --skip-contigs y \
-  --remove-intermediate-files y \
-  --grid-options="--account=nguyen_lab"
-  
+  -i kneaddata_cleaned \
+  -o assembly_MEGAHIT \
+  --abundance-type by_sample \
+  --input-extension fastq.gz \
+  --paired paired
 ```
