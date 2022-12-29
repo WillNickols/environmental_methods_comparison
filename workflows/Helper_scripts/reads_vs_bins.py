@@ -14,7 +14,7 @@ args = workflow.parse_args()
 checkm_directory = args.checkm_dir
 output = args.output
 
-paths = Path("/" + checkm_directory.strip("/") + "/").rglob('*.bin.*')
+paths = Path(os.path.abspath(checkm_directory.rstrip("/")) + "/").rglob('*.bin.*')
 
 files = []
 for path in paths:
@@ -27,7 +27,7 @@ counts = Counter(names)
 df = pd.DataFrame(list(counts.items()), columns=['ID', 'bins'])
 df['reads'] = [None] * len(df.index)
 
-paths = Path("/" + checkm_directory.strip("/") + "/").rglob('*.mapped_read_num.*')
+paths = Path(os.path.abspath(checkm_directory.rstrip("/")) + "/").rglob('*.mapped_read_num.*')
 
 files = []
 for path in paths:
@@ -46,7 +46,7 @@ for file in files:
 df['bins'] = df['bins'].fillna(0)
 
 # output
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
 	os.makedirs(output)
 df.to_csv(output+"reads_vs_bins.tsv", sep='\t', index=False)

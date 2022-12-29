@@ -13,7 +13,7 @@ parser.add_argument("--input", help="path file")
 parser.add_argument("--threads", help="threads", type=int)
 args = parser.parse_args()
 
-paths = Path("/" + (args.input).strip("/") + "/").rglob('*.fastq.gz')
+paths = Path(os.path.abspath(args.input.rstrip("/")) + "/").rglob('*.fastq.gz')
 
 files = [path.as_posix() for path in paths]
 

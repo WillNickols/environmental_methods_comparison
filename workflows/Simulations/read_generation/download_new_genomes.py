@@ -26,14 +26,14 @@ args = parser.parse_args()
 current_date = args.current_date
 
 output = args.out_folder
-output = "/" + output.strip("/") + "/"
+output = os.path.abspath(output.rstrip("/")) + "/"
 if not os.path.isdir(output):
     os.makedirs(output)
 if not os.path.isdir(output + "genomes/"):
     os.makedirs(output + "genomes/")
 
 taxdump = args.tax_dump_folder
-taxdump = "/" + taxdump.strip("/") + "/"
+taxdump = os.path.abspath(taxdump.rstrip("/")) + "/"
 if not os.path.isdir(taxdump):
     os.makedirs(taxdump)
 

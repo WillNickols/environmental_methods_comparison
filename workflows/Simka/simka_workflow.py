@@ -21,12 +21,12 @@ if args.simka_path.split("/")[-1] != "simka":
 	raise ValueError("Simka path invalid")
 
 # output
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
 	os.makedirs(output)
 
 # scratch directory
-scratch = "/" + args.grid_scratch.strip("/") + "/"
+scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 scratch_in = scratch + "in/"
 simka_scratch = scratch + "simka_tmp/"
 
@@ -47,14 +47,14 @@ paired = args.paired
 in_dir = args.input
 
 if paired == "paired":
-	paths = glob.glob("/" + in_dir.strip("/") + "/*.fastq.gz")
+	paths = glob.glob(os.path.abspath(in_dir.rstrip("/")) + "/*.fastq.gz")
 	files = []
 	for path in paths:
 		files.append(path)
 	names = set(file.split('_paired')[0].split('_unmatched')[0] for file in files)
 
 if paired == "unpaired":
-	paths = glob.glob("/" + in_dir.strip("/") + "/*.fastq.gz")
+	paths = glob.glob(os.path.abspath(in_dir.rstrip("/")) + "/*.fastq.gz")
 	files = []
 	for path in paths:
 		files.append(path)

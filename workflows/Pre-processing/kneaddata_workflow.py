@@ -17,12 +17,12 @@ args = workflow.parse_args()
 input_extension = args.input_extension
 
 # output
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
 	os.makedirs(output)
 
 # scratch directory
-scratch = "/" + args.grid_scratch.strip("/") + "/"
+scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 
 # grid
 memory = args.mem
@@ -35,7 +35,7 @@ paired = args.paired
 in_dir = args.input
 
 if paired == "paired":
-	paths = Path("/" + in_dir.strip("/") + "/").rglob('*.' + input_extension)
+	paths = Path(os.path.abspath(in_dir.rstrip("/")) + "/").rglob('*.' + input_extension)
 
 	files = []
 	for path in paths:
@@ -44,7 +44,7 @@ if paired == "paired":
 	names = set(file.rsplit('_1', 1)[0] for file in files if "_1." + input_extension in file)
 
 if paired == "unpaired":
-	paths = Path("/" + in_dir.strip("/") + "/").rglob('*.' + input_extension)
+	paths = Path(os.path.abspath(in_dir.rstrip("/")) + "/").rglob('*.' + input_extension)
 
 	files = []
 	for path in paths:

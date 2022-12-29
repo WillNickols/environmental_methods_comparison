@@ -17,9 +17,9 @@ args = workflow.parse_args()
 
 this_folder = os.path.realpath(__file__).rsplit("/", 1)[0] + "/"
 
-output = "/" + args.output.strip("/") + "/"
-bins_dir = "/" + args.input.strip("/") + "/"
-scratch = "/" + args.grid_scratch.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
+bins_dir = os.path.abspath(args.input.rstrip("/")) + "/"
+scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 cores = args.cores
 memory = args.mem
 partition = args.grid_partition

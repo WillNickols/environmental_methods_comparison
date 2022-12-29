@@ -10,15 +10,11 @@ workflow = Workflow()
 
 workflow.add_argument("time", desc="The maximum time in minutes allocated to run the command", type=int, default=300)
 args = workflow.parse_args()
-output = "/" + args.output.strip("/") + "/"
+output = os.path.abspath(args.output.rstrip("/")) + "/"
 if not os.path.isdir(output):
 	os.makedirs(output)
 
-scratch = "/" + args.grid_scratch.strip("/") + "/"
-if not os.path.isdir(scratch):
-	os.makedirs(scratch)
-
-scratch = "/" + args.grid_scratch.strip("/") + "/"
+scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 if not os.path.isdir(scratch):
 	os.makedirs(scratch)
 
