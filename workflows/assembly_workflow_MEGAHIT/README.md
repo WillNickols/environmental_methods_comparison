@@ -43,6 +43,8 @@ install.packages(c("docopt", "dplyr", "data.table", "stringr", "doParallel", "ti
 q()
 ```
 
+# Running
+
 Commands of the following form were run:
 ```
 python assembly_workflow.py \
