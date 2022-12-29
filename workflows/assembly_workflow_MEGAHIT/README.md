@@ -12,6 +12,16 @@ This folder contains code for the MEGAHIT-based assembly workflow, which is base
 - If the bin has a Mash distance less than 0.05 from an SGB, less than 0.15 from a GGB, or less than 0.3 from a FGB, assign it to that bin
 - Otherwise, recluster all remaining bins into SGBs based on a 0.05 Mash threshold
 
+# Versioning
+
+- MEGAHIT: 1.2.9
+- Bowtie2: 2.5.0
+- Samtools: 1.16.1
+- MetaBAT: 2.12.1
+- Checkm 2: 1.0.0
+- PhyloPhlAn 3: 3.0.67
+- Mash: 2.3
+
 # Installation
 
 The requirements for the workflow can be installed by cloning this GitHub directory and following the commands below.  The PhyloPhlAn run will intentionally fail in order to download the database.
