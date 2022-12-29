@@ -8,7 +8,7 @@ This folder contains code for the Simka comparison workflow.
 
 # Installation
 
-Simka was installed according to the instructions on (its GitHub)[https://github.com/GATB/simka].
+Simka was installed according to the instructions on [its GitHub](https://github.com/GATB/simka).
 
 # Running
 
