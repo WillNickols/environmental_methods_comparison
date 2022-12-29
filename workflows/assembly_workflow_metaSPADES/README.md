@@ -12,6 +12,8 @@ This folder contains code for the metaSPADES-based assembly workflow, which is b
 - If the bin has a Mash distance less than 0.05 from an SGB, less than 0.15 from a GGB, or less than 0.3 from a FGB, assign it to that bin
 - Otherwise, recluster all remaining bins into SGBs based on a 0.05 Mash threshold
 
+Because of the memory and time requirements of metaSPADES, some samples failed to assemble, so those were excluded from the merged output by running `assembly_workflow_cleanup.py` after `assembly_workflow.py`.
+
 # Versioning
 
 - SPADES: 3.15.4
@@ -49,6 +51,8 @@ wget http://cab.spbu.ru/files/release3.15.4/SPAdes-3.15.4-Linux.tar.gz
 tar -xzf SPAdes-3.15.4-Linux.tar.gz
 export SPADES_BIN=$(pwd)/SPAdes-3.15.4-Linux/bin/
 ```
+
+# Running
 
 Commands of the following form were run:
 ```
