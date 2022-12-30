@@ -86,6 +86,8 @@ if not os.path.isfile(gtdbtk_relab + "gtdbtk_relab.tsv"):
 		depends=[gtdbtk_out + "gtdbtk.bac120.summary.tsv", gtdbtk_out + "gtdbtk.ar53.summary.tsv"],
 		targets=gtdbtk_relab + "gtdbtk_relab.tsv")
 
+depends_list = [gtdbtk_relab + "gtdbtk_relab.tsv", qa_dir + "checkm_qa_and_n50.tsv"]
+
 if not os.path.isfile(output + "final_profile.tsv"):
 	merge = "Rscript " + this_folder + "merge_tax_and_abundance.R" + " -i " + abundance_dir + " --tax " + gtdbtk_relab + "gtdbtk_relab.tsv" + " --qa " + qa_dir + "checkm_qa_and_n50.tsv -o " + output + "final_profile_" + abundance_type + ".tsv"
 	workflow.add_task(merge, depends=depends_list, targets = output + "final_profile_" + abundance_type + ".tsv")
