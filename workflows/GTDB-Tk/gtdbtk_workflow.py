@@ -11,14 +11,12 @@ workflow.add_argument("cores", desc="The number of CPU cores allocated to the jo
 workflow.add_argument("mem", desc="The maximum memory in gigabytes allocated to run the command", type=int, default=16000)
 workflow.add_argument("time", desc="The maximum time in minutes allocated to run the command", type=int, default=10000)
 workflow.add_argument("abundance-type", desc='by_sample or by_dataset', default="by_sample")
-workflow.add_argument("mags-sgb-dir", desc='mags and sgb directory')
-workflow.add_argument("mash-sketch-options", desc='Mash sketch options as a text string with quotes', default="")
 args = workflow.parse_args()
 
 this_folder = os.path.realpath(__file__).rsplit("/", 1)[0] + "/"
 
 output = os.path.abspath(args.output.rstrip("/")) + "/"
-bins_dir = os.path.abspath(args.input.rstrip("/")) + "/"
+input = os.path.abspath(args.input.rstrip("/")) + "/"
 scratch = os.path.abspath(args.grid_scratch.rstrip("/")) + "/"
 cores = args.cores
 memory = args.mem
@@ -32,6 +30,7 @@ try:
 except:
 	raise ValueError("--abundance must be by_sample or by_dataset")
 
+bins_dir = input + "bins/"
 paths = Path(bins_dir).rglob('*.fa')
 
 bins_scratch = scratch + "bins_in/"
@@ -58,8 +57,8 @@ sgb_dir = output + "sgbs/"
 if not os.path.isdir(sgb_dir):
 	os.makedirs(sgb_dir)
 
-qa_dir = args.mags_sgb_dir + "checkm/qa/"
-abundance_dir = args.mags_sgb_dir + "abundance_" + abundance_type + "/"
+qa_dir = input + "checkm/qa/"
+abundance_dir = input + "abundance_" + abundance_type + "/"
 
 ##############
 # run GTDBTK #
@@ -87,55 +86,8 @@ if not os.path.isfile(gtdbtk_relab + "gtdbtk_relab.tsv"):
 		depends=[gtdbtk_out + "gtdbtk.bac120.summary.tsv", gtdbtk_out + "gtdbtk.ar53.summary.tsv"],
 		targets=gtdbtk_relab + "gtdbtk_relab.tsv")
 
-########
-# SGBs #
-########
-
-############################
-# list MAGs to run Mash on #
-############################
-
-if not os.path.isfile(mash_dir + "mags_filepaths.txt"):
-	list_inputs = "python " + this_folder + "mash_list_inputs.py --checkm " + qa_dir + "checkm_qa_and_n50.tsv --gtdbtk-table " + gtdbtk_relab + "gtdbtk_relab.tsv" + " --bins " + bins_dir + " --mash " + mash_dir + " --threads " + str(local_jobs)
-	workflow.add_task(list_inputs, depends=[gtdbtk_relab + "gtdbtk_relab.tsv", qa_dir + "checkm_qa_and_n50.tsv"], targets=mash_dir + "mags_filepaths.txt")
-
-###############
-# mash sketch #
-###############
-
-if not os.path.isfile(mash_dir + "sketches.msh"):
-	sketch = "if [ ! -s " + mash_dir + "mags_filepaths.txt" + " ]; then touch " + mash_dir + "sketches.msh" + "; else mash sketch -p " + str(local_jobs) + " -l " + mash_dir + "mags_filepaths.txt" + " -o " + mash_dir + "sketches " + args.mash_sketch_options + "; fi"
-	workflow.add_task(sketch, depends=mash_dir + "mags_filepaths.txt", targets=mash_dir + "sketches.msh")
-
-##############
-# mash paste #
-##############
-
-if not os.path.isfile(mash_dir + "references.msh"):
-	paste = "if [ ! -s " + mash_dir + "mags_filepaths.txt" + " ]; then touch " + mash_dir + "references.msh" + "; else mash paste " + mash_dir + "references " + mash_dir + "sketches.msh; fi"
-	workflow.add_task(paste, depends=mash_dir + "sketches.msh", targets=mash_dir + "references.msh")
-
-#############
-# mash dist #
-#############
-
-if not os.path.isfile(mash_dir + "mash_dist_out.tsv"):
-	dist = "if [ ! -s " + mash_dir + "mags_filepaths.txt" + " ]; then touch " + mash_dir + "mash_dist_out.tsv" + "; else mash dist -p " + str(local_jobs) + " -t " + mash_dir + "references.msh " + mash_dir + "sketches.msh > " + mash_dir + "mash_dist_out.tsv; fi"
-	workflow.add_task(dist, depends=mash_dir + "references.msh", targets=mash_dir + "mash_dist_out.tsv")
-
-#################
-# identify SGBS #
-#################
-
-depends_list = [gtdbtk_relab + "gtdbtk_relab.tsv", qa_dir + "checkm_qa_and_n50.tsv", sgb_dir + "sgbs/SGB_info.tsv"]
-
-# groups MAGs into SGBs using (1) Mash and (2) fastANI
-if not os.path.isfile(sgb_dir + "fastANI/SGB_list.txt") or not os.path.isfile(sgb_dir + "sgbs/SGB_info.tsv"):
-	cluster = "if [ ! -s " + mash_dir + "mags_filepaths.txt" + " ]; then mkdir -p " + sgb_dir + "fastANI/" + " && touch " + sgb_dir + "fastANI/SGB_list.txt && mkdir -p " + sgb_dir + "sgbs/" + " && echo -e \"cluster\tgenome\tcluster_members\tn_genomes\tcompleteness\tcontamination\tstrain_heterogeneity\tn50\tquality\tkeep\tcluster_name\tsgb\" > " + sgb_dir + "sgbs/SGB_info.tsv; else Rscript " + this_folder + "mash_clusters.R --mash " + mash_dir + "mash_dist_out.tsv --checkm " + qa_dir + "checkm_qa_and_n50.tsv" + " --gtdbtk " + gtdbtk_relab + "gtdbtk_relab.tsv --out_dir " + sgb_dir + " --threads " + str(local_jobs) + " --mag_dir " + bins_dir + "qc_bins/; fi"
-	workflow.add_task(cluster, depends=[mash_dir + "mash_dist_out.tsv", gtdbtk_relab + "gtdbtk_relab.tsv"], targets=[sgb_dir + "fastANI/SGB_list.txt", sgb_dir + "sgbs/SGB_info.tsv"])
-
 if not os.path.isfile(output + "final_profile.tsv"):
-	merge = "Rscript " + this_folder + "merge_tax_and_abundance.R" + " -i " + abundance_dir + " --tax " + gtdbtk_relab + "gtdbtk_relab.tsv" + " --qa " + qa_dir + "checkm_qa_and_n50.tsv --sgbs " + sgb_dir + "sgbs/SGB_info.tsv" + " -o " + output + "final_profile_" + abundance_type + ".tsv"
+	merge = "Rscript " + this_folder + "merge_tax_and_abundance.R" + " -i " + abundance_dir + " --tax " + gtdbtk_relab + "gtdbtk_relab.tsv" + " --qa " + qa_dir + "checkm_qa_and_n50.tsv -o " + output + "final_profile_" + abundance_type + ".tsv"
 	workflow.add_task(merge, depends=depends_list, targets = output + "final_profile_" + abundance_type + ".tsv")
 
 workflow.go()

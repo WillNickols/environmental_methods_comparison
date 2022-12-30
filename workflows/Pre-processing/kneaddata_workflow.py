@@ -103,7 +103,7 @@ def list_targets(name, step, paired):
 def kneaddata(name, paired):
 	if paired == "paired":
 		command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i}'''.format(
-			a = "kneaddata --input " + name + "_1." + input_extension + " --output " + scratch + " --threads " + str(cores) + " --output-prefix " + name.split("/")[-1] + " --input " + name + "_2." + input_extension + " --reference-db " + args.reference_db + " --serial --run-trf  --remove-intermediate-output",
+			a = "kneaddata -i1 " + name + "_1." + input_extension + " --output " + scratch + " --threads " + str(cores) + " --output-prefix " + name.split("/")[-1] + " -i2 " + name + "_2." + input_extension + " --reference-db " + args.reference_db + " --serial --run-trf  --remove-intermediate-output",
 			b = "gzip " + scratch + name.split("/")[-1] + "_unmatched_1.fastq",
 			c = "gzip " + scratch + name.split("/")[-1] + "_unmatched_2.fastq",
 			d = "cat " + scratch + name.split("/")[-1] + "_paired_1.fastq | paste - - - - | sort -k1,1 -S 3G | tr '\t' '\n' | gzip > " + scratch + name.split("/")[-1] + "_1_sorted.fastq.gz",
@@ -116,7 +116,7 @@ def kneaddata(name, paired):
 		return str(command)
 	if paired == "unpaired":
 		command = '''{a} && {b}'''.format(
-			a = "kneaddata --input " + name + "." + input_extension + " --output " + scratch + " --threads " + str(cores) + " --output-prefix " + name.split("/")[-1] + " --reference-db " + args.reference_db + " --serial --run-trf  --remove-intermediate-output",
+			a = "kneaddata -i1 " + name + "." + input_extension + " --output " + scratch + " --threads " + str(cores) + " --output-prefix " + name.split("/")[-1] + " --reference-db " + args.reference_db + " --serial --run-trf  --remove-intermediate-output",
 			b = "gzip " + scratch + name.split("/")[-1] + ".fastq"
 			)
 		return str(command)

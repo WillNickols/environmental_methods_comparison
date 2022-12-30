@@ -7,13 +7,12 @@ library(stringr)
 rm(list = ls())
 
 'Usage:
-   merge_tax_and_abundance.R [-i <input> --tax <tax> --qa <combined> --sgbs <sgbs> -o <output>]
+   merge_tax_and_abundance.R [-i <input> --tax <tax> --qa <combined> -o <output>]
 
 Options:
    -i abundance_by_X directory
    --tax gtdbtk_relab.tsv
    --qa checkm_qa_and_n50.tsv
-   --sgbs SGB_info.tsv
    -o output
 
 ' -> doc 
@@ -55,23 +54,6 @@ qa <- fread(gsub("/$", "", opts$qa))
 qa <- qa[,c(1,5)]
 
 abundance <- left_join(abundance, qa, by=c("ID"="bin_id"))
-
-sgbs <- fread(gsub("/$", "", opts$sgbs))
-sgbs <- sgbs[,c(3,12)]
-if (nrow(sgbs) > 0) {
-  for (i in 1:nrow(sgbs)) {
-    if (str_count(sgbs$cluster_members[i], ",") > 0) {
-      samples = str_split(sgbs$cluster_members[i], ",")[[1]]
-      sgbs[i,] <- list(samples[1], sgbs$sgb[i])
-      sgbs <- rbind(sgbs, cbind(samples[-1], rep(sgbs$sgb[i], length(samples) - 1)), use.names=FALSE)
-    }
-  }
-}
-colnames(sgbs) <- c("ID", "SGB")
-sgbs$ID <- gsub("\\.fa", "", sgbs$ID)
-
-abundance <- left_join(abundance, sgbs, by="ID")
-abundance$Taxonomy <- ifelse(abundance$Taxonomy=="UNKNOWN", abundance$SGB, abundance$Taxonomy)
 
 # Reformat
 abundance$Taxonomy <- gsub(pattern=" \\(root\\)", replacement="", abundance$Taxonomy)
