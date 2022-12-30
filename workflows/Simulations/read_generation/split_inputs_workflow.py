@@ -26,5 +26,5 @@ if str(args.input_extension) == "fastq.gz":
 
 for f,o in zip(files, out_files):
 	if not os.path.isfile(o + "_1.fastq.gz") or not os.path.isfile(o + "_2.fastq.gz"):
-    	workflow.add_task("bash reformat.sh in=" + f + " out=" + o + "_1.fastq.gz out2=" + o + "_2.fastq.gz ", depends = [f], targets = [o + "_1.fastq.gz", o + "_2.fastq.gz"])
+		workflow.add_task("bash reformat.sh in=" + f + " out=" + o + "_1.fastq.gz out2=" + o + "_2.fastq.gz ", depends = [f], targets = [o + "_1.fastq.gz", o + "_2.fastq.gz"])
 workflow.go()

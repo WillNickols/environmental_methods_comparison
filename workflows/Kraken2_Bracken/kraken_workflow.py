@@ -31,7 +31,11 @@ cores = args.cores
 partition = args.grid_partition
 max_time = args.time
 paired = args.paired
-database_folder = args.database_folder
+
+try:
+	database_folder = os.environ["KRAKEN_DB"]
+except:
+	raise ValueError("Kraken database path is not set")
 
 # list the input fastq files
 in_dir = args.input
@@ -103,14 +107,14 @@ def kraken(name, paired):
 	kraken_dir = scratch + "kraken/"
 	if paired == "paired":
 		command = '''{a} && {b} && {c}'''.format(
-			a = "kraken2 --paired --db " + args.database_folder + " " + name + "_paired_1." + input_extension + " " + name + "_paired_2." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
-			b = "bash bracken -d " + args.database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
+			a = "kraken2 --paired --db " + database_folder + " " + name + "_paired_1." + input_extension + " " + name + "_paired_2." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
+			b = "bash bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
 			c = "python kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
 			)
 	if paired == "unpaired":
 		command = '''{a} && {b} && {c}'''.format(
-			a = "kraken2 --db " + args.database_folder + " " + name + "." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
-			b = "bash bracken -d " + args.database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
+			a = "kraken2 --db " + database_folder + " " + name + "." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
+			b = "bash bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
 			c = "python kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
 			)
 	return str(command)
