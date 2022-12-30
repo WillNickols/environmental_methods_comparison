@@ -18,7 +18,7 @@ tmp = out_dir + "tmp/"
 if not os.path.exists(tmp):
 	os.makedirs(tmp)
 
-files = glob.glob(mag_dir + "*/bins/*.fa")
+files = glob.glob(mag_dir + "*/bins/*.bin.[0-9]*.fa")
 
 for file in files:
 	copy = "cp " + file + " " + tmp

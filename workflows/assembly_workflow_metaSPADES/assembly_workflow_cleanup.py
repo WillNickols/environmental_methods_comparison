@@ -92,9 +92,9 @@ def calculate_time(name, step, no_max = False):
 	time = 0
 	if step == "abundance_dataset":
 		if pair_identifier == "kneaddata_default":
-			time = 50 * sum([math.ceil(os.path.getsize(name + "_paired_1." + input_extension) / (1024 * 1024 * 1024.0)) for name in names])
+			time = 10 * sum([math.ceil(os.path.getsize(name + "_paired_1." + input_extension) / (1024 * 1024 * 1024.0)) for name in names])
 		else:
-			time = 50 * sum([math.ceil(os.path.getsize(name + pair_identifier + "." + input_extension) / (1024 * 1024 * 1024.0)) for name in names])
+			time = 10 * sum([math.ceil(os.path.getsize(name + pair_identifier + "." + input_extension) / (1024 * 1024 * 1024.0)) for name in names])
 		time = time + 30
 	else:
 		if pair_identifier == "kneaddata_default":
