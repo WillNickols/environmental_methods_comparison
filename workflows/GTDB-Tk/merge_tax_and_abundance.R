@@ -33,6 +33,7 @@ colnames(abundances) <- c("ID", (str_split(abundance_files[1], "/")[[1]] %>% tai
                              str_split(pattern = "\\.abundance"))[[1]][1])
 
 for (abundance_file in abundance_files[-1]) {
+  abundances$ID = as.character(abundances$ID)
   data <- fread(abundance_file)[,c(1,6)]
   colnames(data) <- c("ID", (str_split(abundance_file, "/")[[1]] %>% tail(1) %>%
                         str_split(pattern = "\\.abundance"))[[1]][1])
@@ -111,10 +112,6 @@ mapped_props <- as.data.frame(mapped_props)
 mapped_props$prop <- as.numeric(levels(mapped_props$prop))[mapped_props$prop]
 
 for (ID in mapped_props$ID) {
-  if (mapped_props$prop[mapped_props$ID==ID] == 0 ) {
-    total_profile[,'new'] <- rep(0, nrow(total_profile))
-    colnames(total_profile)[colnames(total_profile)=="new"] <- ID
-  }
   total_profile[,ID] <- total_profile[,ID] * mapped_props$prop[mapped_props$ID==ID]
   total_profile[total_profile$Taxonomy=="UNKNOWN", ID] <- total_profile[total_profile$Taxonomy=="UNKNOWN", ID] + 
     100 * (1-mapped_props$prop[mapped_props$ID==ID])

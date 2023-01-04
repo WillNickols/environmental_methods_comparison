@@ -37,6 +37,13 @@ try:
 except:
 	raise ValueError("Kraken database path is not set")
 
+try:
+	bracken_path = os.path.abspath(os.environ["BRACKEN_PATH"].rstrip("/")) + "/"
+except:
+	raise ValueError("Bracken path is not set")
+
+this_folder = os.path.realpath(__file__).rsplit("/", 1)[0] + "/"
+
 # list the input fastq files
 in_dir = args.input
 
@@ -108,14 +115,14 @@ def kraken(name, paired):
 	if paired == "paired":
 		command = '''{a} && {b} && {c}'''.format(
 			a = "kraken2 --paired --db " + database_folder + " " + name + "_paired_1." + input_extension + " " + name + "_paired_2." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
-			b = "bash bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
-			c = "python kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
+			b = "bash " + bracken_path + "bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
+			c = "python " + bracken_path + "kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
 			)
 	if paired == "unpaired":
 		command = '''{a} && {b} && {c}'''.format(
 			a = "kraken2 --db " + database_folder + " " + name + "." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
-			b = "bash bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
-			c = "python kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
+			b = "bash " + bracken_path + "bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
+			c = "python " + bracken_path + "kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
 			)
 	return str(command)
 
@@ -133,7 +140,7 @@ for name in names:
 combine_dep = [output + name.split("/")[-1] + "_report_MPA_from_bracken.txt" for name in names]
 combine_targets = [output+"kraken_merged_tmp.tsv"]
 
-workflow.add_task("python combine_mpa.py -i " + output + "*_report_MPA_from_bracken.txt -o [targets[0]]",
+workflow.add_task("python " + bracken_path + "combine_mpa.py -i " + output + "*_report_MPA_from_bracken.txt -o [targets[0]]",
 	depends = combine_dep,
 	targets = combine_targets
 	)
@@ -170,7 +177,7 @@ wrangling_dep = [list_targets(name=name, step="get_reads", paired=paired)[0] for
 wrangling_dep.append(output+"kraken_merged_tmp.tsv")
 wrangling_targets = [output+"kraken_merged.tsv"]
 
-workflow.add_task("Rscript kraken_tax_wrangling.R -i " + output + " -o [targets[0]]",
+workflow.add_task("Rscript " + this_folder + "kraken_tax_wrangling.R -i " + output + " -o [targets[0]]",
 	depends = wrangling_dep,
 	targets = wrangling_targets
 	)

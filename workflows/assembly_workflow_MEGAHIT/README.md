@@ -17,7 +17,7 @@ This folder contains code for the MEGAHIT-based assembly workflow, which is base
 - MEGAHIT: 1.2.9
 - Bowtie2: 2.5.0
 - Samtools: 1.16.1
-- MetaBAT: 2.12.1
+- MetaBAT: 2.15
 - Checkm 2: 1.0.0
 - PhyloPhlAn 3: 3.0.67
   - Database: SGB.Jul20
