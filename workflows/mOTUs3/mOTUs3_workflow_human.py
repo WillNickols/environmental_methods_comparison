@@ -146,7 +146,9 @@ if not os.path.isfile(output + "merged/all_sample_profiles.txt"):
 wrangling_dep = [output + "merged/all_sample_profiles.txt"]
 wrangling_targets = [output + "mOTUs3_merged.tsv"]
 
-workflow.add_task("Rscript mOTUs3_tax_wrangling.R -i [depends[0]] -o [targets[0]]",
+this_folder = os.path.realpath(__file__).rsplit("/", 1)[0] + "/"
+
+workflow.add_task("Rscript " + this_folder + "mOTUs3_tax_wrangling.R -i [depends[0]] -o [targets[0]]",
 	depends = wrangling_dep,
 	targets = wrangling_targets
 	)

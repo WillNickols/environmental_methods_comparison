@@ -198,13 +198,15 @@ workflow.add_task_gridable(actions=collect(),
 # merge to MPA-like format #
 ############################
 
+this_folder = os.path.realpath(__file__).rsplit("/", 1)[0] + "/"
+
 depends = [output + "merged.tsv"]
 
 targets = output + "merged/merged_reorganized.tsv"
 if not os.path.isdir(output + "merged/"):
 	os.makedirs(output + "merged/")
 
-workflow.add_task("Rscript metaxa2_wrangling.R -i [depends[0]] -o [targets[0]]",
+workflow.add_task("Rscript " + this_folder + "metaxa2_wrangling.R -i [depends[0]] -o [targets[0]]",
 	depends = depends,
 	targets = targets
 	)

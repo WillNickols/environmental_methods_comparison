@@ -26,7 +26,6 @@ colnames(merged) <- gsub(pattern = "^(?:[^.]*/){1}", "", colnames(merged))
 
 # Get sample names and remove "Taxa"
 samples <- unique(gsub(pattern = "[\\.]*[0-9]*$", "", colnames(merged))[-1])
-stop(samples)
 
 output <- data.frame(cbind(merged$Taxa))
 

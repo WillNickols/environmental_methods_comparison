@@ -524,11 +524,12 @@ def metabat(name):
 	depth = depths_dir + name.split("/")[-1] + ".contig_depths.txt"
 	metabat_tmp = mags_scratch + name.split("/")[-1] + "/bins/" + name.split("/")[-1]
 	metabat_out = bins_dir + name.split("/")[-1] + "/bins/"
-	command = '''{a} && {b} && {c} && {d}'''.format(
+	command = '''{a} && {b} && {c} && {d} && {e}'''.format(
 		a = "if [ ! -s " + contigs + " ]; then mkdir -p " + metabat_tmp + " && touch " + metabat_tmp + ".bin.lowDepth.fa && touch " + metabat_tmp + ".bin.tooShort.fa && touch " + metabat_tmp + ".bin.unbinned.fa; else metabat2 -i " + contigs + " -a " + depth + " -o " + metabat_tmp + ".bin --unbinned -m 1500 -t " + str(cores) + " " + args.metabat_options + "; fi",
-		b = "mkdir -p " + metabat_out,
-		c = "cp " + metabat_tmp + "*.fa " + metabat_out,
-		d = "touch [targets[0]]"
+		b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/" + ")\" ]; then > " + contigs + " && touch " + metabat_tmp + ".bin.lowDepth.fa && touch " + metabat_tmp + ".bin.tooShort.fa && touch " + metabat_tmp + ".bin.unbinned.fa; fi", # if contigs are too short and no bins are created, delete contigs from the original file and create the empty bin files
+		c = "mkdir -p " + metabat_out,
+		d = "cp " + metabat_tmp + "*.fa " + metabat_out,
+		e = "touch [targets[0]]"
 		)
 	return str(command)
 

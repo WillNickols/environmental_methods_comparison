@@ -29,6 +29,7 @@ for (read_num in read_nums) {
   total_reads <- rbind(total_reads, c(sample, readChar(read_num, file.info(read_num)$size) %>% as.numeric()))
 }
 
+total_reads <- data.frame(total_reads)
 colnames(total_reads) <- c("ID", "reads")
 
 # Read in merged kraken tsv
@@ -48,7 +49,6 @@ for(i in 2:ncol(kraken)) {
 
 colnames(total_reads) <- c("ID", "total", "reads")
 total_reads$total <- as.numeric(levels(total_reads$total))[total_reads$total]
-total_reads$reads <- as.numeric(levels(total_reads$reads))[total_reads$reads]
 
 kraken[nrow(kraken) + 1,1] <- c("UNCLASSIFIED")
 kraken[nrow(kraken), 2:ncol(kraken)] <- rep(0, ncol(kraken) - 1)
@@ -57,7 +57,7 @@ kraken <- kraken[order(kraken$Taxa),]
 for (ID in total_reads$ID) {
   prop <- total_reads$reads[total_reads$ID==ID]/total_reads$total[total_reads$ID==ID]
   kraken[,ID] <- kraken[,ID] * prop
-  kraken[kraken$Taxonomy=="UNCLASSIFIED", ID] <- kraken[kraken$Taxonomy=="UNCLASSIFIED", ID] + 
+  kraken[kraken$Taxa=="UNCLASSIFIED", ID] <- kraken[kraken$Taxa=="UNCLASSIFIED", ID] + 
     100 * (1-prop)
 }
 
