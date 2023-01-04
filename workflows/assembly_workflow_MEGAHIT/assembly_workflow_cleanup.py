@@ -67,9 +67,9 @@ pair_identifier_2 = pair_identifier.replace("1", "2")
 
 abundance_type = args.abundance_type
 try:
-	assert abundance_type in ['by_sample', 'by_sample_bin', 'by_dataset']
+	assert abundance_type in ['by_sample', 'by_dataset']
 except:
-	raise ValueError("--abundance must be by_sample, by_sample_bin, or by_dataset")
+	raise ValueError("--abundance must be by_sample or by_dataset")
 
 # list the input fastq files
 in_dir = args.input
@@ -639,14 +639,6 @@ def rebuild_bowtie2_db():
 		)
 	return str(command)
 
-def rebuild_bowtie2_sample_bin(name):
-	bowtie2_dir = mags_scratch + name.split("/")[-1] + "/bowtie2/"
-	command = '''{a} && {b}'''.format(
-		a = "python " + assembly_tasks_folder + "by_sample_db_only_bin.py --bin_dir " + bins_dir + " --out_dir " + bowtie2_dir + " --name " + name.split("/")[-1],
-		b = "touch " + abundance_dir + name.split("/")[-1] + ".built_bin_only"
-		)
-	return str(command)
-
 def abundance_dataset(name, paired):
 	contigs = contigs_dir + name.split("/")[-1] + "/" + name.split("/")[-1] + ".final.contigs.fa"
 	bowtie2_dir = mags_scratch + name.split("/")[-1] + "/bowtie2/"
@@ -781,110 +773,6 @@ def abundance_dataset(name, paired):
 				)
 	return str(command)
 
-def abundance_dataset_bin_only(name, paired):
-	contigs = contigs_dir + name.split("/")[-1] + "/" + name.split("/")[-1] + ".final.contigs.fa"
-	bowtie2_dir = mags_scratch + name.split("/")[-1] + "/bowtie2/"
-	index = bowtie2_dir + name.split("/")[-1]
-	sam = bowtie2_dir + name.split("/")[-1] + ".sam"
-	bam_unsorted = bowtie2_dir + name.split("/")[-1] + ".unsorted.bam"
-	bam_sorted = bowtie2_dir + name.split("/")[-1] + ".sorted.bam"
-	bam_index = bowtie2_dir + name.split("/")[-1] + ".sorted.bam.bai"
-	bin = bins_dir + name.split("/")[-1] + "/bins"
-
-	if paired == "paired":
-		if input_extension in ["fastq.gz", "fq.gz"]:
-			command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i} && {j} && {k} && {l} && {m}'''.format(
-				a = "mkdir -p " + bowtie2_dir,
-				b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then touch " + bam_sorted + "; else bowtie2 -x " + index + " -1 " + name + "_paired_1." + input_extension + " -2 " + name + "_paired_2." + input_extension + " -U " + name + "_unmatched_1." + input_extension + "," + name + "_unmatched_2." + input_extension + " -S " + sam + " -p " + str(cores) + " --very-sensitive-local --no-unal",
-				c = "samtools view -bS -F 4 " + sam + " > " + bam_unsorted,
-				d = "samtools sort " + bam_unsorted + " -o " + bam_sorted + " --threads " + str(cores) + "; fi",
-				e = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then echo -e \"Sequence Id\tBin Id\tSequence length (bp)\tBam Id\tCoverage\tMapped reads\" > [targets[0]] && echo -e \"Bin Id\tBin size (Mbp)\t" + name.split("/")[-1] + ".sorted: mapped reads\t" + name.split("/")[-1] + ".sorted: % mapped reads\t" + name.split("/")[-1] + ".sorted: % binned populations\t" + name.split("/")[-1] + ".sorted: % community\" > [targets[1]] && echo 0 > [targets[2]]; else samtools index " + bam_sorted + " -@ " + str(cores) + " " + bam_index,
-				f = "python " + assembly_tasks_folder + "checkm.py coverage " + bin + " [targets[0]] " + bam_sorted + " -x fa -t " + str(cores) + " -r " + args.checkm_coverage_options,
-				g = "python " + assembly_tasks_folder + "checkm.py profile [targets[0]] --tab_table -f [targets[1]]",
-				h = "samtools view -c -F 260 " + bam_sorted + " -o [targets[2]]; fi",
-				i = "paired1=$(echo $(zcat " + name + "_paired_1." + input_extension + "|wc -l)/4|bc)",
-				j = "paired2=$(echo $(zcat " + name + "_paired_2." + input_extension + "|wc -l)/4|bc)",
-				k = "unpaired1=$(echo $(zcat " + name + "_unmatched_1." + input_extension + "|wc -l)/4|bc)",
-				l = "unpaired2=$(echo $(zcat " + name + "_unmatched_2." + input_extension + "|wc -l)/4|bc)",
-				m = "echo $((paired1+paired2+unpaired1+unpaired2)) &>> [targets[2]]",
-				)
-		elif input_extension in ["fastq", "fq"]:
-			command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i} && {j} && {k} && {l} && {m}'''.format(
-				a = "mkdir -p " + bowtie2_dir,
-				b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then touch " + bam_sorted + "; else bowtie2 -x " + index + " -1 " + name + "_paired_1." + input_extension + " -2 " + name + "_paired_2." + input_extension + " -U " + name + "_unmatched_1." + input_extension + "," + name + "_unmatched_2." + input_extension + " -S " + sam + " -p " + str(cores) + " --very-sensitive-local --no-unal",
-				c = "samtools view -bS -F 4 " + sam + " > " + bam_unsorted,
-				d = "samtools sort " + bam_unsorted + " -o " + bam_sorted + " --threads " + str(cores) + "; fi",
-				e = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then echo -e \"Sequence Id\tBin Id\tSequence length (bp)\tBam Id\tCoverage\tMapped reads\" > [targets[0]] && echo -e \"Bin Id\tBin size (Mbp)\t" + name.split("/")[-1] + ".sorted: mapped reads\t" + name.split("/")[-1] + ".sorted: % mapped reads\t" + name.split("/")[-1] + ".sorted: % binned populations\t" + name.split("/")[-1] + ".sorted: % community\" > [targets[1]] && echo 0 > [targets[2]]; else samtools index " + bam_sorted + " -@ " + str(cores) + " " + bam_index,
-				f = "python " + assembly_tasks_folder + "checkm.py coverage " + bin + " [targets[0]] " + bam_sorted + " -x fa -t " + str(cores) + " -r " + args.checkm_coverage_options,
-				g = "python " + assembly_tasks_folder + "checkm.py profile [targets[0]] --tab_table -f [targets[1]]",
-				h = "samtools view -c -F 260 " + bam_sorted + " -o [targets[2]]; fi",
-				i = "paired1=$(echo $(cat " + name + "_paired_1." + input_extension + "|wc -l)/4|bc)",
-				j = "paired2=$(echo $(cat " + name + "_paired_2." + input_extension + "|wc -l)/4|bc)",
-				k = "unpaired1=$(echo $(cat " + name + "_unmatched_1." + input_extension + "|wc -l)/4|bc)",
-				l = "unpaired2=$(echo $(cat " + name + "_unmatched_2." + input_extension + "|wc -l)/4|bc)",
-				m = "echo $((paired1+paired2+unpaired1+unpaired2)) &>> [targets[2]]",
-				)
-	elif paired == "unpaired":
-		if input_extension in ["fastq.gz", "fq.gz"]:
-			command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i} && {j}'''.format(
-				a = "mkdir -p " + bowtie2_dir,
-				b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then touch " + bam_sorted + "; else bowtie2 -x " + index + " -U " + name + "." + input_extension + " -S " + sam + " -p " + str(cores) + " --very-sensitive-local --no-unal",
-				c = "samtools view -bS -F 4 " + sam + " > " + bam_unsorted,
-				d = "samtools sort " + bam_unsorted + " -o " + bam_sorted + " --threads " + str(cores) + "; fi " + args.checkm_coverage_options,
-				e = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then echo -e \"Sequence Id\tBin Id\tSequence length (bp)\tBam Id\tCoverage\tMapped reads\" > [targets[0]] && echo -e \"Bin Id\tBin size (Mbp)\t" + name.split("/")[-1] + ".sorted: mapped reads\t" + name.split("/")[-1] + ".sorted: % mapped reads\t" + name.split("/")[-1] + ".sorted: % binned populations\t" + name.split("/")[-1] + ".sorted: % community\" > [targets[1]] && echo 0 > [targets[2]]; else samtools index " + bam_sorted + " -@ " + str(cores) + " " + bam_index,
-				f = "python " + assembly_tasks_folder + "checkm.py coverage " + bin + " [targets[0]] " + bam_sorted + " -x fa -t " + str(cores) + " -r " + args.checkm_coverage_options,
-				g = "python " + assembly_tasks_folder + "checkm.py profile [targets[0]] --tab_table -f [targets[1]]",
-				h = "samtools view -c -F 260 " + bam_sorted + " -o [targets[2]]; fi",
-				i = "echo $(zcat " + name + "." + input_extension + "|wc -l)/4|bc &>> [targets[2]]",
-				j = "echo $((paired1+paired2+unpaired1+unpaired2)) &>> [targets[2]]",
-				)
-		elif input_extension in ["fastq", "fq"]:
-			command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i} && {j}'''.format(
-				a = "mkdir -p " + bowtie2_dir,
-				b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then touch " + bam_sorted + "; else bowtie2 -x " + index + " -U " + name + "." + input_extension + " -S " + sam + " -p " + str(cores) + " --very-sensitive-local --no-unal",
-				c = "samtools view -bS -F 4 " + sam + " > " + bam_unsorted,
-				d = "samtools sort " + bam_unsorted + " -o " + bam_sorted + " --threads " + str(cores) + "; fi",
-				e = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then echo -e \"Sequence Id\tBin Id\tSequence length (bp)\tBam Id\tCoverage\tMapped reads\" > [targets[0]] && echo -e \"Bin Id\tBin size (Mbp)\t" + name.split("/")[-1] + ".sorted: mapped reads\t" + name.split("/")[-1] + ".sorted: % mapped reads\t" + name.split("/")[-1] + ".sorted: % binned populations\t" + name.split("/")[-1] + ".sorted: % community\" > [targets[1]] && echo 0 > [targets[2]]; else samtools index " + bam_sorted + " -@ " + str(cores) + " " + bam_index,
-				f = "python " + assembly_tasks_folder + "checkm.py coverage " + bin + " [targets[0]] " + bam_sorted + " -x fa -t " + str(cores) + " -r " + args.checkm_coverage_options,
-				g = "python " + assembly_tasks_folder + "checkm.py profile [targets[0]] --tab_table -f [targets[1]]",
-				h = "samtools view -c -F 260 " + bam_sorted + " -o [targets[2]]; fi",
-				i = "echo $(cat " + name + "." + input_extension + "|wc -l)/4|bc &>> [targets[2]]",
-				j = "echo $((paired1+paired2+unpaired1+unpaired2)) &>> [targets[2]]",
-				)
-
-	elif paired == "concatenated":
-		if input_extension in ["fastq.gz", "fq.gz"]:
-			command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i} && {j}'''.format(
-				a = "mkdir -p " + bowtie2_dir,
-				b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then touch " + bam_sorted + "; else if grep -q -m 1 " + name + " " + list_paired + "; then bowtie2 -x " + index + " -1 " + scratch_deconcatenated + name.split("/")[-1] + "_paired_1.fastq.gz" + " -2 " + scratch_deconcatenated + name.split("/")[-1] + "_paired_2.fastq.gz" + " -U " + scratch_deconcatenated + name.split("/")[-1] + "_unmatched_1.fastq.gz" +
-					"," + scratch_deconcatenated + name.split("/")[-1] + "_unmatched_2.fastq.gz" + " -S " + sam + " -p " + str(cores) + " --very-sensitive-local --no-unal; else bowtie2 -x " + index + " -U " + name + "." + input_extension + " -S " +
-					sam + " -p " + str(cores) + " --very-sensitive-local --no-unal; fi",
-				c = "samtools view -bS -F 4 " + sam + " > " + bam_unsorted,
-				d = "samtools sort " + bam_unsorted + " -o " + bam_sorted + " --threads " + str(cores) + "; fi",
-				e = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then echo -e \"Sequence Id\tBin Id\tSequence length (bp)\tBam Id\tCoverage\tMapped reads\" > [targets[0]] && echo -e \"Bin Id\tBin size (Mbp)\t" + name.split("/")[-1] + ".sorted: mapped reads\t" + name.split("/")[-1] + ".sorted: % mapped reads\t" + name.split("/")[-1] + ".sorted: % binned populations\t" + name.split("/")[-1] + ".sorted: % community\" > [targets[1]] && echo 0 > [targets[2]]; else samtools index " + bam_sorted + " -@ " + str(cores) + " " + bam_index,
-				f = "python " + assembly_tasks_folder + "checkm.py coverage " + bin + " [targets[0]] " + bam_sorted + " -x fa -t " + str(cores) + " -r",
-				g = "python " + assembly_tasks_folder + "checkm.py profile [targets[0]] --tab_table -f [targets[1]]",
-				h = "samtools view -c -F 260 " + bam_sorted + " -o [targets[2]]; fi",
-				i = "echo $(zcat " + name + "." + input_extension + "|wc -l)/4|bc &>> [targets[2]]",
-				j = "echo $((paired1+paired2+unpaired1+unpaired2)) &>> [targets[2]]",
-				)
-		elif input_extension in ["fastq", "fq"]:
-			command = '''{a} && {b} && {c} && {d} && {e} && {f} && {g} && {h} && {i} && {j}'''.format(
-				a = "mkdir -p " + bowtie2_dir,
-				b = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then touch " + bam_sorted + "; else if grep -q -m 1 " + name + " " + list_paired + "; then bowtie2 -x " + index + " -1 " + scratch_deconcatenated + name.split("/")[-1] + "_paired_1.fastq.gz" + " -2 " + scratch_deconcatenated + name.split("/")[-1] + "_paired_2.fastq.gz" + " -U " + scratch_deconcatenated + name.split("/")[-1] + "_unmatched_1.fastq.gz" +
-					"," + scratch_deconcatenated + name.split("/")[-1] + "_unmatched_2.fastq.gz" + " -S " + sam + " -p " + str(cores) + " --very-sensitive-local --no-unal; else bowtie2 -x " + index + " -U " + name + "." + input_extension + " -S " +
-					sam + " -p " + str(cores) + " --very-sensitive-local --no-unal; fi",
-				c = "samtools view -bS -F 4 " + sam + " > " + bam_unsorted,
-				d = "samtools sort " + bam_unsorted + " -o " + bam_sorted + " --threads " + str(cores) + "; fi",
-				e = "if [ ! \"$(ls -A " + mags_scratch + name.split("/")[-1] + "/bins/*.bin.[0-9]*.fa" + ")\" ]; then echo -e \"Sequence Id\tBin Id\tSequence length (bp)\tBam Id\tCoverage\tMapped reads\" > [targets[0]] && echo -e \"Bin Id\tBin size (Mbp)\t" + name.split("/")[-1] + ".sorted: mapped reads\t" + name.split("/")[-1] + ".sorted: % mapped reads\t" + name.split("/")[-1] + ".sorted: % binned populations\t" + name.split("/")[-1] + ".sorted: % community\" > [targets[1]] && echo 0 > [targets[2]]; else samtools index " + bam_sorted + " -@ " + str(cores) + " " + bam_index,
-				f = "python " + assembly_tasks_folder + "checkm.py coverage " + bin + " [targets[0]] " + bam_sorted + " -x fa -t " + str(cores) + " -r",
-				g = "python " + assembly_tasks_folder + "checkm.py profile [targets[0]] --tab_table -f [targets[1]]",
-				h = "samtools view -c -F 260 " + bam_sorted + " -o [targets[2]]; fi",
-				i = "echo $(cat " + name + "." + input_extension + "|wc -l)/4|bc &>> [targets[2]]",
-				j = "echo $((paired1+paired2+unpaired1+unpaired2)) &>> [targets[2]]",
-				)
-	return str(command)
-
 if abundance_type == "by_sample":
 	for name in names:
 		workflow.add_task_gridable(actions=abundance_sample(name, paired),
@@ -896,27 +784,6 @@ if abundance_type == "by_sample":
 			partition=partition,
 			name="Calculate by-sample abundance for " + name.split("/")[-1]
 			)
-elif abundance_type == "by_sample_bin":
-	for name in names:
-		workflow.add_task_gridable(actions=rebuild_bowtie2_sample_bin(name),
-			depends=list_depends(name, "abundance_sample", paired),
-			targets=abundance_dir + name.split("/")[-1] + ".built_bin_only",
-			time=min(max_time, 30 + 15 * math.ceil(os.path.getsize(name + "_paired_1." + input_extension) / (1024 * 1024 * 1024.0))),
-			mem=memory,
-			cores=1,
-			partition=partition
-			)
-		if not os.path.isfile(list_targets(name=name, step="abundance", paired=paired)[0]):
-			depends_list = list_depends(name=name, step="abundance_sample", paired=paired)
-			depends_list.append(abundance_dir + name.split("/")[-1] + ".built_bin_only")
-			workflow.add_task_gridable(actions=abundance_dataset_bin_only(name, paired),
-				depends=depends_list,
-				targets=list_targets(name=name, step="abundance", paired=paired),
-				time=calculate_time(name=name, step="abundance_dataset", paired=paired),
-				mem=memory,
-				cores=cores,
-				partition=partition
-				)
 else:
 	depends_list = [list_depends(name, "abundance_sample", paired) for name in names]
 	workflow.add_task_gridable(actions=rebuild_bowtie2_db(),
