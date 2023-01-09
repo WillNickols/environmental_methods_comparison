@@ -7,9 +7,15 @@ import os
 import math
 import shutil
 
-workflow = Workflow(version="0.1", description="kraken workflow")
-workflow.add_argument("cores", desc="The number of CPU cores allocated to the job", type=int, default=4)
-workflow.add_argument("mem", desc="The maximum memory in megabytes allocated to run the command", type=int, default=45000)
+try:
+	centrifuge_path = os.environ["CENTRIFUGE_PATH"].rstrip("/") + "/"
+except:
+	raise ValueError("Centrifuge path is not set (CENTRIFUGE_PATH)")
+
+workflow = Workflow(version="0.1", description="centrifuge workflow")
+workflow.add_argument("x", desc="-x parameter for centrifuge", default = centrifuge_path + "database/abv")
+workflow.add_argument("cores", desc="The number of CPU cores allocated to the job", type=int, default=8)
+workflow.add_argument("mem", desc="The maximum memory in megabytes allocated to run the command", type=int, default=40000)
 workflow.add_argument(name="input-extension", desc="the input file extension", default="fastq.gz")
 workflow.add_argument("time", desc="The maximum time in minutes allocated to run the command", type=int, default=10000)
 workflow.add_argument(name="paired", default="paired")
@@ -30,16 +36,6 @@ cores = args.cores
 partition = args.grid_partition
 max_time = args.time
 paired = args.paired
-
-try:
-	database_folder = os.environ["KRAKEN_DB"]
-except:
-	raise ValueError("Kraken database path is not set")
-
-try:
-	bracken_path = os.path.abspath(os.environ["BRACKEN_PATH"].rstrip("/")) + "/"
-except:
-	raise ValueError("Bracken path is not set")
 
 this_folder = os.path.realpath(__file__).rsplit("/", 1)[0] + "/"
 
@@ -68,14 +64,14 @@ def calculate_time(name, step, paired):
 	time = 0
 	if paired == "paired":
 		n_gigabytes = math.ceil(os.path.getsize(name + "_paired_1." + input_extension) / (1024 * 1024 * 1024.0))
-		if step == "kraken":
-			time = 30 * n_gigabytes
+		if step == "centrifuge":
+			time = 10 + 16 * n_gigabytes
 		if step == "get_reads":
 			time = 5 * n_gigabytes
 	if paired == "unpaired":
 		n_gigabytes = math.ceil(os.path.getsize(name + "." + input_extension) / (1024 * 1024 * 1024.0))
-		if step == "kraken":
-			time = 15 * n_gigabytes
+		if step == "centrifuge":
+			time = 10 + 20 * n_gigabytes
 		if step == "get_reads":
 			time = 3 * n_gigabytes
 	if time > max_time:
@@ -88,10 +84,10 @@ def calculate_time(name, step, paired):
 
 def list_depends(name, step, paired):
 	if paired == "paired":
-		if step == "kraken" or step == "get_reads":
+		if step == "centrifuge" or step == "get_reads":
 			return [str(name + "_paired_1." + input_extension), str(name + "_paired_2." + input_extension)]
 	if paired == "unpaired":
-		if step == "kraken" or step == "get_reads":
+		if step == "centrifuge" or step == "get_reads":
 			return [str(name + "." + input_extension)]
 
 ############################
@@ -99,8 +95,8 @@ def list_depends(name, step, paired):
 ############################
 
 def list_targets(name, step, paired):
-	if step == "kraken":
-		targets = output + name.split("/")[-1] + "_report_MPA_from_bracken.txt"
+	if step == "centrifuge":
+		targets = output + name.split("/")[-1] + "_report_MPA.txt"
 	if step == "get_reads":
 		targets = output + name.split("/")[-1] + ".mapped_read_num.txt"
 	return [str(targets)]
@@ -109,37 +105,38 @@ def list_targets(name, step, paired):
 # run abundance profiling #
 ###########################
 
-def kraken(name, paired):
-	kraken_dir = scratch + "kraken/"
+def centrifuge(name, paired):
 	if paired == "paired":
-		command = '''{a} && {b} && {c}'''.format(
-			a = "kraken2 --paired --db " + database_folder + " " + name + "_paired_1." + input_extension + " " + name + "_paired_2." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
-			b = "bash " + bracken_path + "bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
-			c = "python " + bracken_path + "kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
+		command = '''{a} && {b} && {c} && {d}'''.format(
+			a = centrifuge_path + "centrifuge -x " + str(args.x) + " -1 " + name + "_paired_1." + input_extension + " -2 " + name + "_paired_2." + input_extension + " -U " + name + "_unmatched_1." + input_extension + "," + name + "_unmatched_2." + input_extension + " --report-file " + output + name.split("/")[-1] + "_centrifuge_report.tsv " + " -S " + output + name.split("/")[-1] + "_individual_classification.txt" + " -p " + str(cores),
+			b = centrifuge_path + "centrifuge-kreport" + " -x " + str(args.x) + " " + output + name.split("/")[-1] + "_individual_classification.txt > " + output + name.split("/")[-1] + "_report_centrifuge_species.txt",
+			c = "python " + centrifuge_path + "kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_centrifuge_species.txt -o " + output + name.split("/")[-1] + "_report_MPA.txt --display-header",
+			d = "rm " + output + name.split("/")[-1] + "_centrifuge_report.tsv"
 			)
 	if paired == "unpaired":
-		command = '''{a} && {b} && {c}'''.format(
-			a = "kraken2 --db " + database_folder + " " + name + "." + input_extension + " --threads " + str(cores) + " --output " + kraken_dir + name.split("/")[-1] + ".tsv --gzip-compressed --report " + output + name.split("/")[-1] + "_report_kraken.txt",
-			b = "bash " + bracken_path + "bracken -d " + database_folder + " -i " + output + name.split("/")[-1] + "_report_kraken.txt" + " -o " + output + name.split("/")[-1] + "_report_bracken.txt",
-			c = "python " + bracken_path + "kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_kraken_bracken_species.txt -o " + output + name.split("/")[-1] + "_report_MPA_from_bracken.txt --display-header",
+		command = '''{a} && {b} && {c} && {d}'''.format(
+			a = centrifuge_path + "centrifuge -x " + str(args.x) + " -U " + name + "." + input_extension + " --report-file " + output + name.split("/")[-1] + "_centrifuge_report.tsv " + " -S " + output + name.split("/")[-1] + "_individual_classification.txt" + " -p " + str(cores),
+			b = centrifuge_path + "centrifuge-kreport" + " -x " + str(args.x) + " " + output + name.split("/")[-1] + "_individual_classification.txt > " + output + name.split("/")[-1] + "_report_centrifuge_species.txt",
+			c = "python " + centrifuge_path + "kreport2mpa.py -r " + output + name.split("/")[-1] + "_report_centrifuge_species.txt -o " + output + name.split("/")[-1] + "_report_MPA.txt --display-header",
+			d = "rm " + output + name.split("/")[-1] + "_centrifuge_report.tsv"
 			)
 	return str(command)
 
 for name in names:
-	if not os.path.isfile(list_targets(name=name, step="kraken", paired=paired)[0]):
-		workflow.add_task_gridable(actions=kraken(name, paired),
-			depends=list_depends(name=name, step="kraken", paired=paired),
-			targets=list_targets(name=name, step="kraken", paired=paired),
-			time=calculate_time(name=name, step="kraken", paired=paired),
+	if not os.path.isfile(list_targets(name=name, step="centrifuge", paired=paired)[0]):
+		workflow.add_task_gridable(actions=centrifuge(name, paired),
+			depends=list_depends(name=name, step="centrifuge", paired=paired),
+			targets=list_targets(name=name, step="centrifuge", paired=paired),
+			time=calculate_time(name=name, step="centrifuge", paired=paired),
 			mem=memory,
 			cores=cores,
 			partition=partition
 			)
 
-combine_dep = [output + name.split("/")[-1] + "_report_MPA_from_bracken.txt" for name in names]
-combine_targets = [output+"kraken_merged_tmp.tsv"]
+combine_dep = [output + name.split("/")[-1] + "_report_MPA.txt" for name in names]
+combine_targets = [output+"centrifuge_merged_tmp.tsv"]
 
-workflow.add_task("python " + bracken_path + "combine_mpa.py -i " + output + "*_report_MPA_from_bracken.txt -o [targets[0]]",
+workflow.add_task("python " + centrifuge_path + "combine_mpa.py -i " + output + "*_report_MPA.txt -o [targets[0]]",
 	depends = combine_dep,
 	targets = combine_targets
 	)
@@ -173,10 +170,10 @@ for name in names:
 			)
 
 wrangling_dep = [list_targets(name=name, step="get_reads", paired=paired)[0] for name in names]
-wrangling_dep.append(output+"kraken_merged_tmp.tsv")
-wrangling_targets = [output+"kraken_merged.tsv"]
+wrangling_dep.append(output+"centrifuge_merged_tmp.tsv")
+wrangling_targets = [output+"centrifuge_merged.tsv"]
 
-workflow.add_task("Rscript " + this_folder + "kraken_tax_wrangling.R -i " + output + " -o [targets[0]]",
+workflow.add_task("Rscript " + this_folder + "centrifuge_tax_wrangling.R -i " + output + " -o [targets[0]]",
 	depends = wrangling_dep,
 	targets = wrangling_targets
 	)
