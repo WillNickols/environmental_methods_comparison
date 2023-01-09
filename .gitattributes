@@ -1,0 +1,2 @@
+~/Documents/GitHub/environmental_methods_comparison/analysis/databases/*.dmp filter=lfs diff=lfs merge=lfs -text
+~/Documents/GitHub/environmental_methods_comparison/analysis/databases/standardized_databases/NCBI_table.tsv filter=lfs diff=lfs merge=lfs -text
