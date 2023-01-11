@@ -1,6 +1,6 @@
 # Simulation generation workflow
 
-This folder contains code for the simulating metagenomic reads from environmental communitites.  The read generation steps are performed by a modified version of CAMISIM in which the gold standard assembly steps are removed.  These steps were computationally expensive, and the binning itself was not evaluated here.  Everything else was left as in the installation.  The workflow is split into two parts with the following main steps:
+This folder contains code for the simulating metagenomic reads from environmental communities.  The read generation steps are performed by a modified version of CAMISIM in which the gold standard assembly steps are removed.  These steps were computationally expensive, and the binning itself was not evaluated here.  Everything else was left as in the installation.  The workflow is split into two parts with the following main steps:
 
 - Part 1: Profile building
   - Input MAGs were clustered into SGBs with `mash_clusters.R` and assigned a taxonomy by `gtdbtk_add_tax_assignment.py`
