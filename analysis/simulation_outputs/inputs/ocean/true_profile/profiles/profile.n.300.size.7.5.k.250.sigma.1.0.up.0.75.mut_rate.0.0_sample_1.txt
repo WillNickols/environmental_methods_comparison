@@ -1,0 +1,633 @@
+@SampleID:
+@Version:0.9.1
+@Ranks:superkingdom|phylum|class|order|family|genus|species|strain
+
+@@TAXID	RANK	TAXPATH	TAXPATHSN	PERCENTAGE	_CAMI_genomeID	_CAMI_OTU
+2	superkingdom	2	Bacteria	83.7599		
+2157	superkingdom	2157	Archaea	13.4835		
+2759	superkingdom	2759	Eukaryota	2.7565		
+203682	phylum	2|203682	Bacteria|Planctomycetota	2.0772		
+1239	phylum	2|1239	Bacteria|Firmicutes	4.7701		
+1224	phylum	2|1224	Bacteria|Proteobacteria	37.8432		
+74201	phylum	2|74201	Bacteria|Verrucomicrobia	2.5301		
+976	phylum	2|976	Bacteria|Bacteroidota	24.6732		
+201174	phylum	2|201174	Bacteria|Actinobacteria	3.9699		
+57723	phylum	2|57723	Bacteria|Acidobacteria	0.1650		
+142182	phylum	2|142182	Bacteria|Gemmatimonadetes	0.6862		
+200795	phylum	2|200795	Bacteria|Chloroflexi	3.8683		
+1293497	phylum	2|1293497	Bacteria|Nitrospinae	0.1439		
+2283796	phylum	2157|2283796	Archaea|Candidatus Thermoplasmatota	6.8432		
+1117	phylum	2|1117	Bacteria|Cyanobacteria	0.4081		
+3041	phylum	2759|3041	Eukaryota|Chlorophyta	2.7565		
+651137	phylum	2157|651137	Archaea|Thaumarchaeota	6.6404		
+186801	class	2|1239|186801	Bacteria|Firmicutes|Clostridia	3.3061		
+28211	class	2|1224|28211	Bacteria|Proteobacteria|Alphaproteobacteria	11.6416		
+1236	class	2|1224|1236	Bacteria|Proteobacteria|Gammaproteobacteria	24.4720		
+203494	class	2|74201|203494	Bacteria|Verrucomicrobia|Verrucomicrobiae	1.0821		
+768503	class	2|976|768503	Bacteria|Bacteroidota|Cytophagia	0.7579		
+117743	class	2|976|117743	Bacteria|Bacteroidota|Flavobacteriia	23.7377		
+84998	class	2|201174|84998	Bacteria|Actinobacteria|Coriobacteriia	0.2392		
+1813735	class	2|57723|1813735	Bacteria|Acidobacteria|Vicinamibacteria	0.1650		
+84992	class	2|201174|84992	Bacteria|Actinobacteria|Acidimicrobiia	2.7325		
+1804991	class	2|142182|1804991	Bacteria|Gemmatimonadetes|Longimicrobia	0.6862		
+909932	class	2|1239|909932	Bacteria|Firmicutes|Negativicutes	0.1387		
+414999	class	2|74201|414999	Bacteria|Verrucomicrobia|Opitutae	1.1669		
+28216	class	2|1224|28216	Bacteria|Proteobacteria|Betaproteobacteria	1.4563		
+666505	class	2|203682|666505	Bacteria|Planctomycetota|Phycisphaerae	1.1282		
+200643	class	2|976|200643	Bacteria|Bacteroidota|Bacteroidia	0.1776		
+203683	class	2|203682|203683	Bacteria|Planctomycetota|Planctomycetia	0.1507		
+301297	class	2|200795|301297	Bacteria|Chloroflexi|Dehalococcoidia	3.0439		
+1293498	class	2|1293497|1293498	Bacteria|Nitrospinae|Nitrospinia	0.1439		
+1737404	class	2|1239|1737404	Bacteria|Firmicutes|Tissierellia	0.3068		
+2599185	class	2157|2283796|2599185	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia	6.8432		
+1760	class	2|201174|1760	Bacteria|Actinobacteria|Actinomycetia	0.9982		
+134549	class	2|74201|134549	Bacteria|Verrucomicrobia|Spartobacteria	0.2811		
+29547	class	2|1224|29547	Bacteria|Proteobacteria|Epsilonproteobacteria	0.2733		
+292625	class	2|200795|292625	Bacteria|Chloroflexi|Anaerolineae	0.4190		
+91061	class	2|1239|91061	Bacteria|Firmicutes|Bacilli	1.0184		
+2682225	class	2|200795|2682225	Bacteria|Chloroflexi|Tepidiformia	0.4054		
+1035538	class	2759|3041|1035538	Eukaryota|Chlorophyta|Mamiellophyceae	2.7565		
+186802	order	2|1239|186801|186802	Bacteria|Firmicutes|Clostridia|Eubacteriales	3.3061		
+135622	order	2|1224|1236|135622	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales	2.1835		
+48461	order	2|74201|203494|48461	Bacteria|Verrucomicrobia|Verrucomicrobiae|Verrucomicrobiales	0.4964		
+768507	order	2|976|768503|768507	Bacteria|Bacteroidota|Cytophagia|Cytophagales	0.7579		
+200644	order	2|976|117743|200644	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales	23.7377		
+204455	order	2|1224|28211|204455	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales	3.7428		
+1643822	order	2|201174|84998|1643822	Bacteria|Actinobacteria|Coriobacteriia|Eggerthellales	0.2392		
+2910145	order	2|57723|1813735|2910145	Bacteria|Acidobacteria|Vicinamibacteria|Vicinamibacterales	0.1650		
+84993	order	2|201174|84992|84993	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales	2.7325		
+1804992	order	2|142182|1804991|1804992	Bacteria|Gemmatimonadetes|Longimicrobia|Longimicrobiales	0.6862		
+1617890	order	2|1224|1236|1617890	Bacteria|Proteobacteria|Gammaproteobacteria|Arenicellales	0.8144		
+72274	order	2|1224|1236|72274	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales	2.8044		
+1706369	order	2|1224|1236|1706369	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales	8.9694		
+1843489	order	2|1239|909932|1843489	Bacteria|Firmicutes|Negativicutes|Veillonellales	0.1387		
+415000	order	2|74201|414999|415000	Bacteria|Verrucomicrobia|Opitutae|Opitutales	1.1669		
+204457	order	2|1224|28211|204457	Bacteria|Proteobacteria|Alphaproteobacteria|Sphingomonadales	0.0334		
+206351	order	2|1224|28216|206351	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales	0.1961		
+80840	order	2|1224|28216|80840	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales	0.9675		
+135613	order	2|1224|1236|135613	Bacteria|Proteobacteria|Gammaproteobacteria|Chromatiales	2.4575		
+666506	order	2|203682|666505|666506	Bacteria|Planctomycetota|Phycisphaerae|Phycisphaerales	1.1282		
+356	order	2|1224|28211|356	Bacteria|Proteobacteria|Alphaproteobacteria|Hyphomicrobiales	0.0683		
+204441	order	2|1224|28211|204441	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodospirillales	0.0612		
+2066490	order	2|1224|28211|2066490	Bacteria|Proteobacteria|Alphaproteobacteria|Emcibacterales	0.1327		
+2691354	order	2|203682|203683|2691354	Bacteria|Planctomycetota|Planctomycetia|Pirellulales	0.1507		
+135619	order	2|1224|1236|135619	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales	1.1961		
+1293499	order	2|1293497|1293498|1293499	Bacteria|Nitrospinae|Nitrospinia|Nitrospinales	0.1439		
+1737405	order	2|1239|1737404|1737405	Bacteria|Firmicutes|Tissierellia|Tissierellales	0.3068		
+133814	order	2157|2283796|2599185|133814	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales	6.7702		
+2039638	order	2|201174|1760|2039638	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales	0.8062		
+1836787	order	2|74201|134549|1836787	Bacteria|Verrucomicrobia|Spartobacteria|Chthoniobacterales	0.2811		
+213849	order	2|1224|29547|213849	Bacteria|Proteobacteria|Epsilonproteobacteria|Campylobacterales	0.2733		
+292629	order	2|200795|292625|292629	Bacteria|Chloroflexi|Anaerolineae|Anaerolineales	0.4190		
+186826	order	2|1239|91061|186826	Bacteria|Firmicutes|Bacilli|Lactobacillales	0.5268		
+2682226	order	2|200795|2682225|2682226	Bacteria|Chloroflexi|Tepidiformia|Tepidiformales	0.4054		
+85006	order	2|201174|1760|85006	Bacteria|Actinobacteria|Actinomycetia|Micrococcales	0.1920		
+32003	order	2|1224|28216|32003	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales	0.2927		
+1890424	order	2|1117||1890424	Bacteria|Cyanobacteria||Synechococcales	0.4081		
+2887326	order	2|1224|1236|2887326	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales	0.4512		
+135623	order	2|1224|1236|135623	Bacteria|Proteobacteria|Gammaproteobacteria|Vibrionales	0.1553		
+1385	order	2|1239|91061|1385	Bacteria|Firmicutes|Bacilli|Bacillales	0.4917		
+135624	order	2|1224|1236|135624	Bacteria|Proteobacteria|Gammaproteobacteria|Aeromonadales	0.2212		
+91347	order	2|1224|1236|91347	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales	0.5616		
+135614	order	2|1224|1236|135614	Bacteria|Proteobacteria|Gammaproteobacteria|Xanthomonadales	0.2036		
+13792	order	2759|3041|1035538|13792	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales	2.7565		
+135625	order	2|1224|1236|135625	Bacteria|Proteobacteria|Gammaproteobacteria|Pasteurellales	0.1139		
+31932	order	2157|651137||31932	Archaea|Thaumarchaeota||Nitrosopumilales	6.5097		
+54526	order	2|1224|28211|54526	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales	3.9405		
+216572	family	2|1239|186801|186802|216572	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae	0.8771		
+72275	family	2|1224|1236|135622|72275	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae	0.7835		
+186803	family	2|1239|186801|186802|186803	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae	1.7877		
+563798	family	2|976|768503|768507|563798	Bacteria|Bacteroidota|Cytophagia|Cytophagales|Cyclobacteriaceae	0.7579		
+31989	family	2|1224|28211|204455|31989	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae	3.3406		
+49546	family	2|976|117743|200644|49546	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae	10.3915		
+1643826	family	2|201174|84998|1643822|1643826	Bacteria|Actinobacteria|Coriobacteriia|Eggerthellales|Eggerthellaceae	0.2392		
+2772535	family	2|976|117743|200644|2772535	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Salibacteraceae	1.6988		
+31979	family	2|1239|186801|186802|31979	Bacteria|Firmicutes|Clostridia|Eubacteriales|Clostridiaceae	0.3690		
+1706371	family	2|1224|1236|1706369|1706371	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Cellvibrionaceae	0.4160		
+31977	family	2|1239|909932|1843489|31977	Bacteria|Firmicutes|Negativicutes|Veillonellales|Veillonellaceae	0.1387		
+41297	family	2|1224|28211|204457|41297	Bacteria|Proteobacteria|Alphaproteobacteria|Sphingomonadales|Sphingomonadaceae	0.0334		
+481	family	2|1224|28216|206351|481	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales|Neisseriaceae	0.1961		
+119060	family	2|1224|28216|80840|119060	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Burkholderiaceae	0.2002		
+1706374	family	2|1224|1236|1706369|1706374	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae	7.8019		
+1706372	family	2|1224|1236|1706369|1706372	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Halieaceae	0.7514		
+506	family	2|1224|28216|80840|506	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Alcaligenaceae	0.4008		
+267890	family	2|1224|1236|135622|267890	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Shewanellaceae	0.2753		
+1738654	family	2|1224|1236|135613|1738654	Bacteria|Proteobacteria|Gammaproteobacteria|Chromatiales|Woeseiaceae	2.4575		
+1853230	family	2|976|117743|200644|1853230	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Crocinitomicaceae	0.6609		
+1648490	family	2|74201|203494|48461|1648490	Bacteria|Verrucomicrobia|Verrucomicrobiae|Verrucomicrobiales|Rubritaleaceae	0.0418		
+772	family	2|1224|28211|356|772	Bacteria|Proteobacteria|Alphaproteobacteria|Hyphomicrobiales|Bartonellaceae	0.0683		
+2066491	family	2|1224|28211|2066490|2066491	Bacteria|Proteobacteria|Alphaproteobacteria|Emcibacterales|Emcibacteraceae	0.1327		
+135620	family	2|1224|1236|135619|135620	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Oceanospirillaceae	0.1235		
+407032	family	2|1293497|1293498|1293499|407032	Bacteria|Nitrospinae|Nitrospinia|Nitrospinales|Nitrospinaceae	0.1439		
+1570339	family	2|1239|1737404|1737405|1570339	Bacteria|Firmicutes|Tissierellia|Tissierellales|Peptoniphilaceae	0.3068		
+2599197	family	2157|2283796|2599185|133814|2599197	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae	2.8629		
+2599196	family	2157|2283796|2599185|133814|2599196	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae	3.9073		
+1333713	family	2|976|117743|200644|1333713	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Schleiferiaceae	1.5502		
+449732	family	2|1224|1236|135619|449732	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Litoricolaceae	0.6199		
+72293	family	2|1224|29547|213849|72293	Bacteria|Proteobacteria|Epsilonproteobacteria|Campylobacterales|Helicobacteraceae	0.2733		
+33958	family	2|1239|91061|186826|33958	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae	0.5268		
+2682227	family	2|200795|2682225|2682226|2682227	Bacteria|Chloroflexi|Tepidiformia|Tepidiformales|Tepidiformaceae	0.4054		
+2162846	family	2|201174|1760|2039638|2162846	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales|Candidatus Nanopelagicaceae	0.6808		
+85023	family	2|201174|1760|85006|85023	Bacteria|Actinobacteria|Actinomycetia|Micrococcales|Microbacteriaceae	0.1920		
+32011	family	2|1224|28216|32003|32011	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales|Methylophilaceae	0.0789		
+2881426	family	2|1117||1890424|2881426	Bacteria|Cyanobacteria||Synechococcales|Prochlorococcaceae	0.4081		
+255527	family	2|1224|1236|135619|255527	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Saccharospirillaceae	0.1873		
+2301193	family	2|1224|1236|135619|2301193	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Balneatrichaceae	0.2201		
+468	family	2|1224|1236|2887326|468	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae	0.4512		
+267888	family	2|1224|1236|135622|267888	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae	1.1247		
+641	family	2|1224|1236|135623|641	Bacteria|Proteobacteria|Gammaproteobacteria|Vibrionales|Vibrionaceae	0.1553		
+2854170	family	2|1224|28211|204455|2854170	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae	0.4023		
+186822	family	2|1239|91061|1385|186822	Bacteria|Firmicutes|Bacilli|Bacillales|Paenibacillaceae	0.4917		
+28256	family	2|1224|1236|135619|28256	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Halomonadaceae	0.0453		
+135621	family	2|1224|1236|72274|135621	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae	0.2652		
+84642	family	2|1224|1236|135624|84642	Bacteria|Proteobacteria|Gammaproteobacteria|Aeromonadales|Aeromonadaceae	0.2212		
+2008790	family	2|1224|28216|32003|2008790	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales|Thiobacillaceae	0.2139		
+543	family	2|1224|1236|91347|543	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae	0.3741		
+32033	family	2|1224|1236|135614|32033	Bacteria|Proteobacteria|Gammaproteobacteria|Xanthomonadales|Xanthomonadaceae	0.2036		
+1525212	family	2759|3041|1035538|13792|1525212	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae	1.9017		
+41873	family	2759|3041|1035538|13792|41873	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Mamiellaceae	0.8548		
+2762318	family	2|976|117743|200644|2762318	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Weeksellaceae	0.0248		
+712	family	2|1224|1236|135625|712	Bacteria|Proteobacteria|Gammaproteobacteria|Pasteurellales|Pasteurellaceae	0.1139		
+338190	family	2157|651137||31932|338190	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae	6.5097		
+995019	family	2|1224|28216|80840|995019	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Sutterellaceae	0.1279		
+1655514	family	2|1224|28211|54526|1655514	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales|Pelagibacteraceae	3.8555		
+1903409	family	2|1224|1236|91347|1903409	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Erwiniaceae	0.1874		
+39782	family	2|976|117743|200644|39782	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Blattabacteriaceae	0.3216		
+2981641	genus	2|1239|186801|186802||2981641	Bacteria|Firmicutes|Clostridia|Eubacteriales||Bovifimicola	0.1098		
+2981636	genus	2|1239|186801|186802|216572|2981636	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Huintestinicola	0.1202		
+2048137	genus	2|1239|186801|186802|216572|2048137	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Agathobaculum	0.0337		
+2005359	genus	2|1239|186801|186802|186803|2005359	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Faecalicatena	0.6023		
+33042	genus	2|1239|186801|186802|186803|33042	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Coprococcus	0.4798		
+841	genus	2|1239|186801|186802|186803|841	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Roseburia	0.7056		
+1648492	genus	2|1224|28211|204455|31989|1648492	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Ascidiaceihabitans	0.6255		
+2700084	genus	2|976|117743|200644|49546|2700084	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Urechidicola	0.2885		
+447020	genus	2|201174|84998|1643822|1643826|447020	Bacteria|Actinobacteria|Coriobacteriia|Eggerthellales|Eggerthellaceae|Adlercreutzia	0.2392		
+1284657	genus	2|1224|28211|204455|31989|1284657	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina	0.8076		
+1485	genus	2|1239|186801|186802|31979|1485	Bacteria|Firmicutes|Clostridia|Eubacteriales|Clostridiaceae|Clostridium	0.3690		
+1621534	genus	2|1224|1236|135622|72275|1621534	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Paraglaciecola	0.0714		
+2981643	genus	2|1239|186801|186802|216572|2981643	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Porcipelethomonas	0.0099		
+2981642	genus	2|1239|186801|186802||2981642	Bacteria|Firmicutes|Clostridia|Eubacteriales||Brotomerdimonas	0.1626		
+2172004	genus	2|1239|186801|186802|216572|2172004	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Lawsonibacter	0.7132		
+906	genus	2|1239|909932|1843489|31977|906	Bacteria|Firmicutes|Negativicutes|Veillonellales|Veillonellaceae|Megasphaera	0.1387		
+150203	genus	2|1224|28211|204457|41297|150203	Bacteria|Proteobacteria|Alphaproteobacteria|Sphingomonadales|Sphingomonadaceae|Blastomonas	0.0334		
+1193515	genus	2|1224|28216|206351|481|1193515	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales|Neisseriaceae|Snodgrassella	0.1961		
+1123967	genus	2|1224|1236|1706369|1706374|1123967	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|Porticoccus	5.0964		
+1341118	genus	2|1224|1236|1706369|1706372|1341118	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Halieaceae|Luminiphilus	0.7514		
+2211641	genus	2|1224|28211|204455|31989|2211641	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Yoonia	0.3545		
+1921582	genus	2|1224|28216|80840|506|1921582	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Alcaligenaceae|Orrella	0.4008		
+1573826	genus	2|1224|1236|135622|267890|1573826	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Shewanellaceae|Psychrobium	0.2753		
+237444	genus	2|976|117743|200644|49546|237444	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Ulvibacter	0.3349		
+361050	genus	2|74201|203494|48461|1648490|361050	Bacteria|Verrucomicrobia|Verrucomicrobiae|Verrucomicrobiales|Rubritaleaceae|Rubritalea	0.0418		
+773	genus	2|1224|28211|356|772|773	Bacteria|Proteobacteria|Alphaproteobacteria|Hyphomicrobiales|Bartonellaceae|Bartonella	0.0683		
+1617805	genus	2|1224|28211|204455|31989|1617805	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Amylibacter	0.2669		
+188907	genus	2|1224|1236|135619|135620|188907	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Oceanospirillaceae|Oleispira	0.1235		
+2981628	genus	2|1239|1737404|1737405|1570339|2981628	Bacteria|Firmicutes|Tissierellia|Tissierellales|Peptoniphilaceae|Aedoeadaptatus	0.3068		
+209	genus	2|1224|29547|213849|72293|209	Bacteria|Proteobacteria|Epsilonproteobacteria|Campylobacterales|Helicobacteraceae|Helicobacter	0.2733		
+2767878	genus	2|1239|91061|186826|33958|2767878	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Bombilactobacillus	0.2421		
+52959	genus	2|976|117743|200644|49546|52959	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter	2.4378		
+2767877	genus	2|1239|91061|186826|33958|2767877	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Apilactobacillus	0.2846		
+2822394	genus	2|976|117743|200644|49546|2822394	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Patiriisocius	0.4349		
+622681	genus	2|201174|1760|2039638|2162846|622681	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales|Candidatus Nanopelagicaceae|Candidatus Planktophila	0.1581		
+1434032	genus	2|201174|1760|85006|85023|1434032	Bacteria|Actinobacteria|Actinomycetia|Micrococcales|Microbacteriaceae|Pontimonas	0.1920		
+104264	genus	2|976|117743|200644|49546|104264	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Cellulophaga	0.0984		
+286104	genus	2|976|117743|200644|49546|286104	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Winogradskyella	0.0328		
+230494	genus	2|1224|1236|135619|255527|230494	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Saccharospirillaceae|Reinekea	0.1873		
+75683	genus	2|1224|1236|135619|2301193|75683	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Balneatrichaceae|Balneatrix	0.2201		
+393005	genus	2|976|117743|200644|49546|393005	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tamlana	0.0879		
+359337	genus	2|1224|1236|1706369|1706371|359337	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Cellvibrionaceae|Marinimicrobium	0.3744		
+469	genus	2|1224|1236|2887326|468|469	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae|Acinetobacter	0.0498		
+261827	genus	2|976|117743|200644|49546|261827	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Algibacter	0.1343		
+265980	genus	2|1224|1236|||265980	Bacteria|Proteobacteria|Gammaproteobacteria|||Alkalimonas	0.0650		
+53246	genus	2|1224|1236|135622|267888|53246	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas	1.1247		
+662	genus	2|1224|1236|135623|641|662	Bacteria|Proteobacteria|Gammaproteobacteria|Vibrionales|Vibrionaceae|Vibrio	0.1553		
+283735	genus	2|976|117743|200644|49546|283735	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Leeuwenhoekiella	0.1976		
+60136	genus	2|1224|28211|204455|2854170|60136	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae|Sulfitobacter	0.1847		
+225842	genus	2|976|117743|200644|49546|225842	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Formosa	0.1337		
+226	genus	2|1224|1236|135622|72275|226	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Alteromonas	0.0907		
+497	genus	2|1224|1236|2887326|468|497	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae|Psychrobacter	0.4014		
+44249	genus	2|1239|91061|1385|186822|44249	Bacteria|Firmicutes|Bacilli|Bacillales|Paenibacillaceae|Paenibacillus	0.4917		
+2745	genus	2|1224|1236|135619|28256|2745	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Halomonadaceae|Halomonas	0.0453		
+104267	genus	2|976|117743|200644|49546|104267	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum	0.2649		
+252356	genus	2|976|117743|200644|49546|252356	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Maribacter	0.0897		
+453850	genus	2|976|117743|200644|49546|453850	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Joostella	0.0231		
+2901164	genus	2|1224|1236|72274|135621|2901164	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Stutzerimonas	0.0919		
+642	genus	2|1224|1236|135624|84642|642	Bacteria|Proteobacteria|Gammaproteobacteria|Aeromonadales|Aeromonadaceae|Aeromonas	0.2212		
+919	genus	2|1224|28216|32003|2008790|919	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales|Thiobacillaceae|Thiobacillus	0.2139		
+561	genus	2|1224|1236|91347|543|561	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Escherichia	0.2904		
+237	genus	2|976|117743|200644|49546|237	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Flavobacterium	0.0801		
+590	genus	2|1224|1236|91347|543|590	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Salmonella	0.0837		
+338	genus	2|1224|1236|135614|32033|338	Bacteria|Proteobacteria|Gammaproteobacteria|Xanthomonadales|Xanthomonadaceae|Xanthomonas	0.2036		
+53945	genus	2|1224|28211|204455|2854170|53945	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae|Octadecabacter	0.2175		
+286	genus	2|1224|1236|72274|135621|286	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Pseudomonas	0.1734		
+70447	genus	2759|3041|1035538|13792|1525212|70447	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae|Ostreococcus	1.0580		
+41874	genus	2759|3041|1035538|13792|1525212|41874	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae|Bathycoccus	0.8437		
+38832	genus	2759|3041|1035538|13792|41873|38832	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Mamiellaceae|Micromonas	0.8548		
+358023	genus	2|976|117743|200644|49546|358023	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Lutibacter	0.0435		
+216431	genus	2|976|117743|200644|49546|216431	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Croceibacter	0.9139		
+1016	genus	2|976|117743|200644|49546|1016	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Capnocytophaga	0.1861		
+28250	genus	2|976|117743|200644|2762318|28250	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Weeksellaceae|Ornithobacterium	0.0248		
+476528	genus	2|1224|1236|135625|712|476528	Bacteria|Proteobacteria|Gammaproteobacteria|Pasteurellales|Pasteurellaceae|Bibersteinia	0.1139		
+338191	genus	2157|651137||31932|338190|338191	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus	5.3050		
+577310	genus	2|1224|28216|80840|995019|577310	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Sutterellaceae|Parasutterella	0.1279		
+2841677	genus	2|1224|1236|||2841677	Bacteria|Proteobacteria|Gammaproteobacteria|||Candidatus Pseudothioglobus	0.9737		
+198251	genus	2|1224|28211|54526|1655514|198251	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales|Pelagibacteraceae|Candidatus Pelagibacter	3.8555		
+1993653	genus	2157|651137||31932|338190|1993653	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Candidatus Nitrosomarinus	1.2047		
+1593364	genus	2157|651137||||1593364	Archaea|Thaumarchaeota||||Candidatus Nitrosopelagicus	0.1307		
+2045213	genus	2|1224|28211|54526||2045213	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales||Candidatus Fonsibacter	0.0849		
+2732587	genus	2|1224|1236|||2732587	Bacteria|Proteobacteria|Gammaproteobacteria|||Candidatus Vesicomyosocius	0.3213		
+32199	genus	2|1224|1236|91347|1903409|32199	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Erwiniaceae|Buchnera	0.1874		
+34098	genus	2|976|117743|200644|39782|34098	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Blattabacteriaceae|Blattabacterium	0.3216		
+2981720	species	2|1239|186801|186802||2981641|2981720	Bacteria|Firmicutes|Clostridia|Eubacteriales||Bovifimicola|Bovifimicola ammoniilytica	0.1098		
+2981728	species	2|1239|186801|186802|216572|2981636|2981728	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Huintestinicola|Huintestinicola butyrica	0.1202		
+2981778	species	2|1239|186801|186802|216572|2048137|2981778	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Agathobaculum|Agathobaculum ammoniilyticum	0.0337		
+2981790	species	2|1239|186801|186802|186803|2005359|2981790	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Faecalicatena|Faecalicatena acetigenes	0.6023		
+2981785	species	2|1239|186801|186802|186803|33042|2981785	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Coprococcus|Coprococcus ammoniilyticus	0.4798		
+2981794	species	2|1239|186801|186802|186803|841|2981794	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Roseburia|Roseburia amylophila	0.7056		
+2916441	species	2|201174|84998|1643822|1643826|447020|2916441	Bacteria|Actinobacteria|Coriobacteriia|Eggerthellales|Eggerthellaceae|Adlercreutzia|Adlercreutzia rubneri	0.2392		
+2981784	species	2|1239|186801|186802|31979|1485|2981784	Bacteria|Firmicutes|Clostridia|Eubacteriales|Clostridiaceae|Clostridium|Clostridium ammoniilyticum	0.3690		
+2981722	species	2|1239|186801|186802|216572|2981643|2981722	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Porcipelethomonas|Porcipelethomonas ammoniilytica	0.0099		
+2981721	species	2|1239|186801|186802||2981642|2981721	Bacteria|Firmicutes|Clostridia|Eubacteriales||Brotomerdimonas|Brotomerdimonas butyrica	0.1626		
+2986526	species	2|1239|186801|186802|216572|2172004|2986526	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Lawsonibacter|Lawsonibacter celer	0.7132		
+2981791	species	2|1239|909932|1843489|31977|906|2981791	Bacteria|Firmicutes|Negativicutes|Veillonellales|Veillonellaceae|Megasphaera|Megasphaera butyrica	0.1387		
+2946698	species	2|1224|28216|206351|481|1193515|2946698	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales|Neisseriaceae|Snodgrassella|Snodgrassella gandavensis	0.0604		
+2946699	species	2|1224|28216|206351|481|1193515|2946699	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales|Neisseriaceae|Snodgrassella|Snodgrassella communis	0.1357		
+2961895	species	2|1224|28211|356|772|773|2961895	Bacteria|Proteobacteria|Alphaproteobacteria|Hyphomicrobiales|Bartonellaceae|Bartonella|Bartonella harrusi	0.0683		
+2981723	species	2|1239|1737404|1737405|1570339|2981628|2981723	Bacteria|Firmicutes|Tissierellia|Tissierellales|Peptoniphilaceae|Aedoeadaptatus|Aedoeadaptatus acetigenes	0.3068		
+2949739	species	2|1224|29547|213849|72293|209|2949739	Bacteria|Proteobacteria|Epsilonproteobacteria|Campylobacterales|Helicobacteraceae|Helicobacter|Helicobacter colisuis	0.2733		
+2923362	species	2|1239|91061|186826|33958|2767878|2923362	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Bombilactobacillus|Bombilactobacillus folatiphilus	0.2421		
+2923364	species	2|1239|91061|186826|33958|2767877|2923364	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Apilactobacillus|Apilactobacillus apisilvae	0.2846		
+979	species	2|976|117743|200644|49546|104264|979	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Cellulophaga|Cellulophaga lytica	0.0984		
+1382466	species	2|976|117743|200644|49546|286104|1382466	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Winogradskyella|Winogradskyella sediminis	0.0187		
+1888915	species	2|976|117743|200644|49546|52959|1888915	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter haliotis	0.1546		
+1336806	species	2|1224|1236|135619|255527|230494|1336806	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Saccharospirillaceae|Reinekea|Reinekea forsetii	0.1873		
+75684	species	2|1224|1236|135619|2301193|75683|75684	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Balneatrichaceae|Balneatrix|Balneatrix alpica	0.2201		
+1774273	species	2|976|117743|200644|49546|52959|1774273	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter vadi	0.2923		
+481183	species	2|976|117743|200644|49546|393005|481183	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tamlana|Tamlana agarivorans	0.0879		
+306545	species	2|1224|1236|1706369|1706371|359337|306545	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Cellvibrionaceae|Marinimicrobium|Marinimicrobium koreense	0.3744		
+2808900	species	2|976|117743|200644|49546|52959|2808900	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter batillariae	0.2431		
+470	species	2|1224|1236|2887326|468|469|470	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae|Acinetobacter|Acinetobacter baumannii	0.0498		
+1736674	species	2|976|117743|200644|49546|261827|1736674	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Algibacter|Algibacter alginicilyticus	0.1343		
+152573	species	2|1224|1236|||265980|152573	Bacteria|Proteobacteria|Gammaproteobacteria|||Alkalimonas|Alkalimonas amylolytica	0.0650		
+996801	species	2|976|117743|200644|49546|52959|996801	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter reichenbachii	0.0949		
+43659	species	2|1224|1236|135622|267888|53246|43659	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas tetraodonis	0.3366		
+666	species	2|1224|1236|135623|641|662|666	Bacteria|Proteobacteria|Gammaproteobacteria|Vibrionales|Vibrionaceae|Vibrio|Vibrio cholerae	0.1553		
+2818493	species	2|976|117743|200644|49546|52959|2818493	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter cellanae	0.1345		
+2738844	species	2|976|117743|200644|49546|52959|2738844	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter pectinis	0.1912		
+283736	species	2|976|117743|200644|49546|283735|283736	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Leeuwenhoekiella|Leeuwenhoekiella aequorea	0.1976		
+60137	species	2|1224|28211|204455|2854170|60136|60137	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae|Sulfitobacter|Sulfitobacter pontiacus	0.1847		
+225843	species	2|976|117743|200644|49546|225842|225843	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Formosa|Formosa algae	0.1337		
+1850246	species	2|976|117743|200644|49546|2700084|1850246	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Urechidicola|Urechidicola croceus	0.1904		
+589873	species	2|1224|1236|135622|72275|226|589873	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Alteromonas|Alteromonas australica	0.0907		
+281738	species	2|1224|1236|2887326|468|497|281738	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae|Psychrobacter|Psychrobacter nivimaris	0.4014		
+1908341	species	2|976|117743|200644|49546|52959|1908341	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter litorisediminis	0.2768		
+1464	species	2|1239|91061|1385|186822|44249|1464	Bacteria|Firmicutes|Bacilli|Bacillales|Paenibacillaceae|Paenibacillus|Paenibacillus larvae	0.4917		
+48727	species	2|1224|1236|135619|28256|2745|48727	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Halomonadaceae|Halomonas|Halomonas pantelleriensis	0.0453		
+107401	species	2|976|117743|200644|49546|104267|107401	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum|Tenacibaculum maritimum	0.1601		
+320912	species	2|976|117743|200644|49546|252356|320912	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Maribacter|Maribacter dokdonensis	0.0897		
+453852	species	2|976|117743|200644|49546|453850|453852	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Joostella|Joostella marina	0.0231		
+2686077	species	2|976|117743|200644|49546|286104|2686077	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Winogradskyella|Winogradskyella forsetii	0.0141		
+1284658	species	2|1224|28211|204455|31989|1284657|1284658	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina|Planktomarina temperata	0.2452		
+985043	species	2|976|117743|200644|49546|52959|985043	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter sejongensis	0.0604		
+316	species	2|1224|1236|72274|135621|2901164|316	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Stutzerimonas|Stutzerimonas stutzeri	0.0919		
+176102	species	2|1224|1236|135622|267888|53246|176102	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas agarivorans	0.4865		
+648	species	2|1224|1236|135624|84642|642|648	Bacteria|Proteobacteria|Gammaproteobacteria|Aeromonadales|Aeromonadaceae|Aeromonas|Aeromonas caviae	0.2212		
+227	species	2|1224|1236|135622|267888|53246|227	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas carrageenovora	0.0862		
+584609	species	2|976|117743|200644|49546|104267|584609	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum|Tenacibaculum jejuense	0.0465		
+931	species	2|1224|28216|32003|2008790|919|931	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales|Thiobacillaceae|Thiobacillus|Thiobacillus thioparus	0.2139		
+562	species	2|1224|1236|91347|543|561|562	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Escherichia|Escherichia coli	0.2904		
+998845	species	2|976|117743|200644|49546|237|998845	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Flavobacterium|Flavobacterium jumunjinense	0.0801		
+28901	species	2|1224|1236|91347|543|590|28901	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Salmonella|Salmonella enterica	0.0837		
+456327	species	2|1224|1236|135614|32033|338|456327	Bacteria|Proteobacteria|Gammaproteobacteria|Xanthomonadales|Xanthomonadaceae|Xanthomonas|Xanthomonas euvesicatoria	0.2036		
+326544	species	2|1224|1236|135622|72275|1621534|326544	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Paraglaciecola|Paraglaciecola psychrophila	0.0168		
+53946	species	2|1224|28211|204455|2854170|53945|53946	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae|Octadecabacter|Octadecabacter arcticus	0.2175		
+287	species	2|1224|1236|72274|135621|286|287	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Pseudomonas|Pseudomonas aeruginosa	0.1734		
+70448	species	2759|3041|1035538|13792|1525212|70447|70448	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae|Ostreococcus|Ostreococcus tauri	1.0580		
+41875	species	2759|3041|1035538|13792|1525212|41874|41875	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae|Bathycoccus|Bathycoccus prasinos	0.8437		
+296587	species	2759|3041|1035538|13792|41873|38832|296587	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Mamiellaceae|Micromonas|Micromonas commoda	0.8164		
+38833	species	2759|3041|1035538|13792|41873|38832|38833	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Mamiellaceae|Micromonas|Micromonas pusilla	0.0384		
+1850252	species	2|976|117743|200644|49546|104267|1850252	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum|Tenacibaculum todarodis	0.0582		
+1622118	species	2|976|117743|200644|49546|358023|1622118	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Lutibacter|Lutibacter profundi	0.0435		
+313588	species	2|976|117743|200644|49546|216431|313588	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Croceibacter|Croceibacter atlanticus	0.9139		
+531	species	2|976|117743|200644|49546|52959|531	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter irgensii	0.5204		
+1018	species	2|976|117743|200644|49546|1016|1018	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Capnocytophaga|Capnocytophaga ochracea	0.1861		
+267375	species	2|1224|1236|135622|267888|53246|267375	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas marina	0.2154		
+28251	species	2|976|117743|200644|2762318|28250|28251	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Weeksellaceae|Ornithobacterium|Ornithobacterium rhinotracheale	0.0248		
+47735	species	2|1224|1236|135625|712|476528|47735	Bacteria|Proteobacteria|Gammaproteobacteria|Pasteurellales|Pasteurellaceae|Bibersteinia|Bibersteinia trehalosi	0.1139		
+1470067	species	2157|651137||31932|338190|338191|1470067	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus ureiphilus	0.4182		
+626947	species	2|1224|28216|80840|995019|577310|626947	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Sutterellaceae|Parasutterella|Parasutterella secunda	0.1279		
+1580092	species	2157|651137||31932|338190|338191|1580092	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus adriaticus	1.0551		
+1427364	species	2|1224|1236|||2841677|1427364	Bacteria|Proteobacteria|Gammaproteobacteria|||Candidatus Pseudothioglobus|Candidatus Pseudothioglobus singularis	0.9737		
+1582439	species	2157|651137||31932|338190|338191|1582439	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus piranensis	0.2409		
+1229909	species	2157|651137||31932|338190|338191|1229909	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Candidatus Nitrosopumilus sediminis	1.0829		
+338192	species	2157|651137||31932|338190|338191|338192	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus maritimus	0.3440		
+1510466	species	2157|651137||31932|338190|338191|1510466	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Candidatus Nitrosopumilus koreensis	0.2860		
+1959104	species	2157|651137||31932|338190|338191|1959104	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus oxyclinae	1.2241		
+1470066	species	2157|651137||31932|338190|338191|1470066	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus cobalaminigenes	0.6538		
+2563896	species	2|1224|28211|54526|1655514|198251|2563896	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales|Pelagibacteraceae|Candidatus Pelagibacter|Candidatus Pelagibacter giovannonii	1.4057		
+1898749	species	2157|651137||31932|338190|1993653|1898749	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Candidatus Nitrosomarinus|Candidatus Nitrosomarinus catalina	1.2047		
+198252	species	2|1224|28211|54526|1655514|198251|198252	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales|Pelagibacteraceae|Candidatus Pelagibacter|Candidatus Pelagibacter ubique	2.4498		
+1410606	species	2157|651137||||1593364|1410606	Archaea|Thaumarchaeota||||Candidatus Nitrosopelagicus|Candidatus Nitrosopelagicus brevis	0.1307		
+1925548	species	2|1224|28211|54526||2045213|1925548	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales||Candidatus Fonsibacter|Candidatus Fonsibacter ubiquis	0.0849		
+412965	species	2|1224|1236|||2732587|412965	Bacteria|Proteobacteria|Gammaproteobacteria|||Candidatus Vesicomyosocius|Candidatus Vesicomyosocius okutanii	0.3213		
+9	species	2|1224|1236|91347|1903409|32199|9	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Erwiniaceae|Buchnera|Buchnera aphidicola	0.1874		
+1653831	species	2|976|117743|200644|39782|34098|1653831	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Blattabacteriaceae|Blattabacterium|Blattabacterium cuenoti	0.3216		
+203682.1	strain	2|203682||||||203682.1	Bacteria|Planctomycetota||||||Planctomycetota strain	0.2777	BIN_UNKNOWN_216_Planctomycetota	203682
+2981720.1	strain	2|1239|186801|186802||2981641|2981720|2981720.1	Bacteria|Firmicutes|Clostridia|Eubacteriales||Bovifimicola|Bovifimicola ammoniilytica|Bovifimicola ammoniilytica strain	0.1098	UNKNOWN_NEW_Bovifimicola_ammoniilytica.GCF_025567085.1_ASM2556708v1	2981720
+2981728.1	strain	2|1239|186801|186802|216572|2981636|2981728|2981728.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Huintestinicola|Huintestinicola butyrica|Huintestinicola butyrica strain	0.1202	UNKNOWN_NEW_Huintestinicola_butyrica.GCF_025567215.1_ASM2556721v1	2981728
+2981778.1	strain	2|1239|186801|186802|216572|2048137|2981778|2981778.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Agathobaculum|Agathobaculum ammoniilyticum|Agathobaculum ammoniilyticum strain	0.0337	UNKNOWN_NEW_Agathobaculum_ammoniilyticum.GCF_025567315.1_ASM2556731v1	2981778
+28211.1	strain	2|1224|28211|||||28211.1	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.3207	BIN_UNKNOWN_202_Alphaproteobacteria	28211
+72275.1	strain	2|1224|1236|135622|72275|||72275.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|||Alteromonadaceae strain	0.2669	BIN_UNKNOWN_52_Alteromonadaceae	72275
+2981790.1	strain	2|1239|186801|186802|186803|2005359|2981790|2981790.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Faecalicatena|Faecalicatena acetigenes|Faecalicatena acetigenes strain	0.6023	UNKNOWN_NEW_Faecalicatena_acetigenes.GCF_025567175.1_ASM2556717v1	2981790
+2981785.1	strain	2|1239|186801|186802|186803|33042|2981785|2981785.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Coprococcus|Coprococcus ammoniilyticus|Coprococcus ammoniilyticus strain	0.4798	UNKNOWN_NEW_Coprococcus_ammoniilyticus.GCF_025567345.1_ASM2556734v1	2981785
+48461.1	strain	2|74201|203494|48461||||48461.1	Bacteria|Verrucomicrobia|Verrucomicrobiae|Verrucomicrobiales||||Verrucomicrobiales strain	0.4546	BIN_UNKNOWN_359_Verrucomicrobiales	48461
+28211.2	strain	2|1224|28211|||||28211.2	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.0805	BIN_UNKNOWN_157_Alphaproteobacteria	28211
+563798.1	strain	2|976|768503|768507|563798|||563798.1	Bacteria|Bacteroidota|Cytophagia|Cytophagales|Cyclobacteriaceae|||Cyclobacteriaceae strain	0.0697	BIN_UNKNOWN_9_Cyclobacteriaceae	563798
+2981794.1	strain	2|1239|186801|186802|186803|841|2981794|2981794.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Lachnospiraceae|Roseburia|Roseburia amylophila|Roseburia amylophila strain	0.7056	UNKNOWN_NEW_Roseburia_amylophila.GCF_025567465.1_ASM2556746v1	2981794
+200644.1	strain	2|976|117743|200644||||200644.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.7354	BIN_UNKNOWN_276_Flavobacteriales	200644
+563798.2	strain	2|976|768503|768507|563798|||563798.2	Bacteria|Bacteroidota|Cytophagia|Cytophagales|Cyclobacteriaceae|||Cyclobacteriaceae strain	0.1277	BIN_UNKNOWN_77_Cyclobacteriaceae	563798
+28211.3	strain	2|1224|28211|||||28211.3	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.1388	BIN_UNKNOWN_462_Alphaproteobacteria	28211
+1648492.1	strain	2|1224|28211|204455|31989|1648492||1648492.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Ascidiaceihabitans||Ascidiaceihabitans strain	0.6255	BIN_UNKNOWN_51_Ascidiaceihabitans	1648492
+2700084.1	strain	2|976|117743|200644|49546|2700084||2700084.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Urechidicola||Urechidicola strain	0.0981	BIN_UNKNOWN_426_Urechidicola	2700084
+31989.1	strain	2|1224|28211|204455|31989|||31989.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|||Rhodobacteraceae strain	0.4338	BIN_UNKNOWN_206_Rhodobacteraceae	31989
+2916441.1	strain	2|201174|84998|1643822|1643826|447020|2916441|2916441.1	Bacteria|Actinobacteria|Coriobacteriia|Eggerthellales|Eggerthellaceae|Adlercreutzia|Adlercreutzia rubneri|Adlercreutzia rubneri strain	0.2392	UNKNOWN_NEW_Adlercreutzia_rubneri.GCF_009755265.1_ASM975526v1	2916441
+203494.1	strain	2|74201|203494|||||203494.1	Bacteria|Verrucomicrobia|Verrucomicrobiae|||||Verrucomicrobiae strain	0.1508	BIN_UNKNOWN_292_Verrucomicrobiae	203494
+2772535.1	strain	2|976|117743|200644|2772535|||2772535.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Salibacteraceae|||Salibacteraceae strain	0.6030	BIN_UNKNOWN_48_Salibacteraceae	2772535
+2910145.1	strain	2|57723|1813735|2910145||||2910145.1	Bacteria|Acidobacteria|Vicinamibacteria|Vicinamibacterales||||Vicinamibacterales strain	0.1650	BIN_UNKNOWN_371_Vicinamibacterales	2910145
+1284657.1	strain	2|1224|28211|204455|31989|1284657||1284657.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina||Planktomarina strain	0.0448	BIN_UNKNOWN_278_Planktomarina	1284657
+84993.1	strain	2|201174|84992|84993||||84993.1	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.0725	BIN_UNKNOWN_98_Acidimicrobiales	84993
+2981784.1	strain	2|1239|186801|186802|31979|1485|2981784|2981784.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Clostridiaceae|Clostridium|Clostridium ammoniilyticum|Clostridium ammoniilyticum strain	0.3690	UNKNOWN_NEW_Clostridium_ammoniilyticum.GCF_025566905.1_ASM2556690v1	2981784
+1804992.1	strain	2|142182|1804991|1804992||||1804992.1	Bacteria|Gemmatimonadetes|Longimicrobia|Longimicrobiales||||Longimicrobiales strain	0.2124	BIN_UNKNOWN_470_Longimicrobiales	1804992
+1617890.1	strain	2|1224|1236|1617890||||1617890.1	Bacteria|Proteobacteria|Gammaproteobacteria|Arenicellales||||Arenicellales strain	0.6632	BIN_UNKNOWN_387_Arenicellales	1617890
+200644.2	strain	2|976|117743|200644||||200644.2	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.1006	BIN_UNKNOWN_108_Flavobacteriales	200644
+1621534.1	strain	2|1224|1236|135622|72275|1621534||1621534.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Paraglaciecola||Paraglaciecola strain	0.0546	BIN_UNKNOWN_492_Paraglaciecola	1621534
+84993.2	strain	2|201174|84992|84993||||84993.2	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.2229	BIN_UNKNOWN_82_Acidimicrobiales	84993
+2981722.1	strain	2|1239|186801|186802|216572|2981643|2981722|2981722.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Porcipelethomonas|Porcipelethomonas ammoniilytica|Porcipelethomonas ammoniilytica strain	0.0099	UNKNOWN_NEW_Porcipelethomonas_ammoniilytica.GCF_025567485.1_ASM2556748v1	2981722
+2981721.1	strain	2|1239|186801|186802||2981642|2981721|2981721.1	Bacteria|Firmicutes|Clostridia|Eubacteriales||Brotomerdimonas|Brotomerdimonas butyrica|Brotomerdimonas butyrica strain	0.1626	UNKNOWN_NEW_Brotomerdimonas_butyrica.GCF_025567305.1_ASM2556730v1	2981721
+72274.1	strain	2|1224|1236|72274||||72274.1	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.1045	BIN_UNKNOWN_119_Pseudomonadales	72274
+2986526.1	strain	2|1239|186801|186802|216572|2172004|2986526|2986526.1	Bacteria|Firmicutes|Clostridia|Eubacteriales|Oscillospiraceae|Lawsonibacter|Lawsonibacter celer|Lawsonibacter celer strain	0.7132	UNKNOWN_NEW_Lawsonibacter_celer.GCF_014281125.1_ASM1428112v1	2986526
+72274.2	strain	2|1224|1236|72274||||72274.2	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.1136	BIN_UNKNOWN_407_Pseudomonadales	72274
+1706371.1	strain	2|1224|1236|1706369|1706371|||1706371.1	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Cellvibrionaceae|||Cellvibrionaceae strain	0.0416	BIN_UNKNOWN_32_Cellvibrionaceae	1706371
+2981791.1	strain	2|1239|909932|1843489|31977|906|2981791|2981791.1	Bacteria|Firmicutes|Negativicutes|Veillonellales|Veillonellaceae|Megasphaera|Megasphaera butyrica|Megasphaera butyrica strain	0.1387	UNKNOWN_NEW_Megasphaera_butyrica.GCF_025567065.1_ASM2556706v1	2981791
+72275.2	strain	2|1224|1236|135622|72275|||72275.2	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|||Alteromonadaceae strain	0.3546	BIN_UNKNOWN_332_Alteromonadaceae	72275
+415000.1	strain	2|74201|414999|415000||||415000.1	Bacteria|Verrucomicrobia|Opitutae|Opitutales||||Opitutales strain	0.1341	BIN_UNKNOWN_152_Opitutales	415000
+150203.1	strain	2|1224|28211|204457|41297|150203||150203.1	Bacteria|Proteobacteria|Alphaproteobacteria|Sphingomonadales|Sphingomonadaceae|Blastomonas||Blastomonas strain	0.0334	BIN_UNKNOWN_366_Blastomonas	150203
+72274.3	strain	2|1224|1236|72274||||72274.3	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.3495	BIN_UNKNOWN_383_Pseudomonadales	72274
+2946698.1	strain	2|1224|28216|206351|481|1193515|2946698|2946698.1	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales|Neisseriaceae|Snodgrassella|Snodgrassella gandavensis|Snodgrassella gandavensis strain	0.0604	UNKNOWN_NEW_Snodgrassella_gandavensis.GCF_914768025.1_LMG_30236	2946698
+563798.3	strain	2|976|768503|768507|563798|||563798.3	Bacteria|Bacteroidota|Cytophagia|Cytophagales|Cyclobacteriaceae|||Cyclobacteriaceae strain	0.1977	BIN_UNKNOWN_144_Cyclobacteriaceae	563798
+119060.1	strain	2|1224|28216|80840|119060|||119060.1	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Burkholderiaceae|||Burkholderiaceae strain	0.2002	BIN_UNKNOWN_33_Burkholderiaceae	119060
+1123967.1	strain	2|1224|1236|1706369|1706374|1123967||1123967.1	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|Porticoccus||Porticoccus strain	0.8220	BIN_UNKNOWN_230_Porticoccus	1123967
+1341118.1	strain	2|1224|1236|1706369|1706372|1341118||1341118.1	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Halieaceae|Luminiphilus||Luminiphilus strain	0.7514	BIN_UNKNOWN_442_Luminiphilus	1341118
+2211641.1	strain	2|1224|28211|204455|31989|2211641||2211641.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Yoonia||Yoonia strain	0.3545	BIN_UNKNOWN_125_Yoonia	2211641
+1921582.1	strain	2|1224|28216|80840|506|1921582||1921582.1	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Alcaligenaceae|Orrella||Orrella strain	0.4008	BIN_UNKNOWN_105_Algicoccus	1921582
+72274.4	strain	2|1224|1236|72274||||72274.4	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.1175	BIN_UNKNOWN_11_Pseudomonadales	72274
+72274.5	strain	2|1224|1236|72274||||72274.5	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.2975	BIN_UNKNOWN_283_Pseudomonadales	72274
+1573826.1	strain	2|1224|1236|135622|267890|1573826||1573826.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Shewanellaceae|Psychrobium||Psychrobium strain	0.2753	BIN_UNKNOWN_450_Psychrobium	1573826
+200644.3	strain	2|976|117743|200644||||200644.3	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.2107	BIN_UNKNOWN_109_Flavobacteriales	200644
+2946699.1	strain	2|1224|28216|206351|481|1193515|2946699|2946699.1	Bacteria|Proteobacteria|Betaproteobacteria|Neisseriales|Neisseriaceae|Snodgrassella|Snodgrassella communis|Snodgrassella communis strain	0.1357	UNKNOWN_NEW_Snodgrassella_communis.GCF_000695545.1_SnoalvwkB29v1.0	2946699
+72274.6	strain	2|1224|1236|72274||||72274.6	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.1784	BIN_UNKNOWN_404_Pseudomonadales	72274
+1706374.1	strain	2|1224|1236|1706369|1706374|||1706374.1	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.1120	BIN_UNKNOWN_203_Porticoccaceae	1706374
+1617890.2	strain	2|1224|1236|1617890||||1617890.2	Bacteria|Proteobacteria|Gammaproteobacteria|Arenicellales||||Arenicellales strain	0.1512	BIN_UNKNOWN_277_Arenicellales	1617890
+1738654.1	strain	2|1224|1236|135613|1738654|||1738654.1	Bacteria|Proteobacteria|Gammaproteobacteria|Chromatiales|Woeseiaceae|||Woeseiaceae strain	0.3305	BIN_UNKNOWN_263_Woeseiaceae	1738654
+72274.7	strain	2|1224|1236|72274||||72274.7	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.0937	BIN_UNKNOWN_65_Pseudomonadales	72274
+1706374.2	strain	2|1224|1236|1706369|1706374|||1706374.2	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.2899	BIN_UNKNOWN_84_Porticoccaceae	1706374
+1284657.2	strain	2|1224|28211|204455|31989|1284657||1284657.2	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina||Planktomarina strain	0.0251	BIN_UNKNOWN_351_Planktomarina	1284657
+1853230.1	strain	2|976|117743|200644|1853230|||1853230.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Crocinitomicaceae|||Crocinitomicaceae strain	0.0443	BIN_UNKNOWN_458_Crocinitomicaceae	1853230
+237444.1	strain	2|976|117743|200644|49546|237444||237444.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Ulvibacter||Ulvibacter strain	0.3349	BIN_UNKNOWN_327_Ulvibacter	237444
+1706374.3	strain	2|1224|1236|1706369|1706374|||1706374.3	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.2486	BIN_UNKNOWN_73_Porticoccaceae	1706374
+666506.1	strain	2|203682|666505|666506||||666506.1	Bacteria|Planctomycetota|Phycisphaerae|Phycisphaerales||||Phycisphaerales strain	0.9345	BIN_UNKNOWN_134_Phycisphaerales	666506
+361050.1	strain	2|74201|203494|48461|1648490|361050||361050.1	Bacteria|Verrucomicrobia|Verrucomicrobiae|Verrucomicrobiales|Rubritaleaceae|Rubritalea||Rubritalea strain	0.0418	BIN_UNKNOWN_155_Rubritalea	361050
+200643.1	strain	2|976|200643|||||200643.1	Bacteria|Bacteroidota|Bacteroidia|||||Bacteroidia strain	0.0488	BIN_UNKNOWN_103_Bacteroidia	200643
+2961895.1	strain	2|1224|28211|356|772|773|2961895|2961895.1	Bacteria|Proteobacteria|Alphaproteobacteria|Hyphomicrobiales|Bartonellaceae|Bartonella|Bartonella harrusi|Bartonella harrusi strain	0.0683	UNKNOWN_NEW_Bartonella_harrusi.GCF_024297065.1_ASM2429706v1	2961895
+1236.1	strain	2|1224|1236|||||1236.1	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.7963	BIN_UNKNOWN_201_Gammaproteobacteria	1236
+204441.1	strain	2|1224|28211|204441||||204441.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodospirillales||||Rhodospirillales strain	0.0612	BIN_UNKNOWN_405_Rhodospirillales	204441
+1617805.1	strain	2|1224|28211|204455|31989|1617805||1617805.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Amylibacter||Amylibacter strain	0.1561	BIN_UNKNOWN_46_Amylibacter	1617805
+72274.8	strain	2|1224|1236|72274||||72274.8	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	1.0199	BIN_UNKNOWN_226_Pseudomonadales	72274
+72274.9	strain	2|1224|1236|72274||||72274.9	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.1095	BIN_UNKNOWN_87_Pseudomonadales	72274
+1706374.4	strain	2|1224|1236|1706369|1706374|||1706374.4	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.0887	BIN_UNKNOWN_63_Porticoccaceae	1706374
+200643.2	strain	2|976|200643|||||200643.2	Bacteria|Bacteroidota|Bacteroidia|||||Bacteroidia strain	0.1288	BIN_UNKNOWN_106_Bacteroidia	200643
+84993.3	strain	2|201174|84992|84993||||84993.3	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.1404	BIN_UNKNOWN_273_Acidimicrobiales	84993
+1236.2	strain	2|1224|1236|||||1236.2	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1443	BIN_UNKNOWN_302_Gammaproteobacteria	1236
+31989.2	strain	2|1224|28211|204455|31989|||31989.2	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|||Rhodobacteraceae strain	0.0540	BIN_UNKNOWN_255_Rhodobacteraceae	31989
+2066491.1	strain	2|1224|28211|2066490|2066491|||2066491.1	Bacteria|Proteobacteria|Alphaproteobacteria|Emcibacterales|Emcibacteraceae|||Emcibacteraceae strain	0.1327	BIN_UNKNOWN_55_Emcibacteraceae	2066491
+49546.1	strain	2|976|117743|200644|49546|||49546.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.4515	BIN_UNKNOWN_115_Flavobacteriaceae	49546
+49546.2	strain	2|976|117743|200644|49546|||49546.2	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.0736	BIN_UNKNOWN_325_Flavobacteriaceae	49546
+2.1	strain	2|||||||2.1	Bacteria|||||||Bacteria strain	0.0304	BIN_UNKNOWN_304	2
+49546.3	strain	2|976|117743|200644|49546|||49546.3	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.0905	BIN_UNKNOWN_434_Flavobacteriaceae	49546
+2691354.1	strain	2|203682|203683|2691354||||2691354.1	Bacteria|Planctomycetota|Planctomycetia|Pirellulales||||Pirellulales strain	0.1507	BIN_UNKNOWN_340_Pirellulales	2691354
+1853230.2	strain	2|976|117743|200644|1853230|||1853230.2	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Crocinitomicaceae|||Crocinitomicaceae strain	0.5447	BIN_UNKNOWN_431_Crocinitomicaceae	1853230
+49546.4	strain	2|976|117743|200644|49546|||49546.4	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.1575	BIN_UNKNOWN_174_Flavobacteriaceae	49546
+200644.4	strain	2|976|117743|200644||||200644.4	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.0285	BIN_UNKNOWN_163_Flavobacteriales	200644
+415000.2	strain	2|74201|414999|415000||||415000.2	Bacteria|Verrucomicrobia|Opitutae|Opitutales||||Opitutales strain	0.1916	BIN_UNKNOWN_244_Opitutales	415000
+1853230.3	strain	2|976|117743|200644|1853230|||1853230.3	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Crocinitomicaceae|||Crocinitomicaceae strain	0.0719	BIN_UNKNOWN_328_Crocinitomicaceae	1853230
+188907.1	strain	2|1224|1236|135619|135620|188907||188907.1	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Oceanospirillaceae|Oleispira||Oleispira strain	0.1173	BIN_UNKNOWN_284_Oleispira	188907
+28211.4	strain	2|1224|28211|||||28211.4	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.0696	BIN_UNKNOWN_349_Alphaproteobacteria	28211
+301297.1	strain	2|200795|301297|||||301297.1	Bacteria|Chloroflexi|Dehalococcoidia|||||Dehalococcoidia strain	0.1369	BIN_UNKNOWN_176_Dehalococcoidia	301297
+28211.5	strain	2|1224|28211|||||28211.5	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	1.3755	BIN_UNKNOWN_220_Alphaproteobacteria	28211
+407032.1	strain	2|1293497|1293498|1293499|407032|||407032.1	Bacteria|Nitrospinae|Nitrospinia|Nitrospinales|Nitrospinaceae|||Nitrospinaceae strain	0.1439	BIN_UNKNOWN_352_Nitrospinaceae	407032
+1706374.5	strain	2|1224|1236|1706369|1706374|||1706374.5	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.2602	BIN_UNKNOWN_114_Porticoccaceae	1706374
+28211.6	strain	2|1224|28211|||||28211.6	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.2764	BIN_UNKNOWN_390_Alphaproteobacteria	28211
+2.2	strain	2|||||||2.2	Bacteria|||||||Bacteria strain	0.1877	BIN_UNKNOWN_452	2
+301297.2	strain	2|200795|301297|||||301297.2	Bacteria|Chloroflexi|Dehalococcoidia|||||Dehalococcoidia strain	1.2736	BIN_UNKNOWN_170_Dehalococcoidia	301297
+28211.7	strain	2|1224|28211|||||28211.7	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.1353	BIN_UNKNOWN_309_Alphaproteobacteria	28211
+301297.3	strain	2|200795|301297|||||301297.3	Bacteria|Chloroflexi|Dehalococcoidia|||||Dehalococcoidia strain	1.1385	BIN_UNKNOWN_357_Dehalococcoidia	301297
+49546.5	strain	2|976|117743|200644|49546|||49546.5	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.3433	BIN_UNKNOWN_111_Flavobacteriaceae	49546
+2981723.1	strain	2|1239|1737404|1737405|1570339|2981628|2981723|2981723.1	Bacteria|Firmicutes|Tissierellia|Tissierellales|Peptoniphilaceae|Aedoeadaptatus|Aedoeadaptatus acetigenes|Aedoeadaptatus acetigenes strain	0.3068	UNKNOWN_NEW_Aedoeadaptatus_acetigenes.GCF_025566985.1_ASM2556698v1	2981723
+188907.2	strain	2|1224|1236|135619|135620|188907||188907.2	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Oceanospirillaceae|Oleispira||Oleispira strain	0.0062	BIN_UNKNOWN_329_Oleispira	188907
+72274.10	strain	2|1224|1236|72274||||72274.10	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.0712	BIN_UNKNOWN_186_Pseudomonadales	72274
+2599197.1	strain	2157|2283796|2599185|133814|2599197|||2599197.1	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.3716	BIN_UNKNOWN_79_Poseidoniaceae	2599197
+72274.11	strain	2|1224|1236|72274||||72274.11	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales||||Pseudomonadales strain	0.0838	BIN_UNKNOWN_39_Pseudomonadales	72274
+200644.5	strain	2|976|117743|200644||||200644.5	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.4346	BIN_UNKNOWN_81_Flavobacteriales	200644
+2.3	strain	2|||||||2.3	Bacteria|||||||Bacteria strain	0.2992	BIN_UNKNOWN_312	2
+2039638.1	strain	2|201174|1760|2039638||||2039638.1	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales||||Candidatus Nanopelagicales strain	0.1253	BIN_UNKNOWN_18_Nanopelagicales	2039638
+49546.6	strain	2|976|117743|200644|49546|||49546.6	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.0969	BIN_UNKNOWN_54_Flavobacteriaceae	49546
+1804992.2	strain	2|142182|1804991|1804992||||1804992.2	Bacteria|Gemmatimonadetes|Longimicrobia|Longimicrobiales||||Longimicrobiales strain	0.4738	BIN_UNKNOWN_147_Longimicrobiales	1804992
+2.4	strain	2|||||||2.4	Bacteria|||||||Bacteria strain	0.1376	BIN_UNKNOWN_71	2
+2599197.2	strain	2157|2283796|2599185|133814|2599197|||2599197.2	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.5060	BIN_UNKNOWN_191_Poseidoniaceae	2599197
+28211.8	strain	2|1224|28211|||||28211.8	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.2854	BIN_UNKNOWN_43_Alphaproteobacteria	28211
+2599196.1	strain	2157|2283796|2599185|133814|2599196|||2599196.1	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.2584	BIN_UNKNOWN_53_Thalassarchaeaceae	2599196
+301297.4	strain	2|200795|301297|||||301297.4	Bacteria|Chloroflexi|Dehalococcoidia|||||Dehalococcoidia strain	0.4950	BIN_UNKNOWN_154_Dehalococcoidia	301297
+1284657.3	strain	2|1224|28211|204455|31989|1284657||1284657.3	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina||Planktomarina strain	0.1072	BIN_UNKNOWN_293_Planktomarina	1284657
+80840.1	strain	2|1224|28216|80840||||80840.1	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales||||Burkholderiales strain	0.2386	BIN_UNKNOWN_116_Burkholderiales	80840
+203682.2	strain	2|203682||||||203682.2	Bacteria|Planctomycetota||||||Planctomycetota strain	0.5207	BIN_UNKNOWN_140_Planctomycetota	203682
+31989.3	strain	2|1224|28211|204455|31989|||31989.3	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|||Rhodobacteraceae strain	0.2959	BIN_UNKNOWN_360_Rhodobacteraceae	31989
+1333713.1	strain	2|976|117743|200644|1333713|||1333713.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Schleiferiaceae|||Schleiferiaceae strain	0.8683	BIN_UNKNOWN_72_Schleiferiaceae	1333713
+2.5	strain	2|||||||2.5	Bacteria|||||||Bacteria strain	0.0934	BIN_UNKNOWN_112	2
+449732.1	strain	2|1224|1236|135619|449732|||449732.1	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Litoricolaceae|||Litoricolaceae strain	0.6199	BIN_UNKNOWN_7_Litoricolaceae	449732
+1706374.6	strain	2|1224|1236|1706369|1706374|||1706374.6	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.1506	BIN_UNKNOWN_137_Porticoccaceae	1706374
+2599197.3	strain	2157|2283796|2599185|133814|2599197|||2599197.3	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.8783	BIN_UNKNOWN_141_Poseidoniaceae	2599197
+666506.2	strain	2|203682|666505|666506||||666506.2	Bacteria|Planctomycetota|Phycisphaerae|Phycisphaerales||||Phycisphaerales strain	0.1936	BIN_UNKNOWN_26_Phycisphaerales	666506
+200644.6	strain	2|976|117743|200644||||200644.6	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	1.9008	BIN_UNKNOWN_78_Flavobacteriales	200644
+28211.9	strain	2|1224|28211|||||28211.9	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.4276	BIN_UNKNOWN_8_Alphaproteobacteria	28211
+1333713.2	strain	2|976|117743|200644|1333713|||1333713.2	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Schleiferiaceae|||Schleiferiaceae strain	0.3222	BIN_UNKNOWN_221_Schleiferiaceae	1333713
+84993.4	strain	2|201174|84992|84993||||84993.4	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.4370	BIN_UNKNOWN_133_Acidimicrobiales	84993
+200644.7	strain	2|976|117743|200644||||200644.7	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.2722	BIN_UNKNOWN_241_Flavobacteriales	200644
+1284657.4	strain	2|1224|28211|204455|31989|1284657||1284657.4	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina||Planktomarina strain	0.3853	BIN_UNKNOWN_319_Planktomarina	1284657
+563798.4	strain	2|976|768503|768507|563798|||563798.4	Bacteria|Bacteroidota|Cytophagia|Cytophagales|Cyclobacteriaceae|||Cyclobacteriaceae strain	0.3629	BIN_UNKNOWN_364_Cyclobacteriaceae	563798
+1836787.1	strain	2|74201|134549|1836787||||1836787.1	Bacteria|Verrucomicrobia|Spartobacteria|Chthoniobacterales||||Chthoniobacterales strain	0.2811	BIN_UNKNOWN_99_Chthoniobacterales	1836787
+2949739.1	strain	2|1224|29547|213849|72293|209|2949739|2949739.1	Bacteria|Proteobacteria|Epsilonproteobacteria|Campylobacterales|Helicobacteraceae|Helicobacter|Helicobacter colisuis|Helicobacter colisuis strain	0.2733	UNKNOWN_NEW_Helicobacter_colisuis.GCF_023646265.1_ASM2364626v1	2949739
+1617805.2	strain	2|1224|28211|204455|31989|1617805||1617805.2	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Amylibacter||Amylibacter strain	0.1107	BIN_UNKNOWN_335_Amylibacter	1617805
+2599197.4	strain	2157|2283796|2599185|133814|2599197|||2599197.4	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.0250	BIN_UNKNOWN_136_Poseidoniaceae	2599197
+292629.1	strain	2|200795|292625|292629||||292629.1	Bacteria|Chloroflexi|Anaerolineae|Anaerolineales||||Anaerolineales strain	0.4190	BIN_UNKNOWN_289_Anaerolineales	292629
+49546.7	strain	2|976|117743|200644|49546|||49546.7	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.0875	BIN_UNKNOWN_453_Flavobacteriaceae	49546
+2.6	strain	2|||||||2.6	Bacteria|||||||Bacteria strain	0.4254	BIN_UNKNOWN_373	2
+2923362.1	strain	2|1239|91061|186826|33958|2767878|2923362|2923362.1	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Bombilactobacillus|Bombilactobacillus folatiphilus|Bombilactobacillus folatiphilus strain	0.2421	UNKNOWN_NEW_Bombilactobacillus_folatiphilus.GCF_023380265.1_ASM2338026v1	2923362
+2.7	strain	2|||||||2.7	Bacteria|||||||Bacteria strain	0.0718	BIN_UNKNOWN_253	2
+52959.1	strain	2|976|117743|200644|49546|52959||52959.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter||Polaribacter strain	0.4697	BIN_UNKNOWN_439_Polaribacter	52959
+28211.10	strain	2|1224|28211|||||28211.10	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.2929	BIN_UNKNOWN_88_Alphaproteobacteria	28211
+49546.8	strain	2|976|117743|200644|49546|||49546.8	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.2913	BIN_UNKNOWN_310_Flavobacteriaceae	49546
+84993.5	strain	2|201174|84992|84993||||84993.5	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.9438	BIN_UNKNOWN_80_Acidimicrobiales	84993
+2599197.5	strain	2157|2283796|2599185|133814|2599197|||2599197.5	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.2787	BIN_UNKNOWN_160_Poseidoniaceae	2599197
+415000.3	strain	2|74201|414999|415000||||415000.3	Bacteria|Verrucomicrobia|Opitutae|Opitutales||||Opitutales strain	0.8129	BIN_UNKNOWN_344_Opitutales	415000
+2.8	strain	2|||||||2.8	Bacteria|||||||Bacteria strain	0.2971	BIN_UNKNOWN_393	2
+1706374.7	strain	2|1224|1236|1706369|1706374|||1706374.7	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	1.2953	BIN_UNKNOWN_251_Porticoccaceae	1706374
+1236.3	strain	2|1224|1236|||||1236.3	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1769	BIN_UNKNOWN_488_Gammaproteobacteria	1236
+2923364.1	strain	2|1239|91061|186826|33958|2767877|2923364|2923364.1	Bacteria|Firmicutes|Bacilli|Lactobacillales|Lactobacillaceae|Apilactobacillus|Apilactobacillus apisilvae|Apilactobacillus apisilvae strain	0.2846	UNKNOWN_NEW_Apilactobacillus_apisilvae.GCF_023380225.1_ASM2338022v1	2923364
+49546.9	strain	2|976|117743|200644|49546|||49546.9	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.2593	BIN_UNKNOWN_474_Flavobacteriaceae	49546
+84993.6	strain	2|201174|84992|84993||||84993.6	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.0507	BIN_UNKNOWN_414_Acidimicrobiales	84993
+1706374.8	strain	2|1224|1236|1706369|1706374|||1706374.8	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|||Porticoccaceae strain	0.2601	BIN_UNKNOWN_368_Porticoccaceae	1706374
+1236.4	strain	2|1224|1236|||||1236.4	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1387	BIN_UNKNOWN_150_Gammaproteobacteria	1236
+28211.11	strain	2|1224|28211|||||28211.11	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.2166	BIN_UNKNOWN_208_Alphaproteobacteria	28211
+415000.4	strain	2|74201|414999|415000||||415000.4	Bacteria|Verrucomicrobia|Opitutae|Opitutales||||Opitutales strain	0.0284	BIN_UNKNOWN_161_Opitutales	415000
+2599196.2	strain	2157|2283796|2599185|133814|2599196|||2599196.2	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.2870	BIN_UNKNOWN_261_Thalassarchaeaceae	2599196
+49546.10	strain	2|976|117743|200644|49546|||49546.10	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.1711	BIN_UNKNOWN_149_Flavobacteriaceae	49546
+2822394.1	strain	2|976|117743|200644|49546|2822394||2822394.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Patiriisocius||Patiriisocius strain	0.0823	BIN_UNKNOWN_204_Patiriisocius	2822394
+2599196.3	strain	2157|2283796|2599185|133814|2599196|||2599196.3	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.1941	BIN_UNKNOWN_62_Thalassarchaeaceae	2599196
+1333713.3	strain	2|976|117743|200644|1333713|||1333713.3	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Schleiferiaceae|||Schleiferiaceae strain	0.2590	BIN_UNKNOWN_14_Schleiferiaceae	1333713
+1738654.2	strain	2|1224|1236|135613|1738654|||1738654.2	Bacteria|Proteobacteria|Gammaproteobacteria|Chromatiales|Woeseiaceae|||Woeseiaceae strain	0.2322	BIN_UNKNOWN_268_Woeseiaceae	1738654
+2599196.4	strain	2157|2283796|2599185|133814|2599196|||2599196.4	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.2346	BIN_UNKNOWN_67_Thalassarchaeaceae	2599196
+200644.8	strain	2|976|117743|200644||||200644.8	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	4.1221	BIN_UNKNOWN_205_Flavobacteriales	200644
+1236.5	strain	2|1224|1236|||||1236.5	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1914	BIN_UNKNOWN_185_Gammaproteobacteria	1236
+49546.11	strain	2|976|117743|200644|49546|||49546.11	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.1646	BIN_UNKNOWN_260_Flavobacteriaceae	49546
+2.9	strain	2|||||||2.9	Bacteria|||||||Bacteria strain	0.0550	BIN_UNKNOWN_493	2
+31989.4	strain	2|1224|28211|204455|31989|||31989.4	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|||Rhodobacteraceae strain	0.0430	BIN_UNKNOWN_280_Rhodobacteraceae	31989
+84993.7	strain	2|201174|84992|84993||||84993.7	Bacteria|Actinobacteria|Acidimicrobiia|Acidimicrobiales||||Acidimicrobiales strain	0.8652	BIN_UNKNOWN_391_Acidimicrobiales	84993
+49546.12	strain	2|976|117743|200644|49546|||49546.12	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.2389	BIN_UNKNOWN_350_Flavobacteriaceae	49546
+2599196.5	strain	2157|2283796|2599185|133814|2599196|||2599196.5	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.2839	BIN_UNKNOWN_76_Thalassarchaeaceae	2599196
+2.10	strain	2|||||||2.10	Bacteria|||||||Bacteria strain	0.2348	BIN_UNKNOWN_311	2
+49546.13	strain	2|976|117743|200644|49546|||49546.13	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.6210	BIN_UNKNOWN_457_Flavobacteriaceae	49546
+49546.14	strain	2|976|117743|200644|49546|||49546.14	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.5933	BIN_UNKNOWN_239_Flavobacteriaceae	49546
+2682227.1	strain	2|200795|2682225|2682226|2682227|||2682227.1	Bacteria|Chloroflexi|Tepidiformia|Tepidiformales|Tepidiformaceae|||Tepidiformaceae strain	0.4054	BIN_UNKNOWN_389_Tepidiformaceae	2682227
+2772535.2	strain	2|976|117743|200644|2772535|||2772535.2	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Salibacteraceae|||Salibacteraceae strain	1.0957	BIN_UNKNOWN_367_Salibacteraceae	2772535
+2599196.6	strain	2157|2283796|2599185|133814|2599196|||2599196.6	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.2213	BIN_UNKNOWN_128_Thalassarchaeaceae	2599196
+1333713.4	strain	2|976|117743|200644|1333713|||1333713.4	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Schleiferiaceae|||Schleiferiaceae strain	0.1007	BIN_UNKNOWN_198_Schleiferiaceae	1333713
+2599197.6	strain	2157|2283796|2599185|133814|2599197|||2599197.6	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.3297	BIN_UNKNOWN_486_Poseidoniaceae	2599197
+1123967.2	strain	2|1224|1236|1706369|1706374|1123967||1123967.2	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|Porticoccus||Porticoccus strain	3.0208	BIN_UNKNOWN_31_Porticoccus	1123967
+2599196.7	strain	2157|2283796|2599185|133814|2599196|||2599196.7	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.0695	BIN_UNKNOWN_440_Thalassarchaeaceae	2599196
+1236.6	strain	2|1224|1236|||||1236.6	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.8353	BIN_UNKNOWN_480_Gammaproteobacteria	1236
+1123967.3	strain	2|1224|1236|1706369|1706374|1123967||1123967.3	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|Porticoccus||Porticoccus strain	1.0690	BIN_UNKNOWN_44_Porticoccus	1123967
+2599197.7	strain	2157|2283796|2599185|133814|2599197|||2599197.7	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.0310	BIN_UNKNOWN_348_Poseidoniaceae	2599197
+49546.15	strain	2|976|117743|200644|49546|||49546.15	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.1722	BIN_UNKNOWN_435_Flavobacteriaceae	49546
+2.11	strain	2|||||||2.11	Bacteria|||||||Bacteria strain	0.6703	BIN_UNKNOWN_487	2
+2599196.8	strain	2157|2283796|2599185|133814|2599196|||2599196.8	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.6777	BIN_UNKNOWN_164_Thalassarchaeaceae	2599196
+622681.1	strain	2|201174|1760|2039638|2162846|622681||622681.1	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales|Candidatus Nanopelagicaceae|Candidatus Planktophila||Candidatus Planktophila strain	0.1088	BIN_UNKNOWN_69_Planktophila	622681
+49546.16	strain	2|976|117743|200644|49546|||49546.16	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.1803	BIN_UNKNOWN_401_Flavobacteriaceae	49546
+2822394.2	strain	2|976|117743|200644|49546|2822394||2822394.2	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Patiriisocius||Patiriisocius strain	0.3526	BIN_UNKNOWN_326_Patiriisocius	2822394
+1738654.3	strain	2|1224|1236|135613|1738654|||1738654.3	Bacteria|Proteobacteria|Gammaproteobacteria|Chromatiales|Woeseiaceae|||Woeseiaceae strain	1.5329	BIN_UNKNOWN_353_Woeseiaceae	1738654
+1434032.1	strain	2|201174|1760|85006|85023|1434032||1434032.1	Bacteria|Actinobacteria|Actinomycetia|Micrococcales|Microbacteriaceae|Pontimonas||Pontimonas strain	0.0708	BIN_UNKNOWN_28_Pontimonas	1434032
+622681.2	strain	2|201174|1760|2039638|2162846|622681||622681.2	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales|Candidatus Nanopelagicaceae|Candidatus Planktophila||Candidatus Planktophila strain	0.0493	BIN_UNKNOWN_20_Planktophila	622681
+203494.2	strain	2|74201|203494|||||203494.2	Bacteria|Verrucomicrobia|Verrucomicrobiae|||||Verrucomicrobiae strain	0.4349	BIN_UNKNOWN_318_Verrucomicrobiae	203494
+31989.5	strain	2|1224|28211|204455|31989|||31989.5	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|||Rhodobacteraceae strain	0.4595	BIN_UNKNOWN_337_Rhodobacteraceae	31989
+32011.1	strain	2|1224|28216|32003|32011|||32011.1	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales|Methylophilaceae|||Methylophilaceae strain	0.0789	BIN_UNKNOWN_212_Methylophilaceae	32011
+2599196.9	strain	2157|2283796|2599185|133814|2599196|||2599196.9	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.2000	BIN_UNKNOWN_365_Thalassarchaeaceae	2599196
+49546.17	strain	2|976|117743|200644|49546|||49546.17	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.4607	BIN_UNKNOWN_392_Flavobacteriaceae	49546
+2599196.10	strain	2157|2283796|2599185|133814|2599196|||2599196.10	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	1.0703	BIN_UNKNOWN_211_Thalassarchaeaceae	2599196
+1123967.4	strain	2|1224|1236|1706369|1706374|1123967||1123967.4	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|Porticoccus||Porticoccus strain	0.1317	BIN_UNKNOWN_23_Porticoccus	1123967
+2162846.1	strain	2|201174|1760|2039638|2162846|||2162846.1	Bacteria|Actinobacteria|Actinomycetia|Candidatus Nanopelagicales|Candidatus Nanopelagicaceae|||Candidatus Nanopelagicaceae strain	0.5227	BIN_UNKNOWN_47_Nanopelagicaceae	2162846
+28211.12	strain	2|1224|28211|||||28211.12	Bacteria|Proteobacteria|Alphaproteobacteria|||||Alphaproteobacteria strain	0.0435	BIN_UNKNOWN_305_Alphaproteobacteria	28211
+2599185.1	strain	2157|2283796|2599185|||||2599185.1	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|||||Candidatus Poseidoniia strain	0.0730	BIN_UNKNOWN_331_Poseidoniia	2599185
+2599196.11	strain	2157|2283796|2599185|133814|2599196|||2599196.11	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.1719	BIN_UNKNOWN_323_Thalassarchaeaceae	2599196
+2599196.12	strain	2157|2283796|2599185|133814|2599196|||2599196.12	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.1365	BIN_UNKNOWN_235_Thalassarchaeaceae	2599196
+49546.18	strain	2|976|117743|200644|49546|||49546.18	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.0156	BIN_UNKNOWN_448_Flavobacteriaceae	49546
+200644.9	strain	2|976|117743|200644||||200644.9	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.6137	BIN_UNKNOWN_411_Flavobacteriales	200644
+2881426.1	strain	2|1117||1890424|2881426|||2881426.1	Bacteria|Cyanobacteria||Synechococcales|Prochlorococcaceae|||Prochlorococcaceae strain	0.4081	BIN_UNKNOWN_423_Cyanobiaceae	2881426
+200644.10	strain	2|976|117743|200644||||200644.10	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.6256	BIN_UNKNOWN_295_Flavobacteriales	200644
+49546.19	strain	2|976|117743|200644|49546|||49546.19	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.1163	BIN_UNKNOWN_228_Flavobacteriaceae	49546
+1236.7	strain	2|1224|1236|||||1236.7	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.0477	BIN_UNKNOWN_182_Gammaproteobacteria	1236
+1434032.2	strain	2|201174|1760|85006|85023|1434032||1434032.2	Bacteria|Actinobacteria|Actinomycetia|Micrococcales|Microbacteriaceae|Pontimonas||Pontimonas strain	0.1212	BIN_UNKNOWN_238_Pontimonas	1434032
+1236.8	strain	2|1224|1236|||||1236.8	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.0613	BIN_UNKNOWN_385_Gammaproteobacteria	1236
+1123967.5	strain	2|1224|1236|1706369|1706374|1123967||1123967.5	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Porticoccaceae|Porticoccus||Porticoccus strain	0.0529	BIN_UNKNOWN_104_Porticoccus	1123967
+1236.9	strain	2|1224|1236|||||1236.9	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1918	BIN_UNKNOWN_447_Gammaproteobacteria	1236
+1236.10	strain	2|1224|1236|||||1236.10	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.0952	BIN_UNKNOWN_412_Gammaproteobacteria	1236
+2599196.13	strain	2157|2283796|2599185|133814|2599196|||2599196.13	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Thalassarchaeaceae|||Candidatus Thalassarchaeaceae strain	0.1020	BIN_UNKNOWN_467_Thalassarchaeaceae	2599196
+2599197.8	strain	2157|2283796|2599185|133814|2599197|||2599197.8	Archaea|Candidatus Thermoplasmatota|Candidatus Poseidoniia|Candidatus Poseidoniales|Candidatus Poseidoniaceae|||Candidatus Poseidoniaceae strain	0.4426	BIN_UNKNOWN_333_Poseidoniaceae	2599197
+49546.20	strain	2|976|117743|200644|49546|||49546.20	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|||Flavobacteriaceae strain	0.0241	BIN_UNKNOWN_354_Flavobacteriaceae	49546
+1738654.4	strain	2|1224|1236|135613|1738654|||1738654.4	Bacteria|Proteobacteria|Gammaproteobacteria|Chromatiales|Woeseiaceae|||Woeseiaceae strain	0.3618	BIN_UNKNOWN_192_Woeseiaceae	1738654
+2.12	strain	2|||||||2.12	Bacteria|||||||Bacteria strain	0.1221	BIN_UNKNOWN_316	2
+200644.11	strain	2|976|117743|200644||||200644.11	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales||||Flavobacteriales strain	0.0457	BIN_UNKNOWN_320_Flavobacteriales	200644
+1236.11	strain	2|1224|1236|||||1236.11	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1907	BIN_UNKNOWN_313_Gammaproteobacteria	1236
+1236.12	strain	2|1224|1236|||||1236.12	Bacteria|Proteobacteria|Gammaproteobacteria|||||Gammaproteobacteria strain	0.1106	BIN_UNKNOWN_484_Gammaproteobacteria	1236
+979.1	strain	2|976|117743|200644|49546|104264|979|979.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Cellulophaga|Cellulophaga lytica|Cellulophaga lytica strain	0.0984	Cellulophaga_lytica.GCF_000190595.1_ASM19059v1	979
+1382466.1	strain	2|976|117743|200644|49546|286104|1382466|1382466.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Winogradskyella|Winogradskyella sediminis|Winogradskyella sediminis strain	0.0187	Winogradskyella_sediminis.GCF_900105425.1_IMG-taxon_2630968293_annotated_assembly	1382466
+1888915.1	strain	2|976|117743|200644|49546|52959|1888915|1888915.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter haliotis|Polaribacter haliotis strain	0.1546	Polaribacter_haliotis.GCF_014784055.1_ASM1478405v1	1888915
+1336806.1	strain	2|1224|1236|135619|255527|230494|1336806|1336806.1	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Saccharospirillaceae|Reinekea|Reinekea forsetii|Reinekea forsetii strain	0.1873	Reinekea_forsetii.GCF_002795845.1_ASM279584v1	1336806
+75684.1	strain	2|1224|1236|135619|2301193|75683|75684|75684.1	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Balneatrichaceae|Balneatrix|Balneatrix alpica|Balneatrix alpica strain	0.2201	Balneatrix_alpica.GCF_000619885.1_ASM61988v1	75684
+1774273.1	strain	2|976|117743|200644|49546|52959|1774273|1774273.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter vadi|Polaribacter vadi strain	0.2923	Polaribacter_vadi.GCF_001761365.1_ASM176136v1	1774273
+481183.1	strain	2|976|117743|200644|49546|393005|481183|481183.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tamlana|Tamlana agarivorans|Tamlana agarivorans strain	0.0879	Tamlana_agarivorans.GCF_001642835.1_ASM164283v1	481183
+306545.1	strain	2|1224|1236|1706369|1706371|359337|306545|306545.1	Bacteria|Proteobacteria|Gammaproteobacteria|Cellvibrionales|Cellvibrionaceae|Marinimicrobium|Marinimicrobium koreense|Marinimicrobium koreense strain	0.3744	Marinimicrobium_koreense.GCF_003762925.1_ASM376292v1	306545
+2808900.1	strain	2|976|117743|200644|49546|52959|2808900|2808900.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter batillariae|Polaribacter batillariae strain	0.2431	Polaribacter_batillariae.GCF_017498485.1_ASM1749848v1	2808900
+470.1	strain	2|1224|1236|2887326|468|469|470|470.1	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae|Acinetobacter|Acinetobacter baumannii|Acinetobacter baumannii strain	0.0498	Acinetobacter_baumannii.GCF_008632635.1_ASM863263v1	470
+1736674.1	strain	2|976|117743|200644|49546|261827|1736674|1736674.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Algibacter|Algibacter alginicilyticus|Algibacter alginicilyticus strain	0.1343	Algibacter_alginicilyticus.GCF_001310225.1_ASM131022v1	1736674
+152573.1	strain	2|1224|1236|||265980|152573|152573.1	Bacteria|Proteobacteria|Gammaproteobacteria|||Alkalimonas|Alkalimonas amylolytica|Alkalimonas amylolytica strain	0.0650	Alkalimonas_amylolytica.GCF_900107845.1_IMG-taxon_2617270770_annotated_assembly	152573
+996801.1	strain	2|976|117743|200644|49546|52959|996801|996801.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter reichenbachii|Polaribacter reichenbachii strain	0.0949	Polaribacter_reichenbachii.GCF_001975665.1_ASM197566v1	996801
+43659.1	strain	2|1224|1236|135622|267888|53246|43659|43659.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas tetraodonis|Pseudoalteromonas tetraodonis strain	0.3366	Pseudoalteromonas_tetraodonis.GCF_002310835.1_ASM231083v1	43659
+666.1	strain	2|1224|1236|135623|641|662|666|666.1	Bacteria|Proteobacteria|Gammaproteobacteria|Vibrionales|Vibrionaceae|Vibrio|Vibrio cholerae|Vibrio cholerae strain	0.1553	Vibrio_cholerae.GCF_008369605.1_ASM836960v1	666
+2818493.1	strain	2|976|117743|200644|49546|52959|2818493|2818493.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter cellanae|Polaribacter cellanae strain	0.1345	Polaribacter_cellanae.GCF_017569185.1_ASM1756918v1	2818493
+2738844.1	strain	2|976|117743|200644|49546|52959|2738844|2738844.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter pectinis|Polaribacter pectinis strain	0.1912	Polaribacter_pectinis.GCF_014352875.1_ASM1435287v1	2738844
+283736.1	strain	2|976|117743|200644|49546|283735|283736|283736.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Leeuwenhoekiella|Leeuwenhoekiella aequorea|Leeuwenhoekiella aequorea strain	0.1976	Leeuwenhoekiella_aequorea.GCF_004104375.1_ASM410437v1	283736
+60137.1	strain	2|1224|28211|204455|2854170|60136|60137|60137.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae|Sulfitobacter|Sulfitobacter pontiacus|Sulfitobacter pontiacus strain	0.1847	Sulfitobacter_pontiacus.GCF_000647675.1_SulPonPM01v1	60137
+225843.1	strain	2|976|117743|200644|49546|225842|225843|225843.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Formosa|Formosa algae|Formosa algae strain	0.1337	Formosa_algae.GCF_017872935.1_ASM1787293v1	225843
+1850246.1	strain	2|976|117743|200644|49546|2700084|1850246|1850246.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Urechidicola|Urechidicola croceus|Urechidicola croceus strain	0.1904	Urechidicola_croceus.GCF_001761325.1_ASM176132v1	1850246
+589873.1	strain	2|1224|1236|135622|72275|226|589873|589873.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Alteromonas|Alteromonas australica|Alteromonas australica strain	0.0907	Alteromonas_australica.GCF_000730385.1_ASM73038v1	589873
+281738.1	strain	2|1224|1236|2887326|468|497|281738|281738.1	Bacteria|Proteobacteria|Gammaproteobacteria|Moraxellales|Moraxellaceae|Psychrobacter|Psychrobacter nivimaris|Psychrobacter nivimaris strain	0.4014	Psychrobacter_nivimaris.GCF_904846365.1_ASM90484636v1	281738
+1908341.1	strain	2|976|117743|200644|49546|52959|1908341|1908341.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter litorisediminis|Polaribacter litorisediminis strain	0.2768	Polaribacter_litorisediminis.GCF_019968605.1_ASM1996860v1	1908341
+1464.1	strain	2|1239|91061|1385|186822|44249|1464|1464.1	Bacteria|Firmicutes|Bacilli|Bacillales|Paenibacillaceae|Paenibacillus|Paenibacillus larvae|Paenibacillus larvae strain	0.4917	Paenibacillus_larvae.GCF_002951935.1_ASM295193v1	1464
+48727.1	strain	2|1224|1236|135619|28256|2745|48727|48727.1	Bacteria|Proteobacteria|Gammaproteobacteria|Oceanospirillales|Halomonadaceae|Halomonas|Halomonas pantelleriensis|Halomonas pantelleriensis strain	0.0453	Halomonas_pantelleriensis.GCF_900102875.1_IMG-taxon_2654587879_annotated_assembly	48727
+107401.1	strain	2|976|117743|200644|49546|104267|107401|107401.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum|Tenacibaculum maritimum|Tenacibaculum maritimum strain	0.1601	Tenacibaculum_maritimum.GCF_004803875.1_ASM480387v1	107401
+320912.1	strain	2|976|117743|200644|49546|252356|320912|320912.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Maribacter|Maribacter dokdonensis|Maribacter dokdonensis strain	0.0897	Maribacter_dokdonensis.GCF_900105105.1_IMG-taxon_2675903128_annotated_assembly	320912
+453852.1	strain	2|976|117743|200644|49546|453850|453852|453852.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Joostella|Joostella marina|Joostella marina strain	0.0231	Joostella_marina.GCF_000260115.1_ASM26011v1	453852
+2686077.1	strain	2|976|117743|200644|49546|286104|2686077|2686077.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Winogradskyella|Winogradskyella forsetii|Winogradskyella forsetii strain	0.0141	Winogradskyella_forsetii.GCF_013394595.1_ASM1339459v1	2686077
+1284658.1	strain	2|1224|28211|204455|31989|1284657|1284658|1284658.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Rhodobacteraceae|Planktomarina|Planktomarina temperata|Planktomarina temperata strain	0.2452	Planktomarina_temperata.GCF_000738435.1_ASM73843v1	1284658
+985043.1	strain	2|976|117743|200644|49546|52959|985043|985043.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter sejongensis|Polaribacter sejongensis strain	0.0604	Polaribacter_sejongensis.GCF_002814075.1_ASM281407v1	985043
+316.1	strain	2|1224|1236|72274|135621|2901164|316|316.1	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Stutzerimonas|Stutzerimonas stutzeri|Stutzerimonas stutzeri strain	0.0919	Stutzerimonas_stutzeri.GCF_019704535.1_ASM1970453v1	316
+176102.1	strain	2|1224|1236|135622|267888|53246|176102|176102.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas agarivorans|Pseudoalteromonas agarivorans strain	0.4865	Pseudoalteromonas_agarivorans.GCF_003668795.1_ASM366879v1	176102
+648.1	strain	2|1224|1236|135624|84642|642|648|648.1	Bacteria|Proteobacteria|Gammaproteobacteria|Aeromonadales|Aeromonadaceae|Aeromonas|Aeromonas caviae|Aeromonas caviae strain	0.2212	Aeromonas_caviae.GCF_014169735.1_ASM1416973v1	648
+227.1	strain	2|1224|1236|135622|267888|53246|227|227.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas carrageenovora|Pseudoalteromonas carrageenovora strain	0.0862	Pseudoalteromonas_carrageenovora.GCF_004328865.1_ASM432886v1	227
+584609.1	strain	2|976|117743|200644|49546|104267|584609|584609.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum|Tenacibaculum jejuense|Tenacibaculum jejuense strain	0.0465	Tenacibaculum_jejuense.GCF_900198195.1_Tjejuense_V1	584609
+931.1	strain	2|1224|28216|32003|2008790|919|931|931.1	Bacteria|Proteobacteria|Betaproteobacteria|Nitrosomonadales|Thiobacillaceae|Thiobacillus|Thiobacillus thioparus|Thiobacillus thioparus strain	0.2139	Thiobacillus_thioparus.GCF_000373385.1_ASM37338v1	931
+562.1	strain	2|1224|1236|91347|543|561|562|562.1	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Escherichia|Escherichia coli|Escherichia coli strain	0.2904	Escherichia_coli.GCF_000005845.2_ASM584v2	562
+998845.1	strain	2|976|117743|200644|49546|237|998845|998845.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Flavobacterium|Flavobacterium jumunjinense|Flavobacterium jumunjinense strain	0.0801	Flavobacterium_jumunjinense.GCF_021650975.2_ASM2165097v2	998845
+28901.1	strain	2|1224|1236|91347|543|590|28901|28901.1	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Enterobacteriaceae|Salmonella|Salmonella enterica|Salmonella enterica strain	0.0837	Salmonella_enterica.GCF_000006945.2_ASM694v2	28901
+456327.1	strain	2|1224|1236|135614|32033|338|456327|456327.1	Bacteria|Proteobacteria|Gammaproteobacteria|Xanthomonadales|Xanthomonadaceae|Xanthomonas|Xanthomonas euvesicatoria|Xanthomonas euvesicatoria strain	0.2036	Xanthomonas_euvesicatoria.GCF_017724035.1_ASM1772403v1	456327
+326544.1	strain	2|1224|1236|135622|72275|1621534|326544|326544.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Alteromonadaceae|Paraglaciecola|Paraglaciecola psychrophila|Paraglaciecola psychrophila strain	0.0168	Paraglaciecola_psychrophila.GCF_000315075.1_ASM31507v1	326544
+53946.1	strain	2|1224|28211|204455|2854170|53945|53946|53946.1	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales|Roseobacteraceae|Octadecabacter|Octadecabacter arcticus|Octadecabacter arcticus strain	0.2175	Octadecabacter_arcticus.GCF_000155735.2_ASM15573v2	53946
+287.1	strain	2|1224|1236|72274|135621|286|287|287.1	Bacteria|Proteobacteria|Gammaproteobacteria|Pseudomonadales|Pseudomonadaceae|Pseudomonas|Pseudomonas aeruginosa|Pseudomonas aeruginosa strain	0.1734	Pseudomonas_aeruginosa.GCF_000006765.1_ASM676v1	287
+70448.1	strain	2759|3041|1035538|13792|1525212|70447|70448|70448.1	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae|Ostreococcus|Ostreococcus tauri|Ostreococcus tauri strain	1.0580	Ostreococcus_tauri.GCF_000214015.3_version_140606	70448
+41875.1	strain	2759|3041|1035538|13792|1525212|41874|41875|41875.1	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Bathycoccaceae|Bathycoccus|Bathycoccus prasinos|Bathycoccus prasinos strain	0.8437	Bathycoccus_prasinos.GCF_002220235.1_ASM222023v1	41875
+296587.1	strain	2759|3041|1035538|13792|41873|38832|296587|296587.1	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Mamiellaceae|Micromonas|Micromonas commoda|Micromonas commoda strain	0.8164	Micromonas_commoda.GCF_000090985.2_ASM9098v2	296587
+38833.1	strain	2759|3041|1035538|13792|41873|38832|38833|38833.1	Eukaryota|Chlorophyta|Mamiellophyceae|Mamiellales|Mamiellaceae|Micromonas|Micromonas pusilla|Micromonas pusilla strain	0.0384	Micromonas_pusilla.GCF_000151265.2_Micromonas_pusilla_CCMP1545_v2.0	38833
+1850252.1	strain	2|976|117743|200644|49546|104267|1850252|1850252.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Tenacibaculum|Tenacibaculum todarodis|Tenacibaculum todarodis strain	0.0582	Tenacibaculum_todarodis.GCF_001889045.1_ASM188904v1	1850252
+1622118.1	strain	2|976|117743|200644|49546|358023|1622118|1622118.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Lutibacter|Lutibacter profundi|Lutibacter profundi strain	0.0435	Lutibacter_profundi.GCF_001543325.1_ASM154332v1	1622118
+313588.1	strain	2|976|117743|200644|49546|216431|313588|313588.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Croceibacter|Croceibacter atlanticus|Croceibacter atlanticus strain	0.9139	Croceibacter_atlanticus.GCF_000196315.1_ASM19631v1	313588
+531.1	strain	2|976|117743|200644|49546|52959|531|531.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Polaribacter|Polaribacter irgensii|Polaribacter irgensii strain	0.5204	Polaribacter_irgensii.GCF_000153225.1_ASM15322v1	531
+1018.1	strain	2|976|117743|200644|49546|1016|1018|1018.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Flavobacteriaceae|Capnocytophaga|Capnocytophaga ochracea|Capnocytophaga ochracea strain	0.1861	Capnocytophaga_ochracea.GCF_000023285.1_ASM2328v1	1018
+267375.1	strain	2|1224|1236|135622|267888|53246|267375|267375.1	Bacteria|Proteobacteria|Gammaproteobacteria|Alteromonadales|Pseudoalteromonadaceae|Pseudoalteromonas|Pseudoalteromonas marina|Pseudoalteromonas marina strain	0.2154	BIN_Pseudoalteromonas marina	267375
+28251.1	strain	2|976|117743|200644|2762318|28250|28251|28251.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Weeksellaceae|Ornithobacterium|Ornithobacterium rhinotracheale|Ornithobacterium rhinotracheale strain	0.0248	Ornithobacterium_rhinotracheale.GCF_000756505.1_ASM75650v1	28251
+47735.1	strain	2|1224|1236|135625|712|476528|47735|47735.1	Bacteria|Proteobacteria|Gammaproteobacteria|Pasteurellales|Pasteurellaceae|Bibersteinia|Bibersteinia trehalosi|Bibersteinia trehalosi strain	0.1139	Bibersteinia_trehalosi.GCF_000521725.1_ASM52172v1	47735
+1470067.1	strain	2157|651137||31932|338190|338191|1470067|1470067.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus ureiphilus|Nitrosopumilus ureiphilus strain	0.4182	Nitrosopumilus_ureiphilus.GCF_013407185.1_ASM1340718v1	1470067
+626947.1	strain	2|1224|28216|80840|995019|577310|626947|626947.1	Bacteria|Proteobacteria|Betaproteobacteria|Burkholderiales|Sutterellaceae|Parasutterella|Parasutterella secunda|Parasutterella secunda strain	0.1279	Parasutterella_secunda.GCF_024733725.1_ASM2473372v1	626947
+1580092.1	strain	2157|651137||31932|338190|338191|1580092|1580092.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus adriaticus|Nitrosopumilus adriaticus strain	1.0551	Nitrosopumilus_adriaticus.GCF_000956175.1_ASM95617v1	1580092
+1427364.1	strain	2|1224|1236|||2841677|1427364|1427364.1	Bacteria|Proteobacteria|Gammaproteobacteria|||Candidatus Pseudothioglobus|Candidatus Pseudothioglobus singularis|Candidatus Pseudothioglobus singularis strain	0.9737	Candidatus_Pseudothioglobus_singularis.GCF_001281385.1_ASM128138v1	1427364
+1582439.1	strain	2157|651137||31932|338190|338191|1582439|1582439.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus piranensis|Nitrosopumilus piranensis strain	0.2409	Nitrosopumilus_piranensis.GCF_000875775.1_ASM87577v1	1582439
+1229909.1	strain	2157|651137||31932|338190|338191|1229909|1229909.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Candidatus Nitrosopumilus sediminis|Candidatus Nitrosopumilus sediminis strain	1.0829	Candidatus_Nitrosopumilus_sediminis.GCF_000299395.1_ASM29939v1	1229909
+338192.1	strain	2157|651137||31932|338190|338191|338192|338192.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus maritimus|Nitrosopumilus maritimus strain	0.3440	Nitrosopumilus_maritimus.GCF_000018465.1_ASM1846v1	338192
+1510466.1	strain	2157|651137||31932|338190|338191|1510466|1510466.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Candidatus Nitrosopumilus koreensis|Candidatus Nitrosopumilus koreensis strain	0.2860	Candidatus_Nitrosopumilus_koreensis.GCF_000299365.1_ASM29936v1	1510466
+1959104.1	strain	2157|651137||31932|338190|338191|1959104|1959104.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus oxyclinae|Nitrosopumilus oxyclinae strain	1.2241	Nitrosopumilus_oxyclinae.GCF_013407165.1_ASM1340716v1	1959104
+1470066.1	strain	2157|651137||31932|338190|338191|1470066|1470066.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Nitrosopumilus|Nitrosopumilus cobalaminigenes|Nitrosopumilus cobalaminigenes strain	0.6538	Nitrosopumilus_cobalaminigenes.GCF_013407145.1_ASM1340714v1	1470066
+2563896.1	strain	2|1224|28211|54526|1655514|198251|2563896|2563896.1	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales|Pelagibacteraceae|Candidatus Pelagibacter|Candidatus Pelagibacter giovannonii|Candidatus Pelagibacter giovannonii strain	1.4057	Candidatus_Pelagibacter_giovannonii.GCF_012276695.1_ASM1227669v1	2563896
+1898749.1	strain	2157|651137||31932|338190|1993653|1898749|1898749.1	Archaea|Thaumarchaeota||Nitrosopumilales|Nitrosopumilaceae|Candidatus Nitrosomarinus|Candidatus Nitrosomarinus catalina|Candidatus Nitrosomarinus catalina strain	1.2047	Candidatus_Nitrosomarinus_catalina.GCF_002156965.1_ASM215696v1	1898749
+198252.1	strain	2|1224|28211|54526|1655514|198251|198252|198252.1	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales|Pelagibacteraceae|Candidatus Pelagibacter|Candidatus Pelagibacter ubique|Candidatus Pelagibacter ubique strain	2.4498	Candidatus_Pelagibacter_ubique.GCF_000012345.1_ASM1234v1	198252
+1410606.1	strain	2157|651137||||1593364|1410606|1410606.1	Archaea|Thaumarchaeota||||Candidatus Nitrosopelagicus|Candidatus Nitrosopelagicus brevis|Candidatus Nitrosopelagicus brevis strain	0.1307	Candidatus_Nitrosopelagicus_brevis.GCF_000812185.1_ASM81218v1	1410606
+1925548.1	strain	2|1224|28211|54526||2045213|1925548|1925548.1	Bacteria|Proteobacteria|Alphaproteobacteria|Pelagibacterales||Candidatus Fonsibacter|Candidatus Fonsibacter ubiquis|Candidatus Fonsibacter ubiquis strain	0.0849	Candidatus_Fonsibacter_ubiquis.GCF_002688585.1_ASM268858v1	1925548
+412965.1	strain	2|1224|1236|||2732587|412965|412965.1	Bacteria|Proteobacteria|Gammaproteobacteria|||Candidatus Vesicomyosocius|Candidatus Vesicomyosocius okutanii|Candidatus Vesicomyosocius okutanii strain	0.3213	Candidatus_Vesicomyosocius_okutanii.GCF_000010405.1_ASM1040v1	412965
+9.1	strain	2|1224|1236|91347|1903409|32199|9|9.1	Bacteria|Proteobacteria|Gammaproteobacteria|Enterobacterales|Erwiniaceae|Buchnera|Buchnera aphidicola|Buchnera aphidicola strain	0.1874	Buchnera_aphidicola.GCF_003099975.1_ASM309997v1	9
+1653831.1	strain	2|976|117743|200644|39782|34098|1653831|1653831.1	Bacteria|Bacteroidota|Flavobacteriia|Flavobacteriales|Blattabacteriaceae|Blattabacterium|Blattabacterium cuenoti|Blattabacterium cuenoti strain	0.3216	Blattabacterium_cuenoti.GCF_014251295.1_ASM1425129v1	1653831

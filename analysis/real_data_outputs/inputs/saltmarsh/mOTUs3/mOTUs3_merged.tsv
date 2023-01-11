@@ -1,0 +1,300 @@
+X.mOTUs2_clade	reERR5004402	reERR5004403	reERR5004404	reERR5004405	reERR5004406	reERR5004407	reERR5004408	reERR5004409	reERR5004410	reERR5004787	reERR5004789	reERR5004790	reERR5004793	reERR5004796	reERR5004798	reERR5004799	reERR5004803	reERR5004804	reERR5004806	reERR5004807
+k__Archaea	0	0	0	0	0	0	0	0	0	0.9425024804	0.3910358603	0.36114421	0	0.8314073723	0.6332783554	0.944494277	0.789448859	0	0	0.4178228501
+k__Archaea|p__Archaea phylum incertae sedis	0	0	0	0	0	0	0	0	0	0.0013200014	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Archaea phylum incertae sedis|c__Archaea class incertae sedis	0	0	0	0	0	0	0	0	0	0.0013200014	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Archaea phylum incertae sedis|c__Archaea class incertae sedis|o__Archaea order incertae sedis	0	0	0	0	0	0	0	0	0	0.0013200014	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Archaea phylum incertae sedis|c__Archaea class incertae sedis|o__Archaea order incertae sedis|f__Archaea fam. incertae sedis	0	0	0	0	0	0	0	0	0	0.0013200014	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Archaea phylum incertae sedis|c__Archaea class incertae sedis|o__Archaea order incertae sedis|f__Archaea fam. incertae sedis|g__Archaea gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0013200014	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Archaea phylum incertae sedis|c__Archaea class incertae sedis|o__Archaea order incertae sedis|f__Archaea fam. incertae sedis|g__Archaea gen. incertae sedis|s__uncultured archaeon A07HN63	0	0	0	0	0	0	0	0	0	0.0013200014	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota	0	0	0	0	0	0	0	0	0	0.941182479	0.3910358603	0.36114421	0	0.8314073723	0.6332783554	0.944494277	0.789448859	0	0	0.4178228501
+k__Archaea|p__Euryarchaeota|c__Halobacteria	0	0	0	0	0	0	0	0	0	0.941182479	0.3910358603	0.36114421	0	0.8314073723	0.6332783554	0.944494277	0.789448859	0	0	0.4178228501
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteria order [Haloferacales/Halobacteriales]	0	0	0	0	0	0	0	0	0	0.0012433083	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteria order [Haloferacales/Halobacteriales]|f__Halorubraceae	0	0	0	0	0	0	0	0	0	0.0012433083	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteria order [Haloferacales/Halobacteriales]|f__Halorubraceae|g__Halopenitus	0	0	0	0	0	0	0	0	0	0.0012433083	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteria order [Haloferacales/Halobacteriales]|f__Halorubraceae|g__Halopenitus|s__Halopenitus sp.	0	0	0	0	0	0	0	0	0	0.0012433083	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales	0	0	0	0	0	0	0	0	0	0.0870103338	0	0.1799908102	0	0.1243284195	0	0.0620261018	0.0662008525	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae	0	0	0	0	0	0	0	0	0	0.0732233428	0	0	0	0.1243284195	0	0.0620261018	0.0662008525	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halapricum	0	0	0	0	0	0	0	0	0	0.0048747957	0	0	0	0	0	0	0.0179588266	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halapricum|s__Halapricum salinum	0	0	0	0	0	0	0	0	0	0.0048747957	0	0	0	0	0	0	0.0179588266	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula	0	0	0	0	0	0	0	0	0	0.0403127785	0	0	0	0.1243284195	0	0.0620261018	0.0131522077	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula amylolytica/hispanica	0	0	0	0	0	0	0	0	0	0.0139034643	0	0	0	0.0635946434	0	0.0190582585	0.0131522077	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula argentinensis	0	0	0	0	0	0	0	0	0	0.0015063392	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula japonica	0	0	0	0	0	0	0	0	0	0.0019458482	0	0	0	0.0218641594	0	0.0149461661	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula rubripromontorii	0	0	0	0	0	0	0	0	0	0.0034837554	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula sp. CBA1127	0	0	0	0	0	0	0	0	0	0.0030673066	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula sp.	0	0	0	0	0	0	0	0	0	0.0023940938	0	0	0	0	0	0.0161835666	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula species incertae sedis [ext_mOTU_v3_19434]	0	0	0	0	0	0	0	0	0	0.0095763754	0	0	0	0	0	0.0118381106	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Haloarcula|s__Haloarcula vallismortis	0	0	0	0	0	0	0	0	0	0.0044355956	0	0	0	0.0388696167	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halomicrobium	0	0	0	0	0	0	0	0	0	0.0052838433	0	0	0	0	0	0	0.0252711075	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halomicrobium|s__Halomicrobium katesii/mukohataei	0	0	0	0	0	0	0	0	0	0.0011342869	0	0	0	0	0	0	0.0252711075	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halomicrobium|s__Halomicrobium zhouii	0	0	0	0	0	0	0	0	0	0.0041495564	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorhabdus	0	0	0	0	0	0	0	0	0	0.0036226146	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorhabdus|s__Halorhabdus tiamatea	0	0	0	0	0	0	0	0	0	0.0018248322	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorhabdus|s__Halorhabdus utahensis	0	0	0	0	0	0	0	0	0	0.0017977824	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorientalis	0	0	0	0	0	0	0	0	0	0.0080633517	0	0	0	0	0	0	0.0098187106	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorientalis|s__Halorientalis persicus	0	0	0	0	0	0	0	0	0	0.0018639449	0	0	0	0	0	0	0.0098187106	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorientalis|s__Halorientalis regularis	0	0	0	0	0	0	0	0	0	0.0034545227	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halorientalis|s__Halorientalis sp. IM1011	0	0	0	0	0	0	0	0	0	0.0027448841	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halosimplex	0	0	0	0	0	0	0	0	0	0.0028437634	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Halosimplex|s__Halosimplex carlsbadense	0	0	0	0	0	0	0	0	0	0.0028437634	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Natronomonas	0	0	0	0	0	0	0	0	0	0.0082221958	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Natronomonas|s__Natronomonas moolapensis	0	0	0	0	0	0	0	0	0	0.0024289876	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Natronomonas|s__Natronomonas pharaonis	0	0	0	0	0	0	0	0	0	0.003901791	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Haloarculaceae|g__Natronomonas|s__Natronomonas sp. CBA1134	0	0	0	0	0	0	0	0	0	0.0018914172	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae	0	0	0	0	0	0	0	0	0	0.012496891	0	0.1799908102	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halarchaeum	0	0	0	0	0	0	0	0	0	0.0011269689	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halarchaeum|s__Halarchaeum acidiphilum	0	0	0	0	0	0	0	0	0	0.0011269689	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Haloarchaeobius	0	0	0	0	0	0	0	0	0	0.0026601043	0	0.0429658549	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Haloarchaeobius|s__Haloarchaeobius iranensis	0	0	0	0	0	0	0	0	0	0.0026601043	0	0.0429658549	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacteriaceae gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0039614296	0	0.1370249553	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacteriaceae gen. incertae sedis|s__Halobacteriaceae species incertae sedis [ext_mOTU_v3_28645]	0	0	0	0	0	0	0	0	0	0.0039614296	0	0.1370249553	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacterium	0	0	0	0	0	0	0	0	0	0.0038513128	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacterium|s__Halobacterium hubeiense	0	0	0	0	0	0	0	0	0	0.0013436937	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacterium|s__Halobacterium jilantaiense	0	0	0	0	0	0	0	0	0	0.0011816021	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacterium|s__Halobacterium sp. CBA1132	0	0	0	0	0	0	0	0	0	0.0005209151	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halobacterium|s__Halobacterium sp. DL1	0	0	0	0	0	0	0	0	0	0.0008051019	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halodesulfurarchaeum	0	0	0	0	0	0	0	0	0	0.0008970755	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriaceae|g__Halodesulfurarchaeum|s__Halodesulfurarchaeum formicicum	0	0	0	0	0	0	0	0	0	0.0008970755	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriales fam. incertae sedis	0	0	0	0	0	0	0	0	0	0.0007529002	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriales fam. incertae sedis|g__Halobacteriales gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0007529002	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halobacteriales fam. incertae sedis|g__Halobacteriales gen. incertae sedis|s__Halobacteriales species incertae sedis [ext_mOTU_v3_28699]	0	0	0	0	0	0	0	0	0	0.0007529002	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halococcaceae	0	0	0	0	0	0	0	0	0	0.0005371997	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halococcaceae|g__Halococcus	0	0	0	0	0	0	0	0	0	0.0005371997	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Halobacteriales|f__Halococcaceae|g__Halococcus|s__Halococcus hamelinensis	0	0	0	0	0	0	0	0	0	0.0005371997	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales	0	0	0	0	0	0	0	0	0	0.8154481549	0.3910358603	0.1811533998	0	0.6693503585	0.6332783554	0.8580456613	0.7232480065	0	0	0.4178228501
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae	0	0	0	0	0	0	0	0	0	0.0529361586	0	0.1811533998	0	0.1622550936	0	0.0467871781	0.1810432394	0	0	0.4178228501
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halobellus	0	0	0	0	0	0	0	0	0	0.003062299	0	0	0	0	0	0.0155179299	0.0098605814	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halobellus|s__Halobellus clavatus	0	0	0	0	0	0	0	0	0	0.0014411033	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halobellus|s__Halobellus rufus	0	0	0	0	0	0	0	0	0	0.0016211957	0	0	0	0	0	0.0155179299	0.0098605814	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferacaceae gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0104180547	0	0	0	0.0612834832	0	0.0156514175	0.0195559094	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferacaceae gen. incertae sedis|s__Haloferacaceae species incertae sedis [ext_mOTU_v3_28324]	0	0	0	0	0	0	0	0	0	0.0036548444	0	0	0	0.0612834832	0	0	0.0122384843	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferacaceae gen. incertae sedis|s__Haloferacaceae species incertae sedis [ext_mOTU_v3_28642]	0	0	0	0	0	0	0	0	0	0.0009589637	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferacaceae gen. incertae sedis|s__Haloferacaceae species incertae sedis [ext_mOTU_v3_28643]	0	0	0	0	0	0	0	0	0	0.0058042465	0	0	0	0	0	0.0156514175	0.0073174251	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferax	0	0	0	0	0	0	0	0	0	0.0053551301	0	0	0	0.0177127367	0	0	0.0262341175	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferax|s__Haloferax larsenii/elongans	0	0	0	0	0	0	0	0	0	0.0011667322	0	0	0	0	0	0	0.0053095438	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloferax|s__Haloferax sp.	0	0	0	0	0	0	0	0	0	0.0041883979	0	0	0	0.0177127367	0	0	0.0209245737	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogeometricum	0	0	0	0	0	0	0	0	0	0.0041280542	0	0.1811533998	0	0.0408556555	0	0	0.013904554	0	0	0.4178228501
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogeometricum|s__Halogeometricum limi	0	0	0	0	0	0	0	0	0	0.0010928896	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogeometricum|s__Halogeometricum pallidum	0	0	0	0	0	0	0	0	0	0.0010299075	0	0.0915868346	0	0	0	0	0	0	0	0.4178228501
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogeometricum|s__Halogeometricum rufum	0	0	0	0	0	0	0	0	0	0.0020052572	0	0.0895665652	0	0.0408556555	0	0	0.013904554	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogranum	0	0	0	0	0	0	0	0	0	0.0033835149	0	0	0	0	0	0	0.0919406099	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogranum|s__Halogranum amylolyticum	0	0	0	0	0	0	0	0	0	0.0016600168	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogranum|s__Halogranum gelatinilyticum	0	0	0	0	0	0	0	0	0	0.0011367474	0	0	0	0	0	0	0.0919406099	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halogranum|s__Halogranum rubrum/salarium	0	0	0	0	0	0	0	0	0	0.0005867507	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halopelagius	0	0	0	0	0	0	0	0	0	0.0019755827	0	0	0	0	0	0	0.0099028109	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halopelagius|s__Halopelagius inordinatus	0	0	0	0	0	0	0	0	0	0.0004015636	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Halopelagius|s__Halopelagius longus	0	0	0	0	0	0	0	0	0	0.0015740191	0	0	0	0	0	0	0.0099028109	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloplanus	0	0	0	0	0	0	0	0	0	0.0229733837	0	0	0	0.0424032182	0	0.0156178307	0.0096446563	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloplanus|s__Haloplanus natans	0	0	0	0	0	0	0	0	0	0.0172298394	0	0	0	0.0424032182	0	0.0156178307	0.0096446563	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloplanus|s__Haloplanus vescus	0	0	0	0	0	0	0	0	0	0.0057435442	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloprofundus	0	0	0	0	0	0	0	0	0	0.0016401394	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Haloferacaceae|g__Haloprofundus|s__Haloprofundus marisrubri	0	0	0	0	0	0	0	0	0	0.0016401394	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae	0	0	0	0	0	0	0	0	0	0.7625119963	0.3910358603	0	0	0.5070952649	0.6332783554	0.8112584831	0.5422047671	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Candidatus Halobonum	0	0	0	0	0	0	0	0	0	0.0011367474	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Candidatus Halobonum|s__Candidatus Halobonum tyrrellensis	0	0	0	0	0	0	0	0	0	0.0011367474	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halobaculum	0	0	0	0	0	0	0	0	0	0.001173663	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halobaculum|s__Halobaculum gomorrense	0	0	0	0	0	0	0	0	0	0.001173663	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halolamina	0	0	0	0	0	0	0	0	0	0.0120923381	0	0	0	0	0	0.0354421656	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halolamina|s__Halolamina pelagica	0	0	0	0	0	0	0	0	0	0.0008988689	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halolamina|s__Halolamina pelagica	0	0	0	0	0	0	0	0	0	0.001173663	0	0	0	0	0	0.0152257513	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halolamina|s__Halolamina rubra	0	0	0	0	0	0	0	0	0	0.0014265187	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halolamina|s__Halolamina sediminis	0	0	0	0	0	0	0	0	0	0.0067955499	0	0	0	0	0	0.0202164142	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halolamina|s__Halolamina sp. CBA1230	0	0	0	0	0	0	0	0	0	0.0017977377	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Haloparvum	0	0	0	0	0	0	0	0	0	0.0011709252	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Haloparvum|s__Haloparvum sedimenti	0	0	0	0	0	0	0	0	0	0.0011709252	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubraceae gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0041193335	0	0	0	0	0	0.0184718506	0.018243048	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubraceae gen. incertae sedis|s__Halorubraceae species incertae sedis [ext_mOTU_v3_28594]	0	0	0	0	0	0	0	0	0	0.0021256042	0	0	0	0	0	0.0184718506	0.018243048	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubraceae gen. incertae sedis|s__Halorubraceae species incertae sedis [ext_mOTU_v3_28609]	0	0	0	0	0	0	0	0	0	0.0019937293	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum	0	0	0	0	0	0	0	0	0	0.7428189892	0.3910358603	0	0	0.5070952649	0.6332783554	0.757344467	0.523961719	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum aethiopicum	0	0	0	0	0	0	0	0	0	0.0147273922	0	0	0	0	0	0.0159254029	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum aidingense	0	0	0	0	0	0	0	0	0	0.0024641926	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum californiense	0	0	0	0	0	0	0	0	0	0.0118931117	0	0	0	0.041225351	0	0	0.0243420175	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum coriense	0	0	0	0	0	0	0	0	0	0.0075839717	0	0	0	0	0	0.0125265217	0.0210763196	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum ezzemoulense	0	0	0	0	0	0	0	0	0	0.0100943746	0	0	0	0.0324880378	0	0.0142934592	0.0109724251	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum kocurii	0	0	0	0	0	0	0	0	0	0.005165924	0	0	0	0	0	0.0159254029	0.0103807243	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum lacusprofundi	0	0	0	0	0	0	0	0	0	0.0013233347	0	0	0	0	0	0.0100153775	0.0051787376	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum lipolyticum	0	0	0	0	0	0	0	0	0	0.0090419817	0	0	0	0	0	0.0095260591	0.0116845666	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum saccharovorum	0	0	0	0	0	0	0	0	0	0.0113640536	0	0	0	0	0	0.0180606602	0.012860047	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum saccharovorum/halophilum	0	0	0	0	0	0	0	0	0	0.0072641968	0	0	0	0.0420392421	0	0.0090061156	0.0252987565	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum sodomense	0	0	0	0	0	0	0	0	0	0.0256405095	0	0	0	0	0.0398233599	0.0397699952	0.0226770813	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum sp. BV1	0	0	0	0	0	0	0	0	0	0.0036942754	0	0	0	0	0	0.0144690042	0.0153302078	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum sp. SD626R	0	0	0	0	0	0	0	0	0	0.0270992903	0.0689017056	0	0	0.0242404809	0.0503488801	0.0198308151	0.0172238834	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum sp. T3	0	0	0	0	0	0	0	0	0	0.0397640509	0.0986092686	0	0	0.0326421384	0.0833702084	0.0461461629	0.0230080233	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum sp.	0	0	0	0	0	0	0	0	0	0.0945338537	0.1343120201	0	0	0.0935935754	0.0772027106	0.0745427607	0.0653450914	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum species incertae sedis [ext_mOTU_v3_28641]	0	0	0	0	0	0	0	0	0	0.0619079561	0	0	0	0	0.0808666914	0.1030364207	0.0627208528	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum species incertae sedis [ext_mOTU_v3_28712]	0	0	0	0	0	0	0	0	0	0.0081846885	0	0	0	0	0	0.0183785584	0.0422689347	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum species incertae sedis [ext_mOTU_v3_28718]	0	0	0	0	0	0	0	0	0	0.2909679132	0	0	0	0.1051302936	0.0715964062	0.2014670247	0.0474950917	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum tebenquichense/hochstenium	0	0	0	0	0	0	0	0	0	0.014567744	0	0	0	0.0465264162	0.0794754365	0.0316723618	0.0155167983	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Haloferacales|f__Halorubraceae|g__Halorubrum|s__Halorubrum tropicale	0	0	0	0	0	0	0	0	0	0.0955361739	0.089212866	0	0	0.0892097294	0.1505946622	0.1027523642	0.0905821602	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales	0	0	0	0	0	0	0	0	0	0.0374806819	0	0	0	0.0377285944	0	0.0244225138	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae	0	0	0	0	0	0	0	0	0	0.0374806819	0	0	0	0.0377285944	0	0.0244225138	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halobiforma	0	0	0	0	0	0	0	0	0	0.002580693	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halobiforma|s__Halobiforma haloterrestris/lacisalsi	0	0	0	0	0	0	0	0	0	0.0017014303	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halobiforma|s__Halobiforma nitratireducens	0	0	0	0	0	0	0	0	0	0.0008792627	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halopiger	0	0	0	0	0	0	0	0	0	0.0053365409	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halopiger|s__Halopiger djelfimassiliensis	0	0	0	0	0	0	0	0	0	0.0005147746	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halopiger|s__Halopiger goleimassiliensis	0	0	0	0	0	0	0	0	0	0.0017647614	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halopiger|s__Halopiger salifodinae	0	0	0	0	0	0	0	0	0	0.0016940966	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halopiger|s__Halopiger xanaduensis	0	0	0	0	0	0	0	0	0	0.0013629083	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halostagnicola	0	0	0	0	0	0	0	0	0	0.0015174748	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halostagnicola|s__Halostagnicola kamekurae	0	0	0	0	0	0	0	0	0	0.0015174748	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Haloterrigena	0	0	0	0	0	0	0	0	0	0.0058684079	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Haloterrigena|s__Haloterrigena limicola	0	0	0	0	0	0	0	0	0	0.0016577182	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Haloterrigena|s__Haloterrigena mahii	0	0	0	0	0	0	0	0	0	0.0004689401	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Haloterrigena|s__Haloterrigena saccharevitans	0	0	0	0	0	0	0	0	0	0.0013572454	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Haloterrigena|s__Haloterrigena salina	0	0	0	0	0	0	0	0	0	0.0010563573	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Haloterrigena|s__Haloterrigena turkmenica	0	0	0	0	0	0	0	0	0	0.0013281469	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halovivax	0	0	0	0	0	0	0	0	0	0.0017295067	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Halovivax|s__Halovivax asiaticus	0	0	0	0	0	0	0	0	0	0.0017295067	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialba	0	0	0	0	0	0	0	0	0	0.0027745279	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. [Haloterrigena/Natrinema]	0	0	0	0	0	0	0	0	0	0.0026706483	0	0	0	0.0377285944	0	0.0244225138	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. [Haloterrigena/Natrinema]|s__Natrialbaceae sp.	0	0	0	0	0	0	0	0	0	0.0026706483	0	0	0	0.0377285944	0	0.0244225138	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. [Haloterrigena/Natronorubrum]	0	0	0	0	0	0	0	0	0	0.001318894	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. [Haloterrigena/Natronorubrum]|s__Natrialbaceae sp.	0	0	0	0	0	0	0	0	0	0.001318894	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.006063863	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. incertae sedis|s__Natrialbaceae archaeon B1-Br10_E2g2	0	0	0	0	0	0	0	0	0	0.0005573074	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialbaceae gen. incertae sedis|s__Natrialbaceae archaeon Tc-Br11_E2g8	0	0	0	0	0	0	0	0	0	0.0055065556	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialba|s__Natrialba aegyptia/taiwanensis	0	0	0	0	0	0	0	0	0	0.0017709928	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialba|s__Natrialba hulunbeirensis	0	0	0	0	0	0	0	0	0	0.0005250907	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrialba|s__Natrialba sp. SSL1	0	0	0	0	0	0	0	0	0	0.0004784444	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrinema	0	0	0	0	0	0	0	0	0	0.002733472	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrinema|s__Natrinema gari	0	0	0	0	0	0	0	0	0	0.0017088279	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrinema|s__Natrinema salaciae	0	0	0	0	0	0	0	0	0	0.0007279054	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natrinema|s__Natrinema versiforme	0	0	0	0	0	0	0	0	0	0.0002967387	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronobacterium	0	0	0	0	0	0	0	0	0	0.0010882016	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronobacterium|s__Natronobacterium gregoryi	0	0	0	0	0	0	0	0	0	0.0010882016	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronococcus	0	0	0	0	0	0	0	0	0	0.0021512206	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronococcus|s__Natronococcus jeotgali	0	0	0	0	0	0	0	0	0	0.0005696093	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronococcus|s__Natronococcus occultus	0	0	0	0	0	0	0	0	0	0.0015816113	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronolimnobius	0	0	0	0	0	0	0	0	0	0.000782478	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Natronolimnobius|s__Natronolimnobius innermongolicus	0	0	0	0	0	0	0	0	0	0.000782478	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Salinarchaeum	0	0	0	0	0	0	0	0	0	0.0008647534	0	0	0	0	0	0	0	0	0	0
+k__Archaea|p__Euryarchaeota|c__Halobacteria|o__Natrialbales|f__Natrialbaceae|g__Salinarchaeum|s__Salinarchaeum sp. Harcht-Bsk1	0	0	0	0	0	0	0	0	0	0.0008647534	0	0	0	0	0	0	0	0	0	0
+k__Bacteria	0.8521105581	0.6350025741	0.4360875522	0.6410817304	0	0	0	0	0.7922923574	0.0489597989	0.5209487619	0.4977799555	0	0.0476649314	0.0867513568	0.035119423	0.1872993358	0.5566505119	0	0.3329644752
+k__Bacteria|p__Actinobacteria	0	0	0	0	0	0	0	0	0	0	0	0.067980607	0	0	0	0	0	0.3678260508	0	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.3678260508	0	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiia order incertae sedis	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.3678260508	0	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiia order incertae sedis|f__Acidimicrobiia fam. incertae sedis	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.3678260508	0	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiia order incertae sedis|f__Acidimicrobiia fam. incertae sedis|g__Acidimicrobiia gen. incertae sedis	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.3678260508	0	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiia order incertae sedis|f__Acidimicrobiia fam. incertae sedis|g__Acidimicrobiia gen. incertae sedis|s__Acidimicrobiia species incertae sedis [ext_mOTU_v3_21691]	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0.3678260508	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria	0	0	0	0	0	0	0	0	0	0	0	0.067980607	0	0	0	0	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Geodermatophilales	0	0	0	0	0	0	0	0	0	0	0	0.067980607	0	0	0	0	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Geodermatophilales|f__Geodermatophilaceae	0	0	0	0	0	0	0	0	0	0	0	0.067980607	0	0	0	0	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Geodermatophilales|f__Geodermatophilaceae|g__Blastococcus	0	0	0	0	0	0	0	0	0	0	0	0.067980607	0	0	0	0	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Geodermatophilales|f__Geodermatophilaceae|g__Blastococcus|s__Blastococcus sp. DSM 46838	0	0	0	0	0	0	0	0	0	0	0	0.067980607	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes	0.5657260301	0.3038031185	0.258791537	0.4752272141	0	0	0	0	0	0.0064597273	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis	0	0	0	0	0	0	0	0	0	0.0059242556	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis	0	0	0	0	0	0	0	0	0	0.0059242556	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis|f__Bacteroidetes Order II. Incertae sedis fam. incertae sedis	0	0	0	0	0	0	0	0	0	0.0024261136	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis|f__Bacteroidetes Order II. Incertae sedis fam. incertae sedis|g__Bacteroidetes Order II. Incertae sedis gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0024261136	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis|f__Bacteroidetes Order II. Incertae sedis fam. incertae sedis|g__Bacteroidetes Order II. Incertae sedis gen. incertae sedis|s__Bacteroidetes Order II. Incertae sedis species incertae sedis [ext_mOTU_v3_28346]	0	0	0	0	0	0	0	0	0	0.0024261136	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis|f__Rhodothermaceae	0	0	0	0	0	0	0	0	0	0.003498142	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis|f__Rhodothermaceae|g__Salinibacter	0	0	0	0	0	0	0	0	0	0.003498142	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Bacteroidetes class incertae sedis|o__Bacteroidetes Order II. Incertae sedis|f__Rhodothermaceae|g__Salinibacter|s__Salinibacter ruber	0	0	0	0	0	0	0	0	0	0.003498142	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia	0.5657260301	0.3038031185	0.258791537	0.4752272141	0	0	0	0	0	0.0005354717	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales	0.5657260301	0.3038031185	0.258791537	0.4752272141	0	0	0	0	0	0.0005354717	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae	0.5657260301	0.3038031185	0.258791537	0.4752272141	0	0	0	0	0	0.0005354717	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Arenibacter	0.0387639204	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Arenibacter|s__Arenibacter species incertae sedis [ext_mOTU_v3_31328]	0.0387639204	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Flavobacteriaceae gen. incertae sedis	0	0.1056963378	0	0.1206068579	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Flavobacteriaceae gen. incertae sedis|s__Flavobacteriaceae species incertae sedis [ext_mOTU_v3_22168]	0	0.1056963378	0	0.1206068579	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Flavobacterium	0.1710806109	0	0	0.1002767725	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Flavobacterium|s__Flavobacterium degerlachei	0.0839758014	0	0	0.1002767725	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Flavobacterium|s__Flavobacterium frigoris	0.048340889	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Flavobacterium|s__Flavobacterium species incertae sedis [ext_mOTU_v3_22289]	0.0387639204	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Gillisia	0.0788518097	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Gillisia|s__Gillisia sp.	0.0413269187	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Gillisia|s__Gillisia species incertae sedis [ext_mOTU_v3_30889]	0.037524891	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Maribacter	0.2770296891	0.1981067808	0.258791537	0.2543435837	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Maribacter|s__Maribacter arcticus	0.0557814465	0.1981067808	0	0.1206068579	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Maribacter|s__Maribacter orientalis	0.1392327622	0	0.258791537	0.1337367258	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Maribacter|s__Maribacter species incertae sedis [ext_mOTU_v3_22126]	0.0820154804	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Salegentibacter	0	0	0	0	0	0	0	0	0	0.0005354717	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteroidetes|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Salegentibacter|s__Salegentibacter mishustinae/salarius	0	0	0	0	0	0	0	0	0	0.0005354717	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Chlorobi	0	0	0	0	0	0	0	0	0.1544130989	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Chlorobi|c__Chlorobia	0	0	0	0	0	0	0	0	0.1544130989	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Chlorobi|c__Chlorobia|o__Chlorobiales	0	0	0	0	0	0	0	0	0.1544130989	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Chlorobi|c__Chlorobia|o__Chlorobiales|f__Chlorobiaceae	0	0	0	0	0	0	0	0	0.1544130989	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Chlorobi|c__Chlorobia|o__Chlorobiales|f__Chlorobiaceae|g__Chlorobium	0	0	0	0	0	0	0	0	0.1544130989	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Chlorobi|c__Chlorobia|o__Chlorobiales|f__Chlorobiaceae|g__Chlorobium|s__Chlorobium phaeobacteroides	0	0	0	0	0	0	0	0	0.1544130989	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes	0	0.120859007	0	0	0	0	0	0	0	0	0.2189770346	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetes class incertae sedis	0	0	0	0	0	0	0	0	0	0	0.2189770346	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetes class incertae sedis|o__Planctomycetes order incertae sedis	0	0	0	0	0	0	0	0	0	0	0.2189770346	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetes class incertae sedis|o__Planctomycetes order incertae sedis|f__Planctomycetes fam. incertae sedis	0	0	0	0	0	0	0	0	0	0	0.2189770346	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetes class incertae sedis|o__Planctomycetes order incertae sedis|f__Planctomycetes fam. incertae sedis|g__Planctomycetes gen. incertae sedis	0	0	0	0	0	0	0	0	0	0	0.2189770346	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetes class incertae sedis|o__Planctomycetes order incertae sedis|f__Planctomycetes fam. incertae sedis|g__Planctomycetes gen. incertae sedis|s__Planctomycetes species incertae sedis [ext_mOTU_v3_30825]	0	0	0	0	0	0	0	0	0	0	0.2189770346	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetia	0	0.120859007	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetia|o__Planctomycetales	0	0.120859007	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetia|o__Planctomycetales|f__Planctomycetales fam. incertae sedis	0	0.120859007	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetia|o__Planctomycetales|f__Planctomycetales fam. incertae sedis|g__Planctomycetales gen. incertae sedis	0	0.120859007	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Planctomycetes|c__Planctomycetia|o__Planctomycetales|f__Planctomycetales fam. incertae sedis|g__Planctomycetales gen. incertae sedis|s__Planctomycetales species incertae sedis [ext_mOTU_v3_24892]	0	0.120859007	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria	0.286384528	0.1006696967	0.1772960152	0.1658545164	0	0	0	0	0.6378792584	0.0425000715	0.3019717273	0.4297993485	0	0.0476649314	0.0867513568	0.035119423	0.1872993358	0.1888244611	0	0.3329644752
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria	0.286384528	0	0.1772960152	0.115830081	0	0	0	0	0.5072554471	0.006618073	0.1068879265	0.0961356053	0	0	0	0	0.0126355538	0.1888244611	0	0.3329644752
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales	0	0	0	0	0	0	0	0	0.1105278404	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Phyllobacteriaceae	0	0	0	0	0	0	0	0	0.1105278404	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Phyllobacteriaceae|g__Hoeflea	0	0	0	0	0	0	0	0	0.1105278404	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Phyllobacteriaceae|g__Hoeflea|s__Hoeflea species incertae sedis [ext_mOTU_v3_31497]	0	0	0	0	0	0	0	0	0.1105278404	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales	0.286384528	0	0.1772960152	0.115830081	0	0	0	0	0.3967276067	0.005696548	0.1068879265	0.0961356053	0	0	0	0	0.0126355538	0.1888244611	0	0.3329644752
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Hyphomonadaceae	0.0746552801	0	0	0	0	0	0	0	0.3967276067	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Hyphomonadaceae|g__Hyphomonas	0.0746552801	0	0	0	0	0	0	0	0.3967276067	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Hyphomonadaceae|g__Hyphomonas|s__Hyphomonas oceanitis	0	0	0	0	0	0	0	0	0.2793785427	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Hyphomonadaceae|g__Hyphomonas|s__Hyphomonas species incertae sedis [ext_mOTU_v3_22110]	0.0391565711	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Hyphomonadaceae|g__Hyphomonas|s__Hyphomonas species incertae sedis [ext_mOTU_v3_22166]	0.035498709	0	0	0	0	0	0	0	0.117349064	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae	0.2117292479	0	0.1772960152	0.115830081	0	0	0	0	0	0.005696548	0.1068879265	0.0961356053	0	0	0	0	0.0126355538	0.1888244611	0	0.3329644752
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Loktanella	0.1131056014	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Loktanella|s__Loktanella atrilutea	0.0681987646	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Loktanella|s__Loktanella salsilacus	0.0449068368	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Maribius	0	0	0	0	0	0	0	0	0	0.000457278	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Maribius|s__Maribius salinus/pelagius	0	0	0	0	0	0	0	0	0	0.000457278	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Rhodobacteraceae gen. incertae sedis	0	0	0	0	0	0	0	0	0	0.0052392701	0.1068879265	0	0	0	0	0	0.0126355538	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Rhodobacteraceae gen. incertae sedis|s__Rhodobacteraceae species incertae sedis [ext_mOTU_v3_21525]	0	0	0	0	0	0	0	0	0	0.0052392701	0.1068879265	0	0	0	0	0	0.0126355538	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Sulfitobacter	0.0642389138	0	0.1772960152	0.115830081	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Sulfitobacter|s__Sulfitobacter species incertae sedis [ext_mOTU_v3_22055]	0.0642389138	0	0.1772960152	0.115830081	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Tranquillimonas	0	0	0	0	0	0	0	0	0	0	0	0.0961356053	0	0	0	0	0	0.1888244611	0	0.3329644752
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Tranquillimonas|s__Tranquillimonas alkanivorans	0	0	0	0	0	0	0	0	0	0	0	0.0961356053	0	0	0	0	0	0.1888244611	0	0.3329644752
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Yoonia	0.0343847328	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodobacterales|f__Rhodobacteraceae|g__Yoonia|s__Yoonia rosea	0.0343847328	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales	0	0	0	0	0	0	0	0	0	0.000921525	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Rhodospirillaceae	0	0	0	0	0	0	0	0	0	0.000921525	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Rhodospirillaceae|g__Limimonas	0	0	0	0	0	0	0	0	0	0.000921525	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Rhodospirillaceae|g__Limimonas|s__Limimonas halophila	0	0	0	0	0	0	0	0	0	0.000921525	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria	0	0.1006696967	0	0.0500244354	0	0	0	0	0.1306238114	0.0358819985	0.1950838008	0.3336637432	0	0.0476649314	0.0867513568	0.035119423	0.174663782	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales	0	0	0	0.0500244354	0	0	0	0	0	0.0118239764	0.0552398916	0.3336637432	0	0	0	0.0129500162	0.1202007011	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae	0	0	0	0.0500244354	0	0	0	0	0	0.0118239764	0	0.191158271	0	0	0	0.0129500162	0.1202007011	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Alteromonas	0	0	0	0	0	0	0	0	0	0	0	0.191158271	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Alteromonas|s__Alteromonas sp. RW2A1	0	0	0	0	0	0	0	0	0	0	0	0.191158271	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Glaciecola	0	0	0	0.0500244354	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Glaciecola|s__Glaciecola nitratireducens	0	0	0	0.0500244354	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Marinobacter	0	0	0	0	0	0	0	0	0	0.0118239764	0	0	0	0	0	0.0129500162	0.1202007011	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Marinobacter|s__Marinobacter adhaerens/manganoxydans	0	0	0	0	0	0	0	0	0	0.0009695264	0	0	0	0	0	0	0.0587879646	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Marinobacter|s__Marinobacter daqiaonensis	0	0	0	0	0	0	0	0	0	0.0005510416	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Marinobacter|s__Marinobacter sp.	0	0	0	0	0	0	0	0	0	0.0008917607	0	0	0	0	0	0	0.0232977969	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Alteromonadaceae|g__Marinobacter|s__Marinobacter species incertae sedis [ext_mOTU_v3_28404]	0	0	0	0	0	0	0	0	0	0.0094116477	0	0	0	0	0	0.0129500162	0.0381149397	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Pseudoalteromonadaceae	0	0	0	0	0	0	0	0	0	0	0.0552398916	0.1425054722	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Pseudoalteromonadaceae|g__Pseudoalteromonas	0	0	0	0	0	0	0	0	0	0	0.0552398916	0.1425054722	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Pseudoalteromonadaceae|g__Pseudoalteromonas|s__Pseudoalteromonas ruthenica	0	0	0	0	0	0	0	0	0	0	0.0552398916	0.0595117643	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Alteromonadales|f__Pseudoalteromonadaceae|g__Pseudoalteromonas|s__Pseudoalteromonas sp.	0	0	0	0	0	0	0	0	0	0	0	0.0829937079	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Chromatiales	0	0	0	0	0	0	0	0	0	0.0190388717	0.1398439092	0	0	0.0476649314	0.0867513568	0.0221694067	0.0255503463	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Chromatiales|f__Ectothiorhodospiraceae	0	0	0	0	0	0	0	0	0	0.0190388717	0.1398439092	0	0	0.0476649314	0.0867513568	0.0221694067	0.0255503463	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Chromatiales|f__Ectothiorhodospiraceae|g__Halofilum	0	0	0	0	0	0	0	0	0	0.0190388717	0.1398439092	0	0	0.0476649314	0.0867513568	0.0221694067	0.0255503463	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Chromatiales|f__Ectothiorhodospiraceae|g__Halofilum|s__Halofilum ochraceum	0	0	0	0	0	0	0	0	0	0.0190388717	0.1398439092	0	0	0.0476649314	0.0867513568	0.0221694067	0.0255503463	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Gammaproteobacteria order incertae sedis	0	0.1006696967	0	0	0	0	0	0	0	0.0028387895	0	0	0	0	0	0	0.0289127346	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Gammaproteobacteria order incertae sedis|f__Gammaproteobacteria fam. incertae sedis	0	0.1006696967	0	0	0	0	0	0	0	0.0028387895	0	0	0	0	0	0	0.0289127346	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Gammaproteobacteria order incertae sedis|f__Gammaproteobacteria fam. incertae sedis|g__Gammaproteobacteria gen. incertae sedis	0	0.1006696967	0	0	0	0	0	0	0	0.0028387895	0	0	0	0	0	0	0.0289127346	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Gammaproteobacteria order incertae sedis|f__Gammaproteobacteria fam. incertae sedis|g__Gammaproteobacteria gen. incertae sedis|s__Gammaproteobacteria species incertae sedis [ext_mOTU_v3_21961]	0	0	0	0	0	0	0	0	0	0.0028387895	0	0	0	0	0	0	0.0289127346	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Gammaproteobacteria order incertae sedis|f__Gammaproteobacteria fam. incertae sedis|g__Gammaproteobacteria gen. incertae sedis|s__gamma proteobacterium NOR5-3	0	0.1006696967	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Oceanospirillales	0	0	0	0	0	0	0	0	0	0.002180361	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Oceanospirillales|f__Halomonadaceae	0	0	0	0	0	0	0	0	0	0.002180361	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Oceanospirillales|f__Halomonadaceae|g__Halomonas	0	0	0	0	0	0	0	0	0	0.002180361	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Oceanospirillales|f__Halomonadaceae|g__Halomonas|s__Halomonas salina	0	0	0	0	0	0	0	0	0	0.0018760401	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Oceanospirillales|f__Halomonadaceae|g__Halomonas|s__Halomonas shengliensis	0	0	0	0	0	0	0	0	0	0.0003043209	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Vibrionales	0	0	0	0	0	0	0	0	0.1306238114	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Vibrionales|f__Vibrionaceae	0	0	0	0	0	0	0	0	0.1306238114	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Vibrionales|f__Vibrionaceae|g__Vibrio	0	0	0	0	0	0	0	0	0.1306238114	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Vibrionales|f__Vibrionaceae|g__Vibrio|s__Vibrio mytili	0	0	0	0	0	0	0	0	0.1306238114	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Verrucomicrobia	0	0.1096707519	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae	0	0.1096707519	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales	0	0.1096707519	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales|f__Verrucomicrobiales fam. incertae sedis	0	0.1096707519	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales|f__Verrucomicrobiales fam. incertae sedis|g__Verrucomicrobiales gen. incertae sedis	0	0.1096707519	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales|f__Verrucomicrobiales fam. incertae sedis|g__Verrucomicrobiales gen. incertae sedis|s__Verrucomicrobiales species incertae sedis [ext_mOTU_v3_31524]	0	0.1096707519	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0

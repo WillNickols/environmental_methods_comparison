@@ -1,0 +1,210 @@
+X.mOTUs2_clade	reSRR9320187	reSRR9320188	reSRR9320191	reSRR9320192	reSRR9320193	reSRR9320194	reSRR9320195	reSRR9320196	reSRR9320197	reSRR9320198	reSRR9320199
+k__Archaea	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.036296355
+k__Archaea|p__Euryarchaeota	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.036296355
+k__Archaea|p__Euryarchaeota|c__Euryarchaeota class incertae sedis	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.0271593973
+k__Archaea|p__Euryarchaeota|c__Euryarchaeota class incertae sedis|o__Euryarchaeota order incertae sedis	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.0271593973
+k__Archaea|p__Euryarchaeota|c__Euryarchaeota class incertae sedis|o__Euryarchaeota order incertae sedis|f__Euryarchaeota fam. incertae sedis	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.0271593973
+k__Archaea|p__Euryarchaeota|c__Euryarchaeota class incertae sedis|o__Euryarchaeota order incertae sedis|f__Euryarchaeota fam. incertae sedis|g__Euryarchaeota gen. incertae sedis	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.0271593973
+k__Archaea|p__Euryarchaeota|c__Euryarchaeota class incertae sedis|o__Euryarchaeota order incertae sedis|f__Euryarchaeota fam. incertae sedis|g__Euryarchaeota gen. incertae sedis|s__Euryarchaeota species incertae sedis [ext_mOTU_v3_27391]	0	0	0	0	0	0	0.0049660954	0.0116369264	0.0316062061	0.0194592795	0.0271593973
+k__Archaea|p__Euryarchaeota|c__Thermoplasmata	0	0	0	0	0	0	0	0	0	0	0.0091369577
+k__Archaea|p__Euryarchaeota|c__Thermoplasmata|o__Thermoplasmatales	0	0	0	0	0	0	0	0	0	0	0.0091369577
+k__Archaea|p__Euryarchaeota|c__Thermoplasmata|o__Thermoplasmatales|f__Ferroplasmaceae	0	0	0	0	0	0	0	0	0	0	0.0091369577
+k__Archaea|p__Euryarchaeota|c__Thermoplasmata|o__Thermoplasmatales|f__Ferroplasmaceae|g__Ferroplasma	0	0	0	0	0	0	0	0	0	0	0.0091369577
+k__Archaea|p__Euryarchaeota|c__Thermoplasmata|o__Thermoplasmatales|f__Ferroplasmaceae|g__Ferroplasma|s__Ferroplasma sp. Type II	0	0	0	0	0	0	0	0	0	0	0.0091369577
+k__Bacteria	0.5008861519	0.2097621308	0.3466308305	0.3114201409	0.441800494	0.4084562885	0.8117532006	0.8264418258	0.8309809716	0.8063163754	0.7740860089
+k__Bacteria|p__Acidobacteria	0.0226794384	0.0155979869	0.0324175785	0	0.0153808071	0.1029741856	0.0062930683	0	0.0091262466	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteria class incertae sedis	0	0.0155979869	0	0	0	0.0547249152	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteria class incertae sedis|o__Acidobacteria order incertae sedis	0	0.0155979869	0	0	0	0.0547249152	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteria class incertae sedis|o__Acidobacteria order incertae sedis|f__Acidobacteria fam. incertae sedis	0	0.0155979869	0	0	0	0.0547249152	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteria class incertae sedis|o__Acidobacteria order incertae sedis|f__Acidobacteria fam. incertae sedis|g__Acidobacteria gen. incertae sedis	0	0.0155979869	0	0	0	0.0547249152	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteria class incertae sedis|o__Acidobacteria order incertae sedis|f__Acidobacteria fam. incertae sedis|g__Acidobacteria gen. incertae sedis|s__Acidobacteria species incertae sedis [ext_mOTU_v3_22515]	0	0	0	0	0	0.0341254056	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteria class incertae sedis|o__Acidobacteria order incertae sedis|f__Acidobacteria fam. incertae sedis|g__Acidobacteria gen. incertae sedis|s__Acidobacteria species incertae sedis [ext_mOTU_v3_31923]	0	0.0155979869	0	0	0	0.0205995095	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteriia	0	0	0	0	0.0153808071	0.0157811693	0.0062930683	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteriia|o__Acidobacteriales	0	0	0	0	0.0153808071	0.0157811693	0.0062930683	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteriia|o__Acidobacteriales|f__Acidobacteriaceae	0	0	0	0	0.0153808071	0.0157811693	0.0062930683	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteriia|o__Acidobacteriales|f__Acidobacteriaceae|g__Acidobacteriaceae gen. incertae sedis	0	0	0	0	0.0153808071	0.0157811693	0.0062930683	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteriia|o__Acidobacteriales|f__Acidobacteriaceae|g__Acidobacteriaceae gen. incertae sedis|s__Acidobacteriaceae bacterium KBS 89	0	0	0	0	0	0	0.0062930683	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Acidobacteriia|o__Acidobacteriales|f__Acidobacteriaceae|g__Acidobacteriaceae gen. incertae sedis|s__Acidobacteriaceae species incertae sedis [ext_mOTU_v3_15007]	0	0	0	0	0.0153808071	0.0157811693	0	0	0	0	0
+k__Bacteria|p__Acidobacteria|c__Holophagae	0.0226794384	0	0.0324175785	0	0	0.0324681011	0	0	0.0091262466	0	0
+k__Bacteria|p__Acidobacteria|c__Holophagae|o__Holophagales	0.0226794384	0	0.0324175785	0	0	0.0324681011	0	0	0.0091262466	0	0
+k__Bacteria|p__Acidobacteria|c__Holophagae|o__Holophagales|f__Holophagaceae	0.0226794384	0	0.0324175785	0	0	0.0324681011	0	0	0.0091262466	0	0
+k__Bacteria|p__Acidobacteria|c__Holophagae|o__Holophagales|f__Holophagaceae|g__Geothrix	0.0226794384	0	0.0324175785	0	0	0.0324681011	0	0	0.0091262466	0	0
+k__Bacteria|p__Acidobacteria|c__Holophagae|o__Holophagales|f__Holophagaceae|g__Geothrix|s__Geothrix fermentans	0.0226794384	0	0.0324175785	0	0	0.0324681011	0	0	0.0091262466	0	0
+k__Bacteria|p__Actinobacteria	0.2674719093	0.0860477922	0.0563461778	0.0630448856	0.112090608	0.1158683114	0.01862719	0.0288231146	0.0166110673	0.0320118192	0.012369252
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia	0	0	0	0	0	0	0.0135911886	0.0168284958	0.0166110673	0.0320118192	0.012369252
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales	0	0	0	0	0	0	0.0135911886	0.0168284958	0.0166110673	0.0320118192	0.012369252
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae	0	0	0	0	0	0	0.0135911886	0.0168284958	0.0166110673	0.0320118192	0.012369252
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae|g__Acidimicrobiaceae gen. incertae sedis	0	0	0	0	0	0	0.0054349226	0.0081523314	0.0092645231	0.0124414657	0.012369252
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae|g__Acidimicrobiaceae gen. incertae sedis|s__Acidimicrobiaceae bacterium RAAP-2	0	0	0	0	0	0	0.0054349226	0.0081523314	0.0092645231	0.0124414657	0.012369252
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae|g__Acidithrix	0	0	0	0	0	0	0	0	0	0.0086947785	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae|g__Acidithrix|s__Acidithrix ferrooxidans	0	0	0	0	0	0	0	0	0	0.0086947785	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae|g__Ferrimicrobium	0	0	0	0	0	0	0.008156266	0.0086761643	0.0073465442	0.0108755751	0
+k__Bacteria|p__Actinobacteria|c__Acidimicrobiia|o__Acidimicrobiales|f__Acidimicrobiaceae|g__Ferrimicrobium|s__Ferrimicrobium acidiphilum	0	0	0	0	0	0	0.008156266	0.0086761643	0.0073465442	0.0108755751	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria	0.2674719093	0.0860477922	0.0563461778	0.0630448856	0.112090608	0.1158683114	0.0050360013	0.0119946188	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Micrococcales	0.2430949902	0.0394907962	0	0.0312080269	0.0287540185	0	0	0.0119946188	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Micrococcales|f__Cellulomonadaceae	0.2430949902	0.0394907962	0	0.0312080269	0.0287540185	0	0	0.0119946188	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Micrococcales|f__Cellulomonadaceae|g__Cellulomonas	0.2430949902	0.0394907962	0	0.0312080269	0.0287540185	0	0	0.0119946188	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Micrococcales|f__Cellulomonadaceae|g__Cellulomonas|s__Cellulomonas species incertae sedis [ext_mOTU_v3_15039]	0.2430949902	0.0394907962	0	0.0312080269	0.0287540185	0	0	0.0119946188	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Propionibacteriales	0	0.0052180562	0	0	0	0	0.0027684666	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Propionibacteriales|f__Propionibacteriaceae	0	0.0052180562	0	0	0	0	0.0027684666	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Propionibacteriales|f__Propionibacteriaceae|g__Cutibacterium	0	0.0052180562	0	0	0	0	0.0027684666	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Propionibacteriales|f__Propionibacteriaceae|g__Cutibacterium|s__Cutibacterium acnes	0	0.0052180562	0	0	0	0	0.0027684666	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Streptosporangiales	0.0243769191	0.0413389399	0.0563461778	0.0318368587	0.0833365896	0.1158683114	0.0022675347	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Streptosporangiales|f__Streptosporangiales fam. incertae sedis	0.0243769191	0.0413389399	0.0563461778	0.0318368587	0.0833365896	0.1158683114	0.0022675347	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Streptosporangiales|f__Streptosporangiales fam. incertae sedis|g__Streptosporangiales gen. incertae sedis	0.0243769191	0.0413389399	0.0563461778	0.0318368587	0.0833365896	0.1158683114	0.0022675347	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Streptosporangiales|f__Streptosporangiales fam. incertae sedis|g__Streptosporangiales gen. incertae sedis|s__Streptosporangiales species incertae sedis [ext_mOTU_v3_15034]	0.008111258	0.014527312	0	0.0318368587	0.02722647	0.0364589463	0.0022675347	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Streptosporangiales|f__Streptosporangiales fam. incertae sedis|g__Streptosporangiales gen. incertae sedis|s__Streptosporangiales species incertae sedis [ext_mOTU_v3_24661]	0	0	0	0	0.024706698	0.0387185328	0	0	0	0	0
+k__Bacteria|p__Actinobacteria|c__Actinobacteria|o__Streptosporangiales|f__Streptosporangiales fam. incertae sedis|g__Streptosporangiales gen. incertae sedis|s__Streptosporangiales species incertae sedis [ext_mOTU_v3_31962]	0.0162656611	0.0268116279	0.0563461778	0	0.0314034216	0.0406908324	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis	0.0195489287	0.0083711192	0	0.0646273954	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis	0.0195489287	0.0083711192	0	0.0646273954	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis|o__Bacteria order incertae sedis	0.0195489287	0.0083711192	0	0.0646273954	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis|o__Bacteria order incertae sedis|f__Bacteria fam. incertae sedis	0.0195489287	0.0083711192	0	0.0646273954	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis|o__Bacteria order incertae sedis|f__Bacteria fam. incertae sedis|g__Bacteria gen. incertae sedis	0.0195489287	0.0083711192	0	0.0646273954	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis|o__Bacteria order incertae sedis|f__Bacteria fam. incertae sedis|g__Bacteria gen. incertae sedis|s__Bacteria species incertae sedis [ext_mOTU_v3_14582]	0.0195489287	0	0	0.0214593029	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis|o__Bacteria order incertae sedis|f__Bacteria fam. incertae sedis|g__Bacteria gen. incertae sedis|s__Bacteria species incertae sedis [ext_mOTU_v3_22560]	0	0.0083711192	0	0.0166067939	0	0	0	0	0	0	0
+k__Bacteria|p__Bacteria phylum incertae sedis|c__Bacteria class incertae sedis|o__Bacteria order incertae sedis|f__Bacteria fam. incertae sedis|g__Bacteria gen. incertae sedis|s__Bacteria species incertae sedis [ext_mOTU_v3_24579]	0	0	0	0.0265612986	0	0	0	0	0	0	0
+k__Bacteria|p__Candidatus Rokubacteria	0	0	0	0	0	0	0	0.007018434	0	0	0
+k__Bacteria|p__Candidatus Rokubacteria|c__Candidatus Rokubacteria class incertae sedis	0	0	0	0	0	0	0	0.007018434	0	0	0
+k__Bacteria|p__Candidatus Rokubacteria|c__Candidatus Rokubacteria class incertae sedis|o__Candidatus Rokubacteria order incertae sedis	0	0	0	0	0	0	0	0.007018434	0	0	0
+k__Bacteria|p__Candidatus Rokubacteria|c__Candidatus Rokubacteria class incertae sedis|o__Candidatus Rokubacteria order incertae sedis|f__Candidatus Rokubacteria fam. incertae sedis	0	0	0	0	0	0	0	0.007018434	0	0	0
+k__Bacteria|p__Candidatus Rokubacteria|c__Candidatus Rokubacteria class incertae sedis|o__Candidatus Rokubacteria order incertae sedis|f__Candidatus Rokubacteria fam. incertae sedis|g__Candidatus Rokubacteria gen. incertae sedis	0	0	0	0	0	0	0	0.007018434	0	0	0
+k__Bacteria|p__Candidatus Rokubacteria|c__Candidatus Rokubacteria class incertae sedis|o__Candidatus Rokubacteria order incertae sedis|f__Candidatus Rokubacteria fam. incertae sedis|g__Candidatus Rokubacteria gen. incertae sedis|s__Candidatus Rokubacteria species incertae sedis [ext_mOTU_v3_19625]	0	0	0	0	0	0	0	0.007018434	0	0	0
+k__Bacteria|p__Proteobacteria	0.1911858755	0.0997452324	0.2578670741	0.1837478599	0.3143290789	0.1896137914	0.7817932445	0.7906002772	0.8052436576	0.7743045561	0.761716757
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia	0	0	0	0	0	0	0.0181774492	0.0386264356	0.0499215765	0.0399480225	0.0377358451
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales	0	0	0	0	0	0	0.0181774492	0.0386264356	0.0499215765	0.0399480225	0.0377358451
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales|f__Acidithiobacillaceae	0	0	0	0	0	0	0.0181774492	0.0386264356	0.0499215765	0.0399480225	0.0377358451
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales|f__Acidithiobacillaceae|g__Acidithiobacillus	0	0	0	0	0	0	0.0181774492	0.0386264356	0.0499215765	0.0399480225	0.0377358451
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales|f__Acidithiobacillaceae|g__Acidithiobacillus|s__Acidithiobacillus albertensis/thiooxidans	0	0	0	0	0	0	0.0062119014	0	0	0.0106623285	0
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales|f__Acidithiobacillaceae|g__Acidithiobacillus|s__Acidithiobacillus ferrivorans	0	0	0	0	0	0	0.0045987807	0.0189225452	0.0181119376	0.0208477478	0.0377358451
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales|f__Acidithiobacillaceae|g__Acidithiobacillus|s__Acidithiobacillus ferrooxidans	0	0	0	0	0	0	0	0.0086465189	0.0094182	0	0
+k__Bacteria|p__Proteobacteria|c__Acidithiobacillia|o__Acidithiobacillales|f__Acidithiobacillaceae|g__Acidithiobacillus|s__Acidithiobacillus ferrooxidans	0	0	0	0	0	0	0.0073667671	0.0110573716	0.0223914389	0.0084379462	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria	0.0084707598	0.0285103737	0.0637464542	0.0168942324	0.0826553723	0.0309643154	0.207548083	0.087525512	0.103100228	0.0460890724	0.0610084837
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Caulobacterales	0	0	0	0	0.0247980142	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Caulobacterales|f__Caulobacteraceae	0	0	0	0	0.0247980142	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Caulobacterales|f__Caulobacteraceae|g__Caulobacter	0	0	0	0	0.0062505703	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Caulobacterales|f__Caulobacteraceae|g__Caulobacter|s__Caulobacter sp. Root655	0	0	0	0	0.0062505703	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Caulobacterales|f__Caulobacteraceae|g__Phenylobacterium	0	0	0	0	0.0185474439	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Caulobacterales|f__Caulobacteraceae|g__Phenylobacterium|s__Phenylobacterium sp. Root700	0	0	0	0	0.0185474439	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales	0.0084707598	0.0285103737	0.0637464542	0.0168942324	0.0297927445	0	0.0119843723	0	0.0292295193	0.0119662758	0.0136183161
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae	0.0084707598	0.0285103737	0.0637464542	0.0168942324	0.0297927445	0	0.0066973388	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium	0.0084707598	0.0160236875	0.0637464542	0.0168942324	0.0297927445	0	0.0066973388	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium erythrophlei	0.0084707598	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium erythrophlei	0	0	0.0189270945	0	0.0297927445	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium lablabi/ottawaense	0	0	0	0.0105334521	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium paxllaeri	0	0	0	0	0	0	0.0017764433	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium sp. Tv2a-2	0	0.0160236875	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium sp. URHA0002	0	0	0.0448193597	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium species incertae sedis [ext_mOTU_v3_29447]	0	0	0	0.0063607803	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Bradyrhizobium|s__Bradyrhizobium species incertae sedis [ext_mOTU_v3_32022]	0	0	0	0	0	0	0.0049208955	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Rhodopseudomonas	0	0.0124866862	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Bradyrhizobiaceae|g__Rhodopseudomonas|s__Rhodopseudomonas palustris/pseudopalustris	0	0.0124866862	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Rhizobiales fam. incertae sedis	0	0	0	0	0	0	0.0052870336	0	0.0181276188	0.0119662758	0.0136183161
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Rhizobiales fam. incertae sedis|g__Rhizobiales gen. incertae sedis	0	0	0	0	0	0	0.0052870336	0	0.0181276188	0.0119662758	0.0136183161
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Rhizobiales fam. incertae sedis|g__Rhizobiales gen. incertae sedis|s__Rhizobiales species incertae sedis [ext_mOTU_v3_31834]	0	0	0	0	0	0	0.0052870336	0	0.0181276188	0.0119662758	0.0136183161
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Xanthobacteraceae	0	0	0	0	0	0	0	0	0.0111019006	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Xanthobacteraceae|g__Xanthobacteraceae gen. incertae sedis	0	0	0	0	0	0	0	0	0.0111019006	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhizobiales|f__Xanthobacteraceae|g__Xanthobacteraceae gen. incertae sedis|s__Xanthobacteraceae species incertae sedis [ext_mOTU_v3_15033]	0	0	0	0	0	0	0	0	0.0111019006	0	0
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales	0	0	0	0	0.0280646137	0.0309643154	0.1955637107	0.087525512	0.0738707086	0.0341227966	0.0473901677
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Acetobacteraceae	0	0	0	0	0.0280646137	0.0309643154	0.1955637107	0.087525512	0.0738707086	0.0341227966	0.0473901677
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Acetobacteraceae|g__Acidiphilium	0	0	0	0	0.0280646137	0.0309643154	0.1874568263	0.0810857748	0.056514899	0.0225530359	0.032878529
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Acetobacteraceae|g__Acidiphilium|s__Acidiphilium angustum/rubrum	0	0	0	0	0.0280646137	0.0309643154	0.1874568263	0.0810857748	0.056514899	0.0225530359	0.032878529
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Acetobacteraceae|g__Acidocella	0	0	0	0	0	0	0.0081068844	0.0064397372	0.0173558097	0.0115697607	0.0145116387
+k__Bacteria|p__Proteobacteria|c__Alphaproteobacteria|o__Rhodospirillales|f__Acetobacteraceae|g__Acidocella|s__Acidocella facilis	0	0	0	0	0	0	0.0081068844	0.0064397372	0.0173558097	0.0115697607	0.0145116387
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria	0.1069779744	0.0536653566	0.0570013659	0.0983255254	0.1183336469	0.1025379048	0.4881449737	0.5896989205	0.5665273321	0.6060125944	0.5944838273
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Betaproteobacteria order incertae sedis	0.0143933431	0.0264475975	0	0.0267152771	0.0329015526	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Betaproteobacteria order incertae sedis|f__Betaproteobacteria fam. incertae sedis	0.0143933431	0.0264475975	0	0.0267152771	0.0329015526	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Betaproteobacteria order incertae sedis|f__Betaproteobacteria fam. incertae sedis|g__Betaproteobacteria gen. incertae sedis	0.0143933431	0.0264475975	0	0.0267152771	0.0329015526	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Betaproteobacteria order incertae sedis|f__Betaproteobacteria fam. incertae sedis|g__Betaproteobacteria gen. incertae sedis|s__Betaproteobacteria bacterium RIFCSPLOWO2_12_FULL_64_23	0.0143933431	0.0264475975	0	0.0267152771	0.0329015526	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales	0.0432493321	0.0272177591	0	0.0420377223	0.0543488915	0.0680928232	0.0302594894	0.0158604713	0.011453834	0.0234972878	0.0532669776
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Alcaligenaceae	0	0	0	0	0	0	0.0033142598	0.0084342564	0.011453834	0.0234972878	0.0280020545
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Alcaligenaceae|g__Bordetella	0	0	0	0	0	0	0.0033142598	0.0084342564	0.011453834	0.0234972878	0.0280020545
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Alcaligenaceae|g__Bordetella|s__Bordetella sp. FB-8	0	0	0	0	0	0	0.0033142598	0.0084342564	0.011453834	0.0234972878	0.0280020545
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae	0.0191921189	0	0	0	0.0131377727	0.0340464116	0.0097250544	0	0	0	0.0121659218
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Burkholderia	0.0191921189	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Burkholderia|s__Burkholderia sp.	0.0191921189	0	0	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Pandoraea	0	0	0	0	0	0	0	0	0	0	0.0121659218
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Pandoraea|s__Pandoraea thiooxydans	0	0	0	0	0	0	0	0	0	0	0.0121659218
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Paraburkholderia	0	0	0	0	0.0131377727	0.0340464116	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Paraburkholderia|s__Paraburkholderia phenazinium	0	0	0	0	0.0131377727	0.0340464116	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Ralstonia	0	0	0	0	0	0	0.0097250544	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__Ralstonia|s__Ralstonia pickettii	0	0	0	0	0	0	0.0097250544	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiales fam. incertae sedis	0.0240572132	0.0272177591	0	0.0420377223	0.0412111187	0.0340464116	0.0042702963	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiales fam. incertae sedis|g__Thiomonas	0.0240572132	0.0272177591	0	0.0420377223	0.0412111187	0.0340464116	0.0042702963	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiales fam. incertae sedis|g__Thiomonas|s__Thiomonas sp. FB-6	0	0	0	0	0.0412111187	0.0340464116	0.0042702963	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiales fam. incertae sedis|g__Thiomonas|s__Thiomonas sp. FB-Cd	0.0240572132	0.0272177591	0	0.0420377223	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae	0	0	0	0	0	0	0.0069752098	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonadaceae gen. incertae sedis	0	0	0	0	0	0	0.0021177477	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Comamonadaceae gen. incertae sedis|s__Comamonadaceae species incertae sedis [ext_mOTU_v3_18336]	0	0	0	0	0	0	0.0021177477	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Curvibacter	0	0	0	0	0	0	0.0048574621	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Curvibacter|s__Curvibacter sp. PAE-UM	0	0	0	0	0	0	0.0048574621	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Oxalobacteraceae	0	0	0	0	0	0	0.005974669	0.0074262148	0	0	0.0130990013
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Oxalobacteraceae|g__Herbaspirillum	0	0	0	0	0	0	0	0	0	0	0.0130990013
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Oxalobacteraceae|g__Herbaspirillum|s__Herbaspirillum rhizosphaerae	0	0	0	0	0	0	0	0	0	0	0.0130990013
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Oxalobacteraceae|g__Janthinobacterium	0	0	0	0	0	0	0.005974669	0.0074262148	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Burkholderiales|f__Oxalobacteraceae|g__Janthinobacterium|s__Janthinobacterium lividum	0	0	0	0	0	0	0.005974669	0.0074262148	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Ferrovales	0	0	0.0570013659	0	0.0310832028	0.0344450815	0.4059951253	0.5452097977	0.5000857364	0.5825153066	0.505373154
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Ferrovales|f__Ferrovaceae	0	0	0.0570013659	0	0.0310832028	0.0344450815	0.4059951253	0.5452097977	0.5000857364	0.5825153066	0.505373154
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Ferrovales|f__Ferrovaceae|g__Ferrovum	0	0	0.0570013659	0	0.0310832028	0.0344450815	0.4059951253	0.5452097977	0.5000857364	0.5825153066	0.505373154
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Ferrovales|f__Ferrovaceae|g__Ferrovum|s__Ferrovum sp. JA12	0	0	0	0	0	0	0.0397708019	0.1246614662	0.1668102463	0.1699223253	0.1571821924
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Ferrovales|f__Ferrovaceae|g__Ferrovum|s__Ferrovum sp. Z-31	0	0	0.0570013659	0	0.0310832028	0.0344450815	0.3662243234	0.4205483316	0.3332754901	0.4125929813	0.3481909616
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales	0.0493352992	0	0	0.029572526	0	0	0.051890359	0.0286286515	0.0549877616	0	0.0358436957
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae	0.0237992301	0	0	0.029572526	0	0	0.0445376086	0.0091174049	0.0549877616	0	0.0094985272
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae|g__Ferriphaselus	0	0	0	0	0	0	0.0068626396	0.0091174049	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae|g__Ferriphaselus|s__Ferriphaselus sp. R-1	0	0	0	0	0	0	0.0068626396	0.0091174049	0	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae|g__Gallionellaceae gen. incertae sedis	0.0237992301	0	0	0.029572526	0	0	0.0087950526	0	0.0089189687	0	0.0094985272
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae|g__Gallionellaceae gen. incertae sedis|s__Gallionellaceae species incertae sedis [ext_mOTU_v3_23999]	0.0237992301	0	0	0.029572526	0	0	0.0087950526	0	0.0089189687	0	0.0094985272
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae|g__Sideroxydans	0	0	0	0	0	0	0.0288799164	0	0.046068793	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Gallionellaceae|g__Sideroxydans|s__Sideroxydans lithotrophicus	0	0	0	0	0	0	0.0288799164	0	0.046068793	0	0
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Nitrosomonadales fam. incertae sedis	0.0255360691	0	0	0	0	0	0.0073527504	0.0195112466	0	0	0.0263451685
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Nitrosomonadales fam. incertae sedis|g__Nitrosomonadales gen. incertae sedis	0.0255360691	0	0	0	0	0	0.0073527504	0.0195112466	0	0	0.0263451685
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Nitrosomonadales fam. incertae sedis|g__Nitrosomonadales gen. incertae sedis|s__Gallionellales bacterium GWA2_60_18	0.0255360691	0	0	0	0	0	0.0073527504	0.0195112466	0	0	0.0197358287
+k__Bacteria|p__Proteobacteria|c__Betaproteobacteria|o__Nitrosomonadales|f__Nitrosomonadales fam. incertae sedis|g__Nitrosomonadales gen. incertae sedis|s__Gallionellales bacterium	0	0	0	0	0	0	0	0	0	0	0.0066093399
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria	0.0437891782	0	0	0.0521572841	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Deltaproteobacteria order incertae sedis	0	0	0	0.0191616852	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Deltaproteobacteria order incertae sedis|f__Deltaproteobacteria fam. incertae sedis	0	0	0	0.0191616852	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Deltaproteobacteria order incertae sedis|f__Deltaproteobacteria fam. incertae sedis|g__Deltaproteobacteria gen. incertae sedis	0	0	0	0.0191616852	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Deltaproteobacteria order incertae sedis|f__Deltaproteobacteria fam. incertae sedis|g__Deltaproteobacteria gen. incertae sedis|s__Deltaproteobacteria bacterium CG2_30_66_27	0	0	0	0.0191616852	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Syntrophobacterales	0.0437891782	0	0	0.0329955988	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Syntrophobacterales|f__Syntrophaceae	0.0437891782	0	0	0.0329955988	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Syntrophobacterales|f__Syntrophaceae|g__Desulfobacca	0.0437891782	0	0	0.0329955988	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Deltaproteobacteria|o__Syntrophobacterales|f__Syntrophaceae|g__Desulfobacca|s__Desulfobacca sp. RBG_16_60_12	0.0437891782	0	0	0.0329955988	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria	0.0319479631	0.017569502	0.137119254	0.0163708181	0.1133400597	0.0561115713	0.0679227385	0.0747494091	0.0856945211	0.0822548668	0.0684886007
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Acidiferrobacterales	0	0	0	0	0	0	0.0046124269	0.0050634723	0.0068762637	0.0105702134	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Acidiferrobacterales|f__Acidiferrobacteraceae	0	0	0	0	0	0	0.0046124269	0.0050634723	0.0068762637	0.0105702134	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Acidiferrobacterales|f__Acidiferrobacteraceae|g__Acidiferrobacter	0	0	0	0	0	0	0.0046124269	0.0050634723	0.0068762637	0.0105702134	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Acidiferrobacterales|f__Acidiferrobacteraceae|g__Acidiferrobacter|s__Acidiferrobacter thiooxydans	0	0	0	0	0	0	0.0046124269	0.0050634723	0.0068762637	0.0105702134	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales	0	0	0	0	0	0	0.0101823566	0.0147468081	0.0477522722	0.0341045909	0.0554425501
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Hafniaceae	0	0	0	0	0	0	0	0.0022634857	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Hafniaceae|g__Hafnia	0	0	0	0	0	0	0	0.0022634857	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Hafniaceae|g__Hafnia|s__Hafnia paralvei/alvei	0	0	0	0	0	0	0	0.0022634857	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Yersiniaceae	0	0	0	0	0	0	0.0101823566	0.0124833224	0.0477522722	0.0341045909	0.0554425501
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Yersiniaceae|g__Serratia	0	0	0	0	0	0	0.0101823566	0.0124833224	0.0477522722	0.0341045909	0.0554425501
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Enterobacterales|f__Yersiniaceae|g__Serratia|s__Serratia fonticola	0	0	0	0	0	0	0.0101823566	0.0124833224	0.0477522722	0.0341045909	0.0554425501
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Pseudomonadales	0	0	0	0	0.0247299252	0	0	0.0151641813	0.0125642163	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Pseudomonadales|f__Pseudomonadaceae	0	0	0	0	0.0247299252	0	0	0.0151641813	0.0125642163	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Pseudomonadales|f__Pseudomonadaceae|g__Pseudomonas	0	0	0	0	0.0247299252	0	0	0.0151641813	0.0125642163	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Pseudomonadales|f__Pseudomonadaceae|g__Pseudomonas|s__Pseudomonas sp.	0	0	0	0	0.0247299252	0	0	0.0151641813	0.0125642163	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales	0.0319479631	0.017569502	0.137119254	0.0163708181	0.0886101345	0.0561115713	0.053127955	0.0397749474	0.0185017689	0.0375800626	0.0130460506
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae	0.0319479631	0.017569502	0.137119254	0.0163708181	0.0886101345	0.0561115713	0.053127955	0.0397749474	0.0185017689	0.0375800626	0.0130460506
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Dyella	0	0	0.0378159129	0.0163708181	0	0	0.0055218041	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Dyella|s__Dyella japonica/marensis	0	0	0	0.0163708181	0	0	0.0055218041	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Dyella|s__Dyella thiooxydans	0	0	0.0378159129	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Frateuria	0	0	0	0	0.0327299685	0.0319740213	0.004053749	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Frateuria|s__Frateuria sp. Soil773	0	0	0	0	0.0327299685	0.0319740213	0.004053749	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Metallibacterium	0.0176250391	0.017569502	0.056400201	0	0	0	0.0324226119	0.0303598235	0.0185017689	0.0375800626	0.0130460506
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Metallibacterium|s__Metallibacterium scheffleri	0.0176250391	0.017569502	0.056400201	0	0	0	0.0324226119	0.0303598235	0.0185017689	0.0375800626	0.0130460506
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Mizugakiibacter	0	0	0	0	0	0	0.0036487978	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Mizugakiibacter|s__Mizugakiibacter sediminis	0	0	0	0	0	0	0.0036487978	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter	0.014322924	0	0.0429031401	0	0.055880166	0.0241375499	0.0074809921	0.0094151239	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter|s__Rhodanobacter denitrificans	0.014322924	0	0	0	0.0110958315	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter|s__Rhodanobacter sp. C05	0	0	0.0221314559	0	0.0201616974	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter|s__Rhodanobacter sp. Soil772	0	0	0.0207716842	0	0	0	0	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter|s__Rhodanobacter sp.	0	0	0	0	0	0	0.0031338465	0	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter|s__Rhodanobacter spathiphylli	0	0	0	0	0.024622637	0	0.0043471456	0.0064041291	0	0	0
+k__Bacteria|p__Proteobacteria|c__Gammaproteobacteria|o__Xanthomonadales|f__Rhodanobacteraceae|g__Rhodanobacter|s__Rhodanobacter species incertae sedis [ext_mOTU_v3_15009]	0	0	0	0	0	0.0241375499	0	0.0030109948	0	0	0
+k__Bacteria|p__Verrucomicrobia	0	0	0	0	0	0	0.0050396979	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae	0	0	0	0	0	0	0.0050396979	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales	0	0	0	0	0	0	0.0050396979	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales|f__Verrucomicrobiales fam. incertae sedis	0	0	0	0	0	0	0.0050396979	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales|f__Verrucomicrobiales fam. incertae sedis|g__Verrucomicrobiales gen. incertae sedis	0	0	0	0	0	0	0.0050396979	0	0	0	0
+k__Bacteria|p__Verrucomicrobia|c__Verrucomicrobiae|o__Verrucomicrobiales|f__Verrucomicrobiales fam. incertae sedis|g__Verrucomicrobiales gen. incertae sedis|s__Verrucomicrobiales species incertae sedis [ext_mOTU_v3_24753]	0	0	0	0	0	0	0.0050396979	0	0	0	0
