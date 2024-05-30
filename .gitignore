@@ -1,0 +1,6 @@
+*.DS_Store
+*.RData
+*.Rhistory
+/analysis/figures
+*.dmp
+analysis/databases/standardized_databases/NCBI_table.tsv

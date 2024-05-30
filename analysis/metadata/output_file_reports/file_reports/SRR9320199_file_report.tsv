@@ -1,0 +1,2 @@
+study_accession	sample_accession	experiment_accession	run_accession	tax_id	scientific_name	instrument_platform	library_name	library_strategy	fastq_ftp	submitted_ftp	sra_ftp	sample_alias	sample_title
+PRJNA540505	SAMN11539501	SRX6087703	SRR9320199	410659	mine drainage metagenome	ILLUMINA	LAG-W-5	WGS	ftp.sra.ebi.ac.uk/vol1/fastq/SRR932/009/SRR9320199/SRR9320199_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR932/009/SRR9320199/SRR9320199_2.fastq.gz		ftp.sra.ebi.ac.uk/vol1/srr/SRR932/009/SRR9320199	LAG_W_5	EB_90M_July_Water_DNA

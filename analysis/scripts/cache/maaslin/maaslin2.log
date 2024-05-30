@@ -1,0 +1,74 @@
+2024-04-19 08:48:37.775982 INFO::Writing function arguments to log file
+2024-04-19 08:48:37.777999 DEBUG::Function arguments
+2024-04-19 08:48:37.778317 DEBUG::Output folder: analysis/scripts/cache/maaslin
+2024-04-19 08:48:37.778572 DEBUG::Min Abundance: 0.000000
+2024-04-19 08:48:37.778782 DEBUG::Min Prevalence: 0.100000
+2024-04-19 08:48:37.778965 DEBUG::Normalization: TSS
+2024-04-19 08:48:37.779174 DEBUG::Transform: LOG
+2024-04-19 08:48:37.779407 DEBUG::Analysis method: LM
+2024-04-19 08:48:37.779627 DEBUG::Max significance: 1.000000
+2024-04-19 08:48:37.779847 DEBUG::Random effects:
+2024-04-19 08:48:37.780087 DEBUG::Fixed effects:
+2024-04-19 08:48:37.780288 DEBUG::Correction method: BH
+2024-04-19 08:48:37.780552 DEBUG::Standardize: TRUE
+2024-04-19 08:48:37.780757 DEBUG::Cores: 1
+2024-04-19 08:48:37.780929 INFO::Verifying options selected are valid
+2024-04-19 08:48:37.781627 INFO::Determining format of input files
+2024-04-19 08:48:37.782201 INFO::Input format is data samples as rows and metadata samples as rows
+2024-04-19 08:48:37.783116 DEBUG::The following samples were found to have metadata but no features. They will be removed. ERR5004406,ERR5004407,ERR5004408,ERR5004409,ERR5004793,ERR5004806
+2024-04-19 08:48:37.783356 DEBUG::A total of 14 samples were found in both the data and metadata
+2024-04-19 08:48:37.783558 DEBUG::Reordering data/metadata to use same sample ordering
+2024-04-19 08:48:37.784513 INFO::Formula for fixed effects: expr ~  location
+2024-04-19 08:48:37.785333 INFO::Filter data based on min abundance and min prevalence
+2024-04-19 08:48:37.78641 INFO::Total samples in data: 14
+2024-04-19 08:48:37.78741 INFO::Min samples required with min abundance for a feature not to be filtered: 1.400000
+2024-04-19 08:48:37.790407 INFO::Total filtered features: 72
+2024-04-19 08:48:37.791741 INFO::Filtered feature names from abundance and prevalence filtering: X1082479, X1096, X1186196, X1202768, X123783, X1293047, X1293048, X130048, X1333523, X1380430, X1407499, X1412873, X1416969, X1431545, X146826, X146919, X1514971, X1678448, X1705562, X171164, X1729458, X1729464, X1765055, X1765057, X1798228, X1853690, X1869245, X1873524, X1906246, X1917158, X1932360, X195913, X2257, X229204, X253107, X287098, X29288, X300231, X301967, X332168, X332953, X355548, X366533, X368623, X370323, X387343, X413812, X416273, X419186, X419597, X42565, X430914, X43776, X43928, X44930, X489138, X504937, X50718, X553467, X555874, X555875, X566466, X619731, X62320, X650891, X660517, X660518, X660520, X751944, X767519, X81033, X88724
+2024-04-19 08:48:37.794558 INFO::Total filtered features with variance filtering: 0
+2024-04-19 08:48:37.795307 INFO::Filtered feature names from variance filtering:
+2024-04-19 08:48:37.79579 INFO::Running selected normalization method: TSS
+2024-04-19 08:48:37.79692 INFO::Applying z-score to standardize continuous metadata
+2024-04-19 08:48:37.800168 INFO::Running selected transform method: LOG
+2024-04-19 08:48:37.801355 INFO::Running selected analysis method: LM
+2024-04-19 08:48:37.802104 INFO::Fitting model to feature number 1, X1194088
+2024-04-19 08:48:37.804842 INFO::Fitting model to feature number 2, X1236180
+2024-04-19 08:48:37.810001 INFO::Fitting model to feature number 3, X1367881
+2024-04-19 08:48:37.816288 INFO::Fitting model to feature number 4, X1419722
+2024-04-19 08:48:37.818655 INFO::Fitting model to feature number 5, X1448860
+2024-04-19 08:48:37.820821 INFO::Fitting model to feature number 6, X1457250
+2024-04-19 08:48:37.823097 INFO::Fitting model to feature number 7, X1480675
+2024-04-19 08:48:37.824998 INFO::Fitting model to feature number 8, X1498500
+2024-04-19 08:48:37.827072 INFO::Fitting model to feature number 9, X151081
+2024-04-19 08:48:37.829075 INFO::Fitting model to feature number 10, X1611323
+2024-04-19 08:48:37.831124 INFO::Fitting model to feature number 11, X1758255
+2024-04-19 08:48:37.833104 INFO::Fitting model to feature number 12, X1765655
+2024-04-19 08:48:37.835221 INFO::Fitting model to feature number 13, X2247
+2024-04-19 08:48:37.837449 INFO::Fitting model to feature number 14, X2248
+2024-04-19 08:48:37.839333 INFO::Fitting model to feature number 15, X228957
+2024-04-19 08:48:37.842725 INFO::Fitting model to feature number 16, X229203
+2024-04-19 08:48:37.847141 INFO::Fitting model to feature number 17, X28442
+2024-04-19 08:48:37.851403 INFO::Fitting model to feature number 18, X29282
+2024-04-19 08:48:37.854228 INFO::Fitting model to feature number 19, X337243
+2024-04-19 08:48:37.855896 INFO::Fitting model to feature number 20, X35743
+2024-04-19 08:48:37.857534 INFO::Fitting model to feature number 21, X368624
+2024-04-19 08:48:37.859145 INFO::Fitting model to feature number 22, X376171
+2024-04-19 08:48:37.860744 INFO::Fitting model to feature number 23, X411361
+2024-04-19 08:48:37.86225 INFO::Fitting model to feature number 24, X416585
+2024-04-19 08:48:37.863954 INFO::Fitting model to feature number 25, X441119
+2024-04-19 08:48:37.865681 INFO::Fitting model to feature number 26, X478441
+2024-04-19 08:48:37.867359 INFO::Fitting model to feature number 27, X553469
+2024-04-19 08:48:37.8691 INFO::Fitting model to feature number 28, X561365
+2024-04-19 08:48:37.874656 INFO::Fitting model to feature number 29, X64713
+2024-04-19 08:48:37.882292 INFO::Fitting model to feature number 30, X660521
+2024-04-19 08:48:37.884413 INFO::Fitting model to feature number 31, X699431
+2024-04-19 08:48:37.886296 INFO::Fitting model to feature number 32, X996166
+2024-04-19 08:48:37.893679 INFO::Counting total values for each feature
+2024-04-19 08:48:37.896357 INFO::Writing filtered data to file analysis/scripts/cache/maaslin/features/filtered_data.tsv
+2024-04-19 08:48:37.897691 INFO::Writing filtered, normalized data to file analysis/scripts/cache/maaslin/features/filtered_data_norm.tsv
+2024-04-19 08:48:37.898782 INFO::Writing filtered, normalized, transformed data to file analysis/scripts/cache/maaslin/features/filtered_data_norm_transformed.tsv
+2024-04-19 08:48:37.90001 WARNING::Deleting existing residuals file: analysis/scripts/cache/maaslin/fits/residuals.rds
+2024-04-19 08:48:37.900931 INFO::Writing residuals to file analysis/scripts/cache/maaslin/fits/residuals.rds
+2024-04-19 08:48:37.90165 WARNING::Deleting existing fitted file: analysis/scripts/cache/maaslin/fits/fitted.rds
+2024-04-19 08:48:37.902417 INFO::Writing fitted values to file analysis/scripts/cache/maaslin/fits/fitted.rds
+2024-04-19 08:48:37.903176 INFO::Writing all results to file (ordered by increasing q-values): analysis/scripts/cache/maaslin/all_results.tsv
+2024-04-19 08:48:37.90437 INFO::Writing the significant results (those which are less than or equal to the threshold of 1.000000 ) to file (ordered by increasing q-values): analysis/scripts/cache/maaslin/significant_results.tsv
