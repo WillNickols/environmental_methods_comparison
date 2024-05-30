@@ -1,0 +1,2 @@
+study_accession	sample_accession	experiment_accession	run_accession	tax_id	scientific_name	instrument_platform	library_name	library_strategy	fastq_ftp	submitted_ftp	sra_ftp	sample_alias	sample_title
+PRJNA540505	SAMN11539494	SRX6087711	SRR9320191	410659	mine drainage metagenome	ILLUMINA	LG_S3	WGS	ftp.sra.ebi.ac.uk/vol1/fastq/SRR932/001/SRR9320191/SRR9320191_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR932/001/SRR9320191/SRR9320191_2.fastq.gz		ftp.sra.ebi.ac.uk/vol1/srr/SRR932/001/SRR9320191	LG_S3	EB_90M_Jan_Sediment_DNA

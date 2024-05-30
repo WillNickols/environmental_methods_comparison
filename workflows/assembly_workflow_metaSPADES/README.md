@@ -20,6 +20,7 @@ Because of the memory and time requirements of metaSPADES, some samples failed t
 - Bowtie2: 2.5.0
 - Samtools: 1.16.1
 - MetaBAT: 2.15
+- Assembly-stats: 1.0.1
 - Checkm 2: 1.0.0
 - PhyloPhlAn 3: 3.0.67
   - Database: SGB.Jul20

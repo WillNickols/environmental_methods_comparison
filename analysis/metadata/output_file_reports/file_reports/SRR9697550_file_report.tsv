@@ -1,0 +1,2 @@
+study_accession	sample_accession	experiment_accession	run_accession	tax_id	scientific_name	instrument_platform	library_name	library_strategy	fastq_ftp	submitted_ftp	sra_ftp	sample_alias	sample_title
+PRJNA554694	SAMN12280478	SRX6455828	SRR9697550	410658	soil metagenome	ILLUMINA	SHB10A_metagnm	WGS	ftp.sra.ebi.ac.uk/vol1/fastq/SRR969/000/SRR9697550/SRR9697550.fastq.gz		ftp.sra.ebi.ac.uk/vol1/srr/SRR969/000/SRR9697550	10A_metagnm	SHB10A_metagnm
