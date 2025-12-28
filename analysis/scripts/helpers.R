@@ -4,6 +4,7 @@ library(plyr)
 library(dplyr)
 library(stringr)
 library(vegan)
+library(taxonomizr)
 
 # Preprocessing to get lists of taxa
 preprocess <- function(dataset, level, real=TRUE, by_dataset=FALSE) {
@@ -716,4 +717,89 @@ simpleCap <- function(x) {
   }
   paste(toupper(substring(x, 1,1)), substring(x, 2),
         sep="", collapse=" ")
+}
+
+
+# Takes in a list of guess profiles, and a truth profile and grabs all taxaIDs that are present
+get_all_present_IDs <- function(guesses, correct){
+  ids <- c()
+  for(i in guesses){
+    ids <- c(ids, i[,1])
+  }
+  ids <- c(ids, correct[,1])
+  return(ids)
+}
+
+# Propagates the lowest classified label upwards across the tree while adding a label at that rank
+# This is used to make the taxonomic trees for the reviewer response
+propogate_labels <- function(taxonomy){
+  ##fo through each entry
+  taxonomy_name_index <- c("domain"=1, "phylum"=2, "class"=3, "order"=4, "family"=5, "genus"=6, "species"=7)
+  for(i in 1:nrow(taxonomy)){
+    if(any(is.na(taxonomy[i,]))){
+      missing_ids <- which(is.na(taxonomy[i,]))
+      for(j in sort(missing_ids, decreasing=T)){
+        taxonomy[i,j] <- paste(taxonomy[i,j+1], names(taxonomy_name_index[j]))
+      }  
+    }
+  }
+  return(taxonomy)
+}
+
+#takes in a profile and a vector of new labels where the name of the vector data is the old label
+update_labels <- function(df, new_labels){
+  index_to_fix <- which(!is.na(match(df[,1], names(new_labels))))
+  
+  df[index_to_fix,1] <- new_labels[match(df[index_to_fix,1], names(new_labels))]
+  #if the updated labels introduce overlaps with previously ID'd taxa we need to aggregrate the values
+  if(any(duplicated(df$TaxIDs))){
+    df <- aggregate(. ~ TaxIDs, data=df, sum)
+  }
+  ##sanity check to make sure we don't end up messing up the abundances.
+  stopifnot(!any(colSums(df[,-1]) > 100.00001))
+  return(df)
+}
+
+
+#function that takes in a profile and a list of taxaIDs to remove. This is done to remove viruses...
+remove_specific <- function(df, IDs){
+  rm_index <- which(df[,1] %in% IDs)
+  if(length(rm_index) > 0){
+    df <- df[-rm_index,]
+  }
+  return(df)
+}
+
+
+##work on this tonight or tomorrow
+calc_unifrac <- function(profile_1, profile_2, dist_type = 1, tree) {
+  profile_1 <- profile_1[colnames(profile_1) %in% colnames(profile_2)]
+  profile_2 <- profile_2[colnames(profile_2) %in% colnames(profile_1)]
+  
+  colnames(profile_1)[-1] <- paste0("prof1_", colnames(profile_1)[-1])
+  colnames(profile_2)[-1] <- paste0("prof2_", colnames(profile_2)[-1])
+  
+  profile_1$TaxIDs <- as.character(profile_1$TaxIDs)
+  profile_2$TaxIDs <- as.character(profile_2$TaxIDs)
+  joined_df = full_join(profile_1, profile_2, by="TaxIDs")
+  joined_df[is.na(joined_df)] <- 0
+  joined_df[joined_df < 0] <- 0
+  
+  ##we need to now flip joined_df
+  joined_df_t <- t(joined_df)
+  colnames(joined_df_t) <- unlist(joined_df_t[1,])
+  joined_df_t <- joined_df_t[-1,]
+  joined_df_t <- data.frame(joined_df_t, check.names = F)
+  joined_df_t <- joined_df_t %>% mutate_all(as.numeric)
+  #calculate unifrac distance
+  dist_mat <- GUniFrac::GUniFrac(joined_df_t, tree)$unifracs
+  dist_mat <- dist_mat[,,"d_1"]
+  
+  output <- vector()
+  for (colname in unique(gsub(pattern="^prof1_|^prof2_", "", colnames(dist_mat)))) {
+    same_ids <- colnames(dist_mat)[grepl(paste0(colname,"$"), colnames(dist_mat))]
+    output[colname] <- dist_mat[same_ids[1], same_ids[2]]
+  }
+  
+  return(output)
 }
