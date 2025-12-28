@@ -1572,9 +1572,10 @@ make_all_grid_alpha_spearman <- function() {
 make_all_grid_alpha_spearman()
 
 # PERMANOVA Rsq for each tool on the same dataset
-PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = TRUE) {
-  df = data.frame(matrix(nrow = 0, ncol = 6))
-  colnames(df) <- c("method", "variable", "R2", "p_val", "dataset")
+PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, n_bootstrap = 100) {
+  set.seed(1)
+  df = data.frame(matrix(nrow = 0, ncol = 8))
+  colnames(df) <- c("method", "variable", "R2", "R2_sd", "p_val", "p_val_sd", "dataset", "n_boot")
   if (dataset == "all") {
     for (dataset_tmp in c("acid_mine", "animal_gut", "forest_soil", "gator_soil", "saltmarsh", "tara_polar", "human")) {
       meta = read.csv(paste0("analysis/metadata/", dataset_tmp, "/merged_metadata.tsv"), sep="\t")
@@ -1629,63 +1630,187 @@ PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = 
       }
       
       for (i in 1:length(profiles)) {
+        print(paste0("Processing profile ", i, " of ", length(profiles)))
         meta_wo_na <- meta
         meta_wo_na$sample_id <- NULL
         colnames_tmp <- colnames(meta_wo_na)
         meta_wo_na <- data.frame(meta_wo_na[rownames(meta_wo_na) %in% rownames(profiles[[i]]), ])
         colnames(meta_wo_na) <- colnames_tmp
         
-        # Run PERMANOVAs on BC distnace for each variable independently except in the human dataset
+        # Run PERMANOVAs on BC distance for each variable independently except in the human dataset
         # Control for subject in the human dataset
-        adonis_res_rsq = vector()
-        adonis_res_pval = vector()
-        if (dataset != "human") {
+        # Bootstrap resampling strategy
+        adonis_res_rsq_mean = vector()
+        adonis_res_rsq_sd = vector()
+        adonis_res_pval_mean = vector()
+        adonis_res_pval_sd = vector()
+        
+        if (dataset_tmp != "human") {
+          col_idx <- 0
           for (col in names(meta_wo_na)){
-            bray <- vegdist(profiles[[i]][!is.na(meta_wo_na[,col]),])
-            if (nrow(matrix(bray)) != 0) {
-              data_in <- data.frame(meta_wo_na[!is.na(meta_wo_na[,col]),])
-              colnames(data_in) <- colnames(meta_wo_na)
-              if (length(unique(data_in[,col])) > 1) {
-                adonis.univ = adonis2(as.formula(paste("bray ~ ", col)), data = data_in, permutations = 9999)
-                adonis_res_rsq[col] = adonis.univ[1,"R2"]
-                adonis_res_pval[col] = adonis.univ[1,"Pr(>F)"]
+            col_idx <- col_idx + 1
+            print(paste0("  Processing variable ", col_idx, " of ", length(names(meta_wo_na)), ": ", col))
+            
+            # Get valid samples (non-NA for this variable)
+            valid_samples <- !is.na(meta_wo_na[,col])
+            profile_subset <- profiles[[i]][valid_samples,]
+            meta_subset <- data.frame(meta_wo_na[valid_samples,])
+            colnames(meta_subset) <- colnames(meta_wo_na)
+            
+            if (nrow(profile_subset) > 0 && length(unique(meta_subset[,col])) > 1) {
+              # Compute on full dataset for centerpoint
+              bray_full <- vegdist(profile_subset)
+              
+              if (nrow(matrix(bray_full)) != 0) {
+                adonis.full = adonis2(as.formula(paste("bray_full ~ ", col)), data = meta_subset, permutations = 999)
+                adonis_res_rsq_mean[col] = adonis.full[1,"R2"]
+                adonis_res_pval_mean[col] = adonis.full[1,"Pr(>F)"]
               } else {
-                adonis_res_rsq[col] = 0
-                adonis_res_pval[col] = 1
+                adonis_res_rsq_mean[col] = 0
+                adonis_res_pval_mean[col] = 1
               }
+              
+              # Bootstrap for SD only
+              boot_rsq <- numeric(n_bootstrap)
+              boot_pval <- numeric(n_bootstrap)
+              
+              for (boot in 1:n_bootstrap) {
+                # Resample with replacement
+                boot_indices <- sample(1:nrow(profile_subset), replace = TRUE)
+                boot_profile <- profile_subset[boot_indices,]
+                boot_meta <- data.frame(meta_subset[boot_indices,])
+                colnames(boot_meta) <- colnames(meta_subset)
+                
+                # Calculate Bray-Curtis distance
+                bray_boot <- vegdist(boot_profile)
+                
+                if (nrow(matrix(bray_boot)) != 0 && length(unique(boot_meta[,col])) > 1) {
+                  adonis.univ = adonis2(as.formula(paste("bray_boot ~ ", col)), data = boot_meta, permutations = 999)
+                  boot_rsq[boot] = adonis.univ[1,"R2"]
+                  boot_pval[boot] = adonis.univ[1,"Pr(>F)"]
+                } else {
+                  boot_rsq[boot] = 0
+                  boot_pval[boot] = 1
+                }
+              }
+              adonis_res_rsq_sd[col] = sd(boot_rsq)
+              adonis_res_pval_sd[col] = sd(boot_pval)
             } else {
-              adonis_res_rsq[col] = 0
-              adonis_res_pval[col] = 1
+              adonis_res_rsq_mean[col] = 0
+              adonis_res_rsq_sd[col] = 0
+              adonis_res_pval_mean[col] = 1
+              adonis_res_pval_sd[col] = 0
             }
           }
         } else {
+          col_idx <- 0
           for (col in names(meta_wo_na)[names(meta_wo_na) != "participant"]){
-            bray <- vegdist(profiles[[i]][!is.na(meta_wo_na[,col]),])
+            col_idx <- col_idx + 1
+            print(paste0("  Processing variable ", col_idx, " of ", length(names(meta_wo_na)), ": ", col))
             
-            if (nrow(matrix(bray)) != 0) {
-              adonis.univ = adonis2(as.formula(paste("bray ~ ", col)), data = meta_wo_na[!is.na(meta_wo_na[,col]),], permutations = 9999, strata = meta_wo_na[!is.na(meta_wo_na[,col]),]$participant)
-              adonis_res_rsq[col] = adonis.univ[1,"R2"]
-              adonis_res_pval[col] = adonis.univ[1,"Pr(>F)"]
+            # Get valid samples (non-NA for this variable)
+            valid_samples <- !is.na(meta_wo_na[,col])
+            profile_subset <- profiles[[i]][valid_samples,]
+            meta_subset <- data.frame(meta_wo_na[valid_samples,])
+            colnames(meta_subset) <- colnames(meta_wo_na)
+            
+            if (nrow(profile_subset) > 0) {
+              # Compute on full dataset for centerpoint
+              bray_full <- vegdist(profile_subset)
+              
+              if (nrow(matrix(bray_full)) != 0) {
+                adonis.full = adonis2(as.formula(paste("bray_full ~ ", col)), data = meta_subset, permutations = 999, strata = meta_subset$participant)
+                adonis_res_rsq_mean[col] = adonis.full[1,"R2"]
+                adonis_res_pval_mean[col] = adonis.full[1,"Pr(>F)"]
+              } else {
+                adonis_res_rsq_mean[col] = 0
+                adonis_res_pval_mean[col] = 1
+              }
+              
+              # Bootstrap for SD only
+              boot_rsq <- numeric(n_bootstrap)
+              boot_pval <- numeric(n_bootstrap)
+              
+              for (boot in 1:n_bootstrap) {
+                # Resample with replacement, maintaining participant structure
+                unique_participants <- unique(meta_subset$participant)
+                boot_participants <- sample(unique_participants, replace = TRUE)
+                
+                boot_indices <- unlist(lapply(boot_participants, function(p) {
+                  which(meta_subset$participant == p)
+                }))
+                
+                boot_profile <- profile_subset[boot_indices,]
+                boot_meta <- data.frame(meta_subset[boot_indices,])
+                colnames(boot_meta) <- colnames(meta_subset)
+                
+                # Calculate Bray-Curtis distance
+                bray_boot <- vegdist(boot_profile)
+                
+                if (nrow(matrix(bray_boot)) != 0) {
+                  adonis.univ = adonis2(as.formula(paste("bray_boot ~ ", col)), data = boot_meta, permutations = 999, strata = boot_meta$participant)
+                  boot_rsq[boot] = adonis.univ[1,"R2"]
+                  boot_pval[boot] = adonis.univ[1,"Pr(>F)"]
+                } else {
+                  boot_rsq[boot] = 0
+                  boot_pval[boot] = 1
+                }
+              }
+              adonis_res_rsq_sd[col] = sd(boot_rsq)
+              adonis_res_pval_sd[col] = sd(boot_pval)
             } else {
-              adonis_res_rsq[col] = 0
-              adonis_res_pval[col] = 1
+              adonis_res_rsq_mean[col] = 0
+              adonis_res_rsq_sd[col] = 0
+              adonis_res_pval_mean[col] = 1
+              adonis_res_pval_sd[col] = 0
             }
-            
           }
-          col = "participant"
-          bray <- vegdist(profiles[[i]][!is.na(meta_wo_na[,col]),])
           
-          if (nrow(matrix(bray)) != 0) {
-            adonis.univ = adonis2(as.formula(paste("bray ~ ", col)), data = meta_wo_na[!is.na(meta_wo_na[,col]),], permutations = 9999)
-            adonis_res_rsq[col] = adonis.univ[1,"R2"]
-            adonis_res_pval[col] = adonis.univ[1,"Pr(>F)"]
+          # Handle participant variable separately (no strata needed)
+          col = "participant"
+          print(paste0("  Processing variable ", length(names(meta_wo_na)), " of ", length(names(meta_wo_na)), ": ", col))
+          boot_rsq <- numeric(n_bootstrap)
+          boot_pval <- numeric(n_bootstrap)
+          
+          valid_samples <- !is.na(meta_wo_na[,col])
+          profile_subset <- profiles[[i]][valid_samples,]
+          meta_subset <- data.frame(meta_wo_na[valid_samples,])
+          colnames(meta_subset) <- colnames(meta_wo_na)
+          
+          if (nrow(profile_subset) > 0) {
+            for (boot in 1:n_bootstrap) {
+              boot_indices <- sample(1:nrow(profile_subset), replace = TRUE)
+              boot_profile <- profile_subset[boot_indices,]
+              boot_meta <- data.frame(meta_subset[boot_indices,])
+              colnames(boot_meta) <- colnames(meta_subset)
+              
+              bray_boot <- vegdist(boot_profile)
+              
+              if (nrow(matrix(bray_boot)) != 0) {
+                adonis.univ = adonis2(as.formula(paste("bray_boot ~ ", col)), data = boot_meta, permutations = 999)
+                boot_rsq[boot] = adonis.univ[1,"R2"]
+                boot_pval[boot] = adonis.univ[1,"Pr(>F)"]
+              } else {
+                boot_rsq[boot] = 0
+                boot_pval[boot] = 1
+              }
+            }
+            adonis_res_rsq_mean[col] = mean(boot_rsq)
+            adonis_res_rsq_sd[col] = sd(boot_rsq)
+            adonis_res_pval_mean[col] = mean(boot_pval)
+            adonis_res_pval_sd[col] = sd(boot_pval)
           } else {
-            adonis_res_rsq[col] = 0
-            adonis_res_pval[col] = 1
+            adonis_res_rsq_mean[col] = 0
+            adonis_res_rsq_sd[col] = 0
+            adonis_res_pval_mean[col] = 1
+            adonis_res_pval_sd[col] = 0
           }
         }
         
-        df_addition = data.frame("method"=i, "variable"=names(adonis_res_pval), "R2"=adonis_res_rsq, "p_val"=adonis_res_pval, "dataset" = dataset_tmp)
+        df_addition = data.frame("method"=i, "variable"=names(adonis_res_pval_mean), 
+                                 "R2"=adonis_res_rsq_mean, "R2_sd"=adonis_res_rsq_sd,
+                                 "p_val"=adonis_res_pval_mean, "p_val_sd"=adonis_res_pval_sd,
+                                 "dataset" = dataset_tmp, "n_boot" = n_bootstrap)
         df <- rbind(df, df_addition)
       }
     }
@@ -1742,71 +1867,192 @@ PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = 
     }
     
     for (i in 1:length(profiles)) {
+      print(paste0("Processing profile ", i, " of ", length(profiles)))
       meta_wo_na <- meta
       meta_wo_na$sample_id <- NULL
       colnames_tmp <- colnames(meta_wo_na)
       meta_wo_na <- data.frame(meta_wo_na[rownames(meta_wo_na) %in% rownames(profiles[[i]]), ])
       colnames(meta_wo_na) <- colnames_tmp
       
-      # Run PERMANOVAs on BC distnace for each variable independently except in the human dataset
+      # Run PERMANOVAs on BC distance for each variable independently except in the human dataset
       # Control for subject in the human dataset
-      adonis_res_rsq = vector()
-      adonis_res_pval = vector()
+      # Bootstrap resampling strategy
+      adonis_res_rsq_mean = vector()
+      adonis_res_rsq_sd = vector()
+      adonis_res_pval_mean = vector()
+      adonis_res_pval_sd = vector()
+      
       if (dataset != "human") {
+        col_idx <- 0
         for (col in names(meta_wo_na)){
-          bray <- vegdist(profiles[[i]][!is.na(meta_wo_na[,col]),])
-          if (nrow(matrix(bray)) != 0) {
-            data_in <- data.frame(meta_wo_na[!is.na(meta_wo_na[,col]),])
-            colnames(data_in) <- colnames(meta_wo_na)
-            if (length(unique(data_in[,col])) > 1) {
-              adonis.univ = adonis2(as.formula(paste("bray ~ ", col)), data = data_in, permutations = 9999)
-              adonis_res_rsq[col] = adonis.univ[1,"R2"]
-              adonis_res_pval[col] = adonis.univ[1,"Pr(>F)"]
+          col_idx <- col_idx + 1
+          print(paste0("  Processing variable ", col_idx, " of ", length(names(meta_wo_na)), ": ", col))
+          
+          # Get valid samples (non-NA for this variable)
+          valid_samples <- !is.na(meta_wo_na[,col])
+          profile_subset <- profiles[[i]][valid_samples,]
+          meta_subset <- data.frame(meta_wo_na[valid_samples,])
+          colnames(meta_subset) <- colnames(meta_wo_na)
+          
+          if (nrow(profile_subset) > 0 && length(unique(meta_subset[,col])) > 1) {
+            # Compute on full dataset for centerpoint
+            bray_full <- vegdist(profile_subset)
+            
+            if (nrow(matrix(bray_full)) != 0) {
+              adonis.full = adonis2(as.formula(paste("bray_full ~ ", col)), data = meta_subset, permutations = 999)
+              adonis_res_rsq_mean[col] = adonis.full[1,"R2"]
+              adonis_res_pval_mean[col] = adonis.full[1,"Pr(>F)"]
             } else {
-              adonis_res_rsq[col] = 0
-              adonis_res_pval[col] = 1
+              adonis_res_rsq_mean[col] = 0
+              adonis_res_pval_mean[col] = 1
             }
+            
+            # Bootstrap for SD only
+            boot_rsq <- numeric(n_bootstrap)
+            boot_pval <- numeric(n_bootstrap)
+            
+            for (boot in 1:n_bootstrap) {
+              # Resample with replacement
+              boot_indices <- sample(1:nrow(profile_subset), replace = TRUE)
+              boot_profile <- profile_subset[boot_indices,]
+              boot_meta <- data.frame(meta_subset[boot_indices,])
+              colnames(boot_meta) <- colnames(meta_subset)
+              
+              # Calculate Bray-Curtis distance
+              bray_boot <- vegdist(boot_profile)
+              
+              if (nrow(matrix(bray_boot)) != 0 && length(unique(boot_meta[,col])) > 1) {
+                adonis.univ = adonis2(as.formula(paste("bray_boot ~ ", col)), data = boot_meta, permutations = 999)
+                boot_rsq[boot] = adonis.univ[1,"R2"]
+                boot_pval[boot] = adonis.univ[1,"Pr(>F)"]
+              } else {
+                boot_rsq[boot] = 0
+                boot_pval[boot] = 1
+              }
+            }
+            adonis_res_rsq_sd[col] = sd(boot_rsq)
+            adonis_res_pval_sd[col] = sd(boot_pval)
           } else {
-            adonis_res_rsq[col] = 0
-            adonis_res_pval[col] = 1
+            adonis_res_rsq_mean[col] = 0
+            adonis_res_rsq_sd[col] = 0
+            adonis_res_pval_mean[col] = 1
+            adonis_res_pval_sd[col] = 0
           }
         }
       } else {
+        col_idx <- 0
         for (col in names(meta_wo_na)[names(meta_wo_na) != "participant"]){
-          bray <- vegdist(profiles[[i]][!is.na(meta_wo_na[,col]),])
+          col_idx <- col_idx + 1
+          print(paste0("  Processing variable ", col_idx, " of ", length(names(meta_wo_na)), ": ", col))
           
-          if (nrow(matrix(bray)) != 0) {
-            adonis.univ = adonis2(as.formula(paste("bray ~ ", col)), data = meta_wo_na[!is.na(meta_wo_na[,col]),], permutations = 9999, strata = meta_wo_na[!is.na(meta_wo_na[,col]),]$participant)
-            adonis_res_rsq[col] = adonis.univ[1,"R2"]
-            adonis_res_pval[col] = adonis.univ[1,"Pr(>F)"]
+          # Get valid samples (non-NA for this variable)
+          valid_samples <- !is.na(meta_wo_na[,col])
+          profile_subset <- profiles[[i]][valid_samples,]
+          meta_subset <- data.frame(meta_wo_na[valid_samples,])
+          colnames(meta_subset) <- colnames(meta_wo_na)
+          
+          if (nrow(profile_subset) > 0) {
+            # Compute on full dataset for centerpoint
+            bray_full <- vegdist(profile_subset)
+            
+            if (nrow(matrix(bray_full)) != 0) {
+              adonis.full = adonis2(as.formula(paste("bray_full ~ ", col)), data = meta_subset, permutations = 999, strata = meta_subset$participant)
+              adonis_res_rsq_mean[col] = adonis.full[1,"R2"]
+              adonis_res_pval_mean[col] = adonis.full[1,"Pr(>F)"]
+            } else {
+              adonis_res_rsq_mean[col] = 0
+              adonis_res_pval_mean[col] = 1
+            }
+            
+            # Bootstrap for SD only
+            boot_rsq <- numeric(n_bootstrap)
+            boot_pval <- numeric(n_bootstrap)
+            
+            for (boot in 1:n_bootstrap) {
+              # Resample with replacement, maintaining participant structure
+              unique_participants <- unique(meta_subset$participant)
+              boot_participants <- sample(unique_participants, replace = TRUE)
+              
+              boot_indices <- unlist(lapply(boot_participants, function(p) {
+                which(meta_subset$participant == p)
+              }))
+              
+              boot_profile <- profile_subset[boot_indices,]
+              boot_meta <- data.frame(meta_subset[boot_indices,])
+              colnames(boot_meta) <- colnames(meta_subset)
+              
+              # Calculate Bray-Curtis distance
+              bray_boot <- vegdist(boot_profile)
+              
+              if (nrow(matrix(bray_boot)) != 0) {
+                adonis.univ = adonis2(as.formula(paste("bray_boot ~ ", col)), data = boot_meta, permutations = 999, strata = boot_meta$participant)
+                boot_rsq[boot] = adonis.univ[1,"R2"]
+                boot_pval[boot] = adonis.univ[1,"Pr(>F)"]
+              } else {
+                boot_rsq[boot] = 0
+                boot_pval[boot] = 1
+              }
+            }
+            adonis_res_rsq_sd[col] = sd(boot_rsq)
+            adonis_res_pval_sd[col] = sd(boot_pval)
           } else {
-            adonis_res_rsq[col] = 0
-            adonis_res_pval[col] = 1
+            adonis_res_rsq_mean[col] = 0
+            adonis_res_rsq_sd[col] = 0
+            adonis_res_pval_mean[col] = 1
+            adonis_res_pval_sd[col] = 0
           }
-          
         }
-        col = "participant"
-        bray <- vegdist(profiles[[i]][!is.na(meta_wo_na[,col]),])
         
-        if (nrow(matrix(bray)) != 0) {
-          adonis.univ = adonis2(as.formula(paste("bray ~ ", col)), data = meta_wo_na[!is.na(meta_wo_na[,col]),], permutations = 9999)
-          adonis_res_rsq[col] = adonis.univ[1,"R2"]
-          adonis_res_pval[col] = adonis.univ[1,"Pr(>F)"]
+        # Handle participant variable separately (no strata needed)
+        col = "participant"
+        print(paste0("  Processing variable ", length(names(meta_wo_na)), " of ", length(names(meta_wo_na)), ": ", col))
+        boot_rsq <- numeric(n_bootstrap)
+        boot_pval <- numeric(n_bootstrap)
+        
+        valid_samples <- !is.na(meta_wo_na[,col])
+        profile_subset <- profiles[[i]][valid_samples,]
+        meta_subset <- data.frame(meta_wo_na[valid_samples,])
+        colnames(meta_subset) <- colnames(meta_wo_na)
+        
+        if (nrow(profile_subset) > 0) {
+          for (boot in 1:n_bootstrap) {
+            boot_indices <- sample(1:nrow(profile_subset), replace = TRUE)
+            boot_profile <- profile_subset[boot_indices,]
+            boot_meta <- data.frame(meta_subset[boot_indices,])
+            colnames(boot_meta) <- colnames(meta_subset)
+            
+            bray_boot <- vegdist(boot_profile)
+            
+            if (nrow(matrix(bray_boot)) != 0) {
+              adonis.univ = adonis2(as.formula(paste("bray_boot ~ ", col)), data = boot_meta, permutations = 999)
+              boot_rsq[boot] = adonis.univ[1,"R2"]
+              boot_pval[boot] = adonis.univ[1,"Pr(>F)"]
+            } else {
+              boot_rsq[boot] = 0
+              boot_pval[boot] = 1
+            }
+          }
+          adonis_res_rsq_mean[col] = mean(boot_rsq)
+          adonis_res_rsq_sd[col] = sd(boot_rsq)
+          adonis_res_pval_mean[col] = mean(boot_pval)
+          adonis_res_pval_sd[col] = sd(boot_pval)
         } else {
-          adonis_res_rsq[col] = 0
-          adonis_res_pval[col] = 1
+          adonis_res_rsq_mean[col] = 0
+          adonis_res_rsq_sd[col] = 0
+          adonis_res_pval_mean[col] = 1
+          adonis_res_pval_sd[col] = 0
         }
       }
       
-      df_addition = data.frame("method"=i, "variable"=names(adonis_res_pval), "R2"=adonis_res_rsq, "p_val"=adonis_res_pval, "dataset" = dataset)
+      df_addition = data.frame("method"=i, "variable"=names(adonis_res_pval_mean), 
+                               "R2"=adonis_res_rsq_mean, "R2_sd"=adonis_res_rsq_sd,
+                               "p_val"=adonis_res_pval_mean, "p_val_sd"=adonis_res_pval_sd,
+                               "dataset" = dataset, "n_boot" = n_bootstrap)
       df <- rbind(df, df_addition)
     }
   }
   
   df$method <- tool_names[df$method]
-  if (core_only) {
-    df <- df[df$method %in% tool_core,]
-  }
   df$variable <- gsub("_", " ", df$variable)
   df$variable <- sapply(df$variable, simpleCap)
   
@@ -1818,8 +2064,6 @@ PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = 
                           df$dataset == "tara_polar" ~ "Polar ocean",
                           df$dataset == "human" ~ "Human gut")
   
-  col = scale_color_manual(values = colAdd)
-  
   df$`P-value below` <- df$p_val
   df$`P-value below` <- case_when(df$`P-value below` < 0.001 ~ "0.001",
                                   df$`P-value below` < 0.01 ~ "0.01",
@@ -1827,13 +2071,7 @@ PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = 
                                   TRUE ~ "1")
   df$`P-value below` <- factor(df$`P-value below`, c("1", "0.05", "0.01", "0.001"))
   
-  if (core_only) {
-    colAdd <- colAdd[tool_names %in% tool_core]
-    col = scale_color_manual(values = colAdd)
-    fil = scale_fill_manual(values = colAdd)
-  }
-  
-  # In-text
+  # In-text statistics (using full dataset)
   range_df <- df %>%
     group_by(dataset, variable) %>%
     summarize(range = max(R2) - min(R2))
@@ -1841,12 +2079,28 @@ PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = 
   print(mean(range_df[!range_df$dataset %in% c("Human gut", "Wild animal gut"),]$range))
   print(mean(range_df[!range_df$dataset %in% c("Human gut", "Wild animal gut", "Salt marsh", "Acid mine runoff"),]$range))
   
+  level_name <- case_when(level == 1 ~ "kingdom",
+                          level == 2 ~ "phylum", 
+                          level == 3 ~ "class",
+                          level == 4 ~ "order",
+                          level == 5 ~ "family",
+                          level == 6 ~ "genus",
+                          level == 7 ~ "species")
+  
+  ncbi_only_str <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  dir.create(file.path("analysis/figures/PERMANOVA_comparison/",dataset,"/"), showWarnings = FALSE)
+  # Generate plot with all tools
+  col_all = scale_color_manual(values = colAdd)
+  
+  pos_dodge <- position_dodge(width = 0.5)
+  
   ggplot(df, aes(x = variable, y = R2, color=factor(method, tool_names), size=`P-value below`)) + 
-    geom_beeswarm(cex=3, stroke=2) + 
+    geom_errorbar(aes(ymin = R2 - R2_sd, ymax = R2 + R2_sd), width = 0, alpha = 1, linewidth = 1, position = pos_dodge) +
+    geom_point(stroke=2, position = pos_dodge) + 
     theme_linedraw() + 
     ylab("PERMANOVA R-squared") + 
     xlab("Variable") + 
-    col + 
+    col_all + 
     scale_size_manual(values=c(0.5, 1.25, 2, 2.75)) + 
     theme(text=element_text(size=12),
           plot.margin = unit(c(2,1,1,1), "cm"),
@@ -1862,29 +2116,45 @@ PERMANOVA_comparison <- function(dataset, level, ncbi_only = FALSE, core_only = 
     facet_wrap(~factor(dataset, c("Human gut", "Forest soil", "Gator nest", "Acid mine runoff", "Wild animal gut", "Salt marsh", "Polar ocean")), ncol = 4, scales = "free") + 
     theme(legend.box = "horizontal")
   
-  
-  level_name <- case_when(level == 1 ~ "kingdom",
-                          level == 2 ~ "phylum", 
-                          level == 3 ~ "class",
-                          level == 4 ~ "order",
-                          level == 5 ~ "family",
-                          level == 6 ~ "genus",
-                          level == 7 ~ "species")
-  
-  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
-  dir.create(file.path("analysis/figures/PERMANOVA_comparison/",dataset,"/"), showWarnings = FALSE)
   if (dataset == "all") {
-    if (core_only) {
-      ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_PERMANOVA.png"), width=40, height=16, units = 'cm', dpi=1000, bg='#ffffff')
-    } else {
-      ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_PERMANOVA_all_tools.png"), width=40, height=16, units = 'cm', dpi=1000, bg='#ffffff')
-    }
+    ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_str, "_PERMANOVA_all_tools.png"), width=40, height=16, units = 'cm', dpi=1000, bg='#ffffff')
   } else {
-    if (core_only) {
-      ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_PERMANOVA.png"), width=24, height=16, units = 'cm', dpi=1000, bg='#ffffff')
-    } else {
-      ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_PERMANOVA_all_tools.png"), width=24, height=16, units = 'cm', dpi=1000, bg='#ffffff')
-    }
+    ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_str, "_PERMANOVA_all_tools.png"), width=24, height=16, units = 'cm', dpi=1000, bg='#ffffff')
+  }
+  
+  # Generate plot with core tools only
+  df_core <- df[df$method %in% tool_core,]
+  colAdd_core <- colAdd[tool_names %in% tool_core]
+  col_core = scale_color_manual(values = colAdd_core)
+  
+  pos_dodge_core <- position_dodge(width = 0.5)
+  
+  ggplot(df_core, aes(x = variable, y = R2, color=factor(method, tool_names), size=`P-value below`)) + 
+    geom_errorbar(aes(ymin = R2 - R2_sd, ymax = R2 + R2_sd), width = 0, alpha = 1, linewidth = 1, position = pos_dodge_core) +
+    geom_point(stroke=2, position = pos_dodge_core) + 
+    theme_linedraw() + 
+    ylab("PERMANOVA R-squared") + 
+    xlab("Variable") + 
+    col_core + 
+    scale_size_manual(values=c(0.5, 1.25, 2, 2.75)) + 
+    theme(text=element_text(size=12),
+          plot.margin = unit(c(2,1,1,1), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10)) + 
+    guides(color=guide_legend(title="Method")) + 
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, 
+                                     size = 12, hjust = 1)) + 
+    coord_flip() + 
+    facet_wrap(~factor(dataset, c("Human gut", "Forest soil", "Gator nest", "Acid mine runoff", "Wild animal gut", "Salt marsh", "Polar ocean")), ncol = 4, scales = "free") + 
+    theme(legend.box = "horizontal")
+  
+  if (dataset == "all") {
+    ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_str, "_PERMANOVA.png"), width=40, height=16, units = 'cm', dpi=1000, bg='#ffffff')
+  } else {
+    ggsave(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_str, "_PERMANOVA.png"), width=24, height=16, units = 'cm', dpi=1000, bg='#ffffff')
   }
 }
 make_all_PERMANOVA_comparison <- function() {
@@ -1898,13 +2168,9 @@ make_all_PERMANOVA_comparison <- function() {
                               level == 5 ~ "family",
                               level == 6 ~ "genus",
                               level == 7 ~ "species")
-      if (!file.exists(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_PERMANOVA.png"))) {
-        PERMANOVA_comparison(dataset, level, TRUE)
-      }
-      if (!file.exists(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", "all_taxa", "_PERMANOVA_all_tools.png"))) {
-        PERMANOVA_comparison(dataset, level, FALSE, FALSE)
-      }
-      if (!file.exists(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", "all_taxa", "_PERMANOVA.png"))) {
+      # Check if both output files exist, if not run the analysis (generates both)
+      if (!file.exists(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", "all_taxa", "_PERMANOVA_all_tools.png")) ||
+          !file.exists(paste0("analysis/figures/PERMANOVA_comparison/",dataset,"/",dataset,"_",level_name,"_", "all_taxa", "_PERMANOVA.png"))) {
         PERMANOVA_comparison(dataset, level, FALSE)
       }
     }
@@ -1913,7 +2179,9 @@ make_all_PERMANOVA_comparison <- function() {
 make_all_PERMANOVA_comparison()
 
 # MaAsLin coefficients and significances for each tool on the same dataset
-Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRUE) {
+Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE) {
+  set.seed(1)
+  
   if("drc" %in% (.packages())){
     detach("package:drc", unload=TRUE) 
   }
@@ -2000,32 +2268,152 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
       
       names(reference_vec) <- colnames(meta)
       
-      # Run MaAsLin for each dataset
+      # Run MaAsLin for each dataset with bootstrap
       dir.create("analysis/scripts/cache/maaslin", showWarnings = F)
+      n_bootstrap <- 100
+      
       for (i in 1:length(profiles)) {
+        print(paste0("Processing profile ", i, " of ", length(profiles)))
         maaslin_tmp <- data.frame(matrix(nrow = 0, ncol = 5))
-        if (length(reference_list) > 0) {
-          reference_string = ""
-          for (j in 1:length(reference_list)) {
-            reference_string = paste0(reference_string, ";", names(reference_list[j]), ",", names(which.max(table(meta[,names(reference_list[j])]))))
-          }
-          reference_string = gsub("^;", "", reference_string)
+        
+        if (ncol(profiles[[i]]) > 1) {
+          # Run on full dataset for centerpoint
+          # Match samples between profile and metadata
+          common_samples <- intersect(rownames(profiles[[i]]), rownames(meta))
+          profile_full <- profiles[[i]][common_samples, , drop = FALSE]
+          meta_full <- meta[common_samples, , drop = FALSE]
           
-          if (ncol(profiles[[i]]) > 1) {
-            if (dataset != "human") {
-              maaslin_results <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]
-            } else {
-              maaslin_results <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]
+          # Check if all categorical variables have at least 2 unique values
+          valid_for_maaslin <- TRUE
+          for (colname in colnames(meta_full)) {
+            if (sum(!is.na(suppressWarnings(as.numeric(meta_full[,colname])))) == 0) {
+              # This is a categorical variable
+              if (length(unique(meta_full[!is.na(meta_full[,colname]), colname])) < 2) {
+                valid_for_maaslin <- FALSE
+                break
+              }
             }
-            maaslin_tmp <- rbind(maaslin_tmp, maaslin_results)
           }
-        } else {
-          if (ncol(profiles[[i]]) > 1) {
+          
+          # Skip this profile if metadata doesn't have sufficient categorical variation
+          if (!valid_for_maaslin) {
+            next
+          }
+          
+          # Assign unique arbitrary sample names to both while maintaining correspondence
+          arbitrary_names <- paste0("sample_", 1:length(common_samples))
+          rownames(profile_full) <- arbitrary_names
+          rownames(meta_full) <- arbitrary_names
+          
+          if (length(reference_list) > 0) {
+            reference_string = ""
+            for (j in 1:length(reference_list)) {
+              reference_string = paste0(reference_string, ";", names(reference_list[j]), ",", names(which.max(table(meta_full[,names(reference_list[j])]))))
+            }
+            reference_string = gsub("^;", "", reference_string)
+            
             if (dataset != "human") {
-              maaslin_tmp <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]
+              invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
             } else {
-              maaslin_tmp <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]
-            }        
+              invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]))
+            }
+          } else {
+            if (dataset != "human") {
+              invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
+            } else {
+              invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]))
+            }
+          }
+          
+          # Bootstrap for SD only (skip for human dataset since it won't be in final plot)
+          bootstrap_results_list <- list()
+          
+          if (dataset_tmp != "human") {
+            # Match samples between profile and metadata
+            common_samples <- intersect(rownames(profiles[[i]]), rownames(meta))
+            matched_profile <- profiles[[i]][common_samples, , drop = FALSE]
+            matched_meta <- meta[common_samples, , drop = FALSE]
+            
+            # Identify categorical variables
+            categorical_cols <- c()
+            for (colname in colnames(matched_meta)) {
+              if (sum(!is.na(suppressWarnings(as.numeric(matched_meta[,colname])))) == 0) {
+                categorical_cols <- c(categorical_cols, colname)
+              }
+            }
+            
+            # Create stratification key based on combination of all categorical variables
+            if (length(categorical_cols) > 0) {
+              strata_key <- apply(matched_meta[, categorical_cols, drop = FALSE], 1, function(row) paste(row, collapse = "_"))
+            } else {
+              strata_key <- rep("all", nrow(matched_meta))
+            }
+            
+            for (boot_iter in 1:n_bootstrap) {
+              print(paste0("  Processing bootstrap ", boot_iter, " of ", n_bootstrap))
+              
+              # Stratified bootstrap: sample within each stratum
+              # This guarantees all levels of all categorical variables are present
+              boot_indices <- c()
+              for (stratum in unique(strata_key)) {
+                stratum_indices <- which(strata_key == stratum)
+                n_in_stratum <- length(stratum_indices)
+                boot_indices <- c(boot_indices, sample(stratum_indices, n_in_stratum, replace = TRUE))
+              }
+              
+              # Get the actual sample IDs from the bootstrap indices (from matched data)
+              boot_sample_ids <- rownames(matched_profile)[boot_indices]
+              
+              # Subset both matched datasets using the same sample IDs to ensure alignment
+              boot_profile <- matched_profile[boot_sample_ids, , drop = FALSE]
+              boot_meta <- matched_meta[boot_sample_ids, , drop = FALSE]
+              
+              # Assign unique arbitrary sample names to maintain correspondence
+              boot_arbitrary_names <- paste0("sample_", 1:length(boot_sample_ids))
+              rownames(boot_profile) <- boot_arbitrary_names
+              rownames(boot_meta) <- boot_arbitrary_names
+              
+              if (length(reference_list) > 0) {
+                reference_string = ""
+                for (j in 1:length(reference_list)) {
+                  reference_string = paste0(reference_string, ";", names(reference_list[j]), ",", names(which.max(table(boot_meta[,names(reference_list[j])]))))
+                }
+                reference_string = gsub("^;", "", reference_string)
+                
+                invisible(capture.output(maaslin_results <- Maaslin2(boot_profile, boot_meta, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
+              } else {
+                invisible(capture.output(maaslin_results <- Maaslin2(boot_profile, boot_meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
+              }
+              
+              bootstrap_results_list[[boot_iter]] <- maaslin_results
+            }
+            
+            # Calculate SD of effect sizes from bootstrap
+            all_bootstrap_results <- do.call(rbind, bootstrap_results_list)
+            
+            if (nrow(all_bootstrap_results) > 0) {
+              boot_sd <- all_bootstrap_results %>%
+                group_by(feature, metadata, value) %>%
+                summarise(
+                  coef_sd = sd(coef, na.rm = TRUE),
+                  .groups = 'drop'
+                ) %>%
+                as.data.frame()
+              
+              # Merge full dataset results with bootstrap SD
+              maaslin_tmp <- maaslin_full %>%
+                left_join(boot_sd, by = c("feature", "metadata", "value"))
+              
+              # If no SD calculated, set to 0
+              maaslin_tmp$coef_sd[is.na(maaslin_tmp$coef_sd)] <- 0
+            } else {
+              maaslin_tmp <- maaslin_full
+              maaslin_tmp$coef_sd <- 0
+            }
+          } else {
+            # For human dataset, no bootstrap so just use full results with SD = 0
+            maaslin_tmp <- maaslin_full
+            maaslin_tmp$coef_sd <- 0
           }
         }
         
@@ -2033,7 +2421,6 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
           maaslin_tmp <- distinct(maaslin_tmp, feature, metadata, value, .keep_all = TRUE)
           maaslin_tmp$qval <- p.adjust(maaslin_tmp$pval, "BH")
           maaslin_tmp$method = i
-          maaslin_tmp <- maaslin_tmp[maaslin_tmp$qval < 0.25,]
           
           maaslin_out <- rbind(maaslin_out, maaslin_tmp)
         }
@@ -2157,32 +2544,152 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
     
     names(reference_vec) <- colnames(meta)
     
-    # Run MaAsLin
+    # Run MaAsLin with bootstrap
     dir.create("analysis/scripts/cache/maaslin", showWarnings = F)
+    n_bootstrap <- 100
+    
     for (i in 1:length(profiles)) {
+      print(paste0("Processing profile ", i, " of ", length(profiles)))
       maaslin_tmp <- data.frame(matrix(nrow = 0, ncol = 5))
-      if (length(reference_list) > 0) {
-        reference_string = ""
-        for (j in 1:length(reference_list)) {
-          reference_string = paste0(reference_string, ";", names(reference_list[j]), ",", names(which.max(table(meta[,names(reference_list[j])]))))
-        }
-        reference_string = gsub("^;", "", reference_string)
+      
+      if (ncol(profiles[[i]]) > 1) {
+        # Run on full dataset for centerpoint
+        # Match samples between profile and metadata
+        common_samples <- intersect(rownames(profiles[[i]]), rownames(meta))
+        profile_full <- profiles[[i]][common_samples, , drop = FALSE]
+        meta_full <- meta[common_samples, , drop = FALSE]
         
-        if (ncol(profiles[[i]]) > 1) {
-          if (dataset != "human") {
-            maaslin_results <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]
-          } else {
-            maaslin_results <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]
+        # Check if all categorical variables have at least 2 unique values
+        valid_for_maaslin <- TRUE
+        for (colname in colnames(meta_full)) {
+          if (sum(!is.na(suppressWarnings(as.numeric(meta_full[,colname])))) == 0) {
+            # This is a categorical variable
+            if (length(unique(meta_full[!is.na(meta_full[,colname]), colname])) < 2) {
+              valid_for_maaslin <- FALSE
+              break
+            }
           }
-          maaslin_tmp <- rbind(maaslin_tmp, maaslin_results)
         }
-      } else {
-        if (ncol(profiles[[i]]) > 1) {
+        
+        # Skip this profile if metadata doesn't have sufficient categorical variation
+        if (!valid_for_maaslin) {
+          next
+        }
+        
+        # Assign unique arbitrary sample names to both while maintaining correspondence
+        arbitrary_names <- paste0("sample_", 1:length(common_samples))
+        rownames(profile_full) <- arbitrary_names
+        rownames(meta_full) <- arbitrary_names
+        
+        if (length(reference_list) > 0) {
+          reference_string = ""
+          for (j in 1:length(reference_list)) {
+            reference_string = paste0(reference_string, ";", names(reference_list[j]), ",", names(which.max(table(meta_full[,names(reference_list[j])]))))
+          }
+          reference_string = gsub("^;", "", reference_string)
+          
           if (dataset != "human") {
-            maaslin_tmp <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]
+            invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
           } else {
-            maaslin_tmp <- Maaslin2(profiles[[i]], meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]
-          }        
+            invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", reference = reference_string, plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]))
+          }
+        } else {
+          if (dataset != "human") {
+            invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
+          } else {
+            invisible(capture.output(maaslin_full <- Maaslin2(profile_full, meta_full, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1, random_effects = "participant")$results[,c(1, 2, 3, 4, 6)]))
+          }
+        }
+        
+        # Bootstrap for SD only (skip for human dataset since it won't be in final plot)
+        bootstrap_results_list <- list()
+        
+        if (dataset != "human") {
+          # Match samples between profile and metadata
+          common_samples <- intersect(rownames(profiles[[i]]), rownames(meta))
+          matched_profile <- profiles[[i]][common_samples, , drop = FALSE]
+          matched_meta <- meta[common_samples, , drop = FALSE]
+          
+          # Identify categorical variables
+          categorical_cols <- c()
+          for (colname in colnames(matched_meta)) {
+            if (sum(!is.na(suppressWarnings(as.numeric(matched_meta[,colname])))) == 0) {
+              categorical_cols <- c(categorical_cols, colname)
+            }
+          }
+          
+          # Create stratification key based on combination of all categorical variables
+          if (length(categorical_cols) > 0) {
+            strata_key <- apply(matched_meta[, categorical_cols, drop = FALSE], 1, function(row) paste(row, collapse = "_"))
+          } else {
+            strata_key <- rep("all", nrow(matched_meta))
+          }
+          
+          for (boot_iter in 1:n_bootstrap) {
+            print(paste0("  Processing bootstrap ", boot_iter, " of ", n_bootstrap))
+            
+            # Stratified bootstrap: sample within each stratum
+            # This guarantees all levels of all categorical variables are present
+            boot_indices <- c()
+            for (stratum in unique(strata_key)) {
+              stratum_indices <- which(strata_key == stratum)
+              n_in_stratum <- length(stratum_indices)
+              boot_indices <- c(boot_indices, sample(stratum_indices, n_in_stratum, replace = TRUE))
+            }
+            
+            # Get the actual sample IDs from the bootstrap indices (from matched data)
+            boot_sample_ids <- rownames(matched_profile)[boot_indices]
+            
+            # Subset both matched datasets using the same sample IDs to ensure alignment
+            boot_profile <- matched_profile[boot_sample_ids, , drop = FALSE]
+            boot_meta <- matched_meta[boot_sample_ids, , drop = FALSE]
+            
+            # Assign unique arbitrary sample names to maintain correspondence
+            boot_arbitrary_names <- paste0("sample_", 1:length(boot_sample_ids))
+            rownames(boot_profile) <- boot_arbitrary_names
+            rownames(boot_meta) <- boot_arbitrary_names
+            
+            if (length(reference_list) > 0) {
+              reference_string = ""
+              for (j in 1:length(reference_list)) {
+                reference_string = paste0(reference_string, ";", names(reference_list[j]), ",", names(which.max(table(boot_meta[,names(reference_list[j])]))))
+              }
+              reference_string = gsub("^;", "", reference_string)
+              
+              invisible(capture.output(maaslin_results <- Maaslin2(boot_profile, boot_meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
+            } else {
+              invisible(capture.output(maaslin_results <- Maaslin2(boot_profile, boot_meta, "analysis/scripts/cache/maaslin", plot_heatmap = FALSE, plot_scatter = FALSE, max_significance = 1)$results[,c(1, 2, 3, 4, 6)]))
+            }
+            
+            bootstrap_results_list[[boot_iter]] <- maaslin_results
+          }
+          
+          # Calculate SD of effect sizes from bootstrap
+          all_bootstrap_results <- do.call(rbind, bootstrap_results_list)
+          
+          if (nrow(all_bootstrap_results) > 0) {
+            boot_sd <- all_bootstrap_results %>%
+              group_by(feature, metadata, value) %>%
+              summarise(
+                coef_sd = sd(coef, na.rm = TRUE),
+                .groups = 'drop'
+              ) %>%
+              as.data.frame()
+            
+            # Merge full dataset results with bootstrap SD
+            maaslin_tmp <- maaslin_full %>%
+              left_join(boot_sd, by = c("feature", "metadata", "value"))
+            
+            # If no SD calculated, set to 0
+            maaslin_tmp$coef_sd[is.na(maaslin_tmp$coef_sd)] <- 0
+          } else {
+            maaslin_tmp <- maaslin_full
+            maaslin_tmp$coef_sd <- 0
+          }
+        } else {
+          # For human dataset, no bootstrap so just use full results with SD = 0
+          maaslin_tmp <- maaslin_full
+          maaslin_tmp$coef_sd <- 0
         }
       }
       
@@ -2190,7 +2697,6 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
         maaslin_tmp <- distinct(maaslin_tmp, feature, metadata, value, .keep_all = TRUE)
         maaslin_tmp$qval <- p.adjust(maaslin_tmp$pval, "BH")
         maaslin_tmp$method = i
-        maaslin_tmp <- maaslin_tmp[maaslin_tmp$qval < 0.25,]
         
         maaslin_out <- rbind(maaslin_out, maaslin_tmp)
       }
@@ -2239,13 +2745,105 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
   
   maaslin_out_final$joined_name <- gsub("\n$", "", maaslin_out_final$joined_name)
   
-  if (core_only) {
-    melted_cormat <- melted_cormat[melted_cormat$Var1 %in% c(tool_core) & melted_cormat$Var2 %in% c(tool_core),]
-  }
-  melted_cormat <- melted_cormat[melted_cormat$Var1 != melted_cormat$Var2,]
+  level_name <- case_when(level == 1 ~ "kingdom",
+                          level == 2 ~ "phylum", 
+                          level == 3 ~ "class",
+                          level == 4 ~ "order",
+                          level == 5 ~ "family",
+                          level == 6 ~ "genus",
+                          level == 7 ~ "species")
   
-  melted_cormat$value <- round(melted_cormat$value, 2)
-  ggheatmap <- ggplot(melted_cormat, aes(factor(Var2, tool_names), factor(Var1, tool_names), fill = value))+
+  ncbi_only_text <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  dir.create(file.path("analysis/figures/Maaslin_comparison/",dataset,"/"), showWarnings = FALSE)
+  
+  for (qval_threshold in c(0.05, 0.25)) {
+    threshold_text <- paste0("qval", qval_threshold)
+    
+    maaslin_out_filtered <- maaslin_out_final[maaslin_out_final$qval < qval_threshold,]
+    
+    if (dataset == "all") {
+      tool_names_tmp <- tool_names
+      
+      melted_cormat_filtered <- c()
+      for (dataset_name in unique(maaslin_out_final$dataset)) {
+        maaslin_subset <- maaslin_out_filtered[maaslin_out_filtered$dataset == dataset_name,]
+        
+        cormat = matrix(0, nrow = length(tool_names_tmp), ncol = length(tool_names_tmp))
+        rownames(cormat) <- tool_names_tmp
+        colnames(cormat) <- tool_names_tmp
+        
+        if (nrow(maaslin_subset) > 0) {
+          methods_present <- unique(maaslin_subset$method)
+          for (i in 1:length(tool_names_tmp)) {
+            for (j in 1:length(tool_names_tmp)) {
+              method_i <- tool_names_tmp[i]
+              method_j <- tool_names_tmp[j]
+              if (method_i %in% methods_present && method_j %in% methods_present) {
+                joined_i <- maaslin_subset$joined_name[maaslin_subset$method == method_i][!is.na(maaslin_subset$joined_name[maaslin_subset$method == method_i])]
+                joined_j <- maaslin_subset$joined_name[maaslin_subset$method == method_j][!is.na(maaslin_subset$joined_name[maaslin_subset$method == method_j])]
+                if (length(unique(c(joined_i, joined_j))) > 0) {
+                  cormat[i,j] <- sum(joined_i %in% joined_j) / length(unique(c(joined_i, joined_j)))
+                } else {
+                  cormat[i,j] <- NA
+                }
+              } else {
+                cormat[i,j] <- NA
+              }
+            }
+          }
+        } else {
+          cormat[,] <- NA
+        }
+        
+        melted_cormat_tmp <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+        if (dataset_name != "Human gut") {
+          melted_cormat_filtered <- rbind(melted_cormat_filtered, melted_cormat_tmp)
+        }
+      }
+      if (nrow(melted_cormat_filtered) > 0) {
+        melted_cormat_filtered <- aggregate(value ~ Var1 + Var2, melted_cormat_filtered, FUN = mean, na.rm = TRUE)
+      }
+    } else {
+      if (!(dataset %in% c("acid_mine", "animal_gut", "cat_gut", "coastal_sediment", "dog_gut", "forest_soil", "human", "saltmarsh"))) {
+        tool_names_tmp <- tool_names[-c(9, 11)]
+      } else {
+        tool_names_tmp <- tool_names
+      }
+      
+      cormat = matrix(0, nrow = length(tool_names_tmp), ncol = length(tool_names_tmp))
+      rownames(cormat) <- tool_names_tmp
+      colnames(cormat) <- tool_names_tmp
+      
+      if (nrow(maaslin_out_filtered) > 0) {
+        methods_present <- unique(maaslin_out_filtered$method)
+        for (i in 1:length(tool_names_tmp)) {
+          for (j in 1:length(tool_names_tmp)) {
+            method_i <- tool_names_tmp[i]
+            method_j <- tool_names_tmp[j]
+            if (method_i %in% methods_present && method_j %in% methods_present) {
+              joined_i <- maaslin_out_filtered$joined_name[maaslin_out_filtered$method == method_i][!is.na(maaslin_out_filtered$joined_name[maaslin_out_filtered$method == method_i])]
+              joined_j <- maaslin_out_filtered$joined_name[maaslin_out_filtered$method == method_j][!is.na(maaslin_out_filtered$joined_name[maaslin_out_filtered$method == method_j])]
+              if (length(unique(c(joined_i, joined_j))) > 0) {
+                cormat[i,j] <- sum(joined_i %in% joined_j) / length(unique(c(joined_i, joined_j)))
+              } else {
+                cormat[i,j] <- NA
+              }
+            } else {
+              cormat[i,j] <- NA
+            }
+          }
+        }
+      } else {
+        cormat[,] <- NA
+      }
+      
+      melted_cormat_filtered <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+    }
+    
+  # Generate plots for all tools
+  melted_cormat_all <- melted_cormat_filtered[melted_cormat_filtered$Var1 != melted_cormat_filtered$Var2,]
+  melted_cormat_all$value <- round(melted_cormat_all$value, 2)
+  ggheatmap_all <- ggplot(melted_cormat_all, aes(factor(Var2, tool_names), factor(Var1, tool_names), fill = value))+
     geom_tile(color = "white")+
     scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
                          limit = c(0,1), space = "Lab", 
@@ -2256,7 +2854,7 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
           axis.text.y = element_text(size = 12))+
     coord_fixed()
   
-  ggheatmap + 
+  ggheatmap_all + 
     geom_text(aes(factor(Var2, tool_names), factor(Var1, tool_names), label = value), color = "black", size = 4) +
     theme(
       axis.title.x = element_blank(),
@@ -2272,35 +2870,187 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
     guides(fill = guide_colorbar(barwidth = 8, barheight = 1.5,
                                  title.position = "top", title.hjust = 0.5))
   
-  level_name <- case_when(level == 1 ~ "kingdom",
-                          level == 2 ~ "phylum", 
-                          level == 3 ~ "class",
-                          level == 4 ~ "order",
-                          level == 5 ~ "family",
-                          level == 6 ~ "genus",
-                          level == 7 ~ "species")
+  ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_grid_all_tools.png"), width=18, height=15, units = 'cm', dpi=1000, bg='#ffffff')
   
-  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
-  dir.create(file.path("analysis/figures/Maaslin_comparison/",dataset,"/"), showWarnings = FALSE)
-  if (core_only) {
-    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_grid.png"), width=18, height=15, units = 'cm', dpi=1000, bg='#ffffff')
-  } else {
-    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_grid_all_tools.png"), width=18, height=15, units = 'cm', dpi=1000, bg='#ffffff')
-  }
+  # Generate plots for core tools only
+  melted_cormat_core <- melted_cormat_filtered[melted_cormat_filtered$Var1 %in% c(tool_core) & melted_cormat_filtered$Var2 %in% c(tool_core),]
+  melted_cormat_core <- melted_cormat_core[melted_cormat_core$Var1 != melted_cormat_core$Var2,]
+  melted_cormat_core$value <- round(melted_cormat_core$value, 2)
+  ggheatmap_core <- ggplot(melted_cormat_core, aes(factor(Var2, tool_names), factor(Var1, tool_names), fill = value))+
+    geom_tile(color = "white")+
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0,1), space = "Lab", 
+                         name="Intersection\n over union") +
+    theme_minimal()+ 
+    theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+                                     size = 12, hjust = 1),
+          axis.text.y = element_text(size = 12))+
+    coord_fixed()
   
-  if (core_only) {
-    maaslin_out_final <- maaslin_out_final[maaslin_out_final$method %in% tool_core,]
-  }
+  ggheatmap_core + 
+    geom_text(aes(factor(Var2, tool_names), factor(Var1, tool_names), label = value), color = "black", size = 4) +
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.border = element_blank(),
+      panel.background = element_blank(),
+      axis.ticks = element_blank(),
+      legend.justification = c(1, 0),
+      legend.position = c(0.5, 0.7),
+      legend.direction = "horizontal",
+      legend.title=element_text(size=14)) +
+    guides(fill = guide_colorbar(barwidth = 8, barheight = 1.5,
+                                 title.position = "top", title.hjust = 0.5))
   
-  # If looking over all datsets, keep the top 2 associations for each dataset
-  if (dataset == "all") {
-    signif_assoc <- table(maaslin_out_final$method, maaslin_out_final$dataset)
-    signif_df <- reshape2::melt(signif_assoc)
-    signif_df$org_value <- round(signif_df$value, 2)
-    signif_df$value <- log(signif_df$value)
-    signif_df$value[signif_df$value == -Inf] <- 0
+  ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_grid.png"), width=18, height=15, units = 'cm', dpi=1000, bg='#ffffff')
+  
+  # Generate database coverage plot: proportion of significant taxa from each tool (rows) found in each tool's database (columns)
+  if (dataset == "all" && nrow(maaslin_out_filtered) > 0) {
+    # Load all tool databases
+    tool_databases <- list()
+    tool_db_names <- c("Centrifuge" = "centrifuge.tsv",
+                       "Kraken 2 / Bracken 2" = "KrakenBracken.tsv",
+                       "MetaPhlAn 2" = "MetaPhlAn2.tsv",
+                       "MetaPhlAn 3" = "MetaPhlAn3.tsv",
+                       "MetaPhlAn 4" = "MetaPhlAn4.tsv",
+                       "Metaxa 2" = "Metaxa2.tsv",
+                       "mOTUs 3" = "mOTUs3.tsv",
+                       "GTDB-Tk MEGAHIT" = "GTDBTk.tsv",
+                       "PhyloPhlAn MEGAHIT" = "PhyloPhlAn3.tsv",
+                       "GTDB-Tk metaSPAdes" = "GTDBTk.tsv",
+                       "PhyloPhlAn metaSPAdes" = "PhyloPhlAn3.tsv")
     
-    ggheatmap <- ggplot(signif_df, aes(factor(Var1, tool_names), factor(Var2, rev(c("Human gut", "Wild animal gut", "Forest soil", "Gator nest", "Acid mine runoff", "Salt marsh", "Polar ocean"))), fill = value)) +
+    for (tool in names(tool_db_names)) {
+      if (tool %in% unique(maaslin_out_filtered$method)) {
+        db_file <- paste0("analysis/databases/standardized_databases/", tool_db_names[tool])
+        if (file.exists(db_file)) {
+          db <- read.csv(db_file, sep = "\t")
+          # Extract the last element from each TaxID lineage
+          # This matches what helpers.R does in line 398:
+          # taxa[[i]]$TaxIDs <- str_split(taxa[[i]]$TaxIDs, "\\|") %>% mapply(FUN = "[[", as.list(str_count(taxa[[i]]$TaxIDs, "\\|") + 1))
+          species_ids <- str_split(db$TaxID, "\\|") %>% 
+            mapply(FUN = "[[", as.list(str_count(db$TaxID, "\\|") + 1)) %>%
+            tolower()
+          # Store unique TaxIDs (both with and without X prefix for compatibility)
+          species_ids <- unique(species_ids)
+          tool_databases[[tool]] <- unique(c(species_ids, paste0("X", species_ids)))
+        }
+      }
+    }
+    
+    # Create matrix: rows = tools with significant associations, columns = tool databases
+    coverage_matrix <- matrix(0, nrow = length(unique(maaslin_out_filtered$method)), 
+                               ncol = length(tool_databases))
+    rownames(coverage_matrix) <- unique(maaslin_out_filtered$method)
+    colnames(coverage_matrix) <- names(tool_databases)
+    
+    # For each tool's significant associations, calculate proportion per dataset then average
+    for (tool_row in rownames(coverage_matrix)) {
+      for (db_col in colnames(coverage_matrix)) {
+        if (db_col %in% names(tool_databases)) {
+          # Calculate proportion per dataset, then average
+          dataset_proportions <- c()
+          for (dataset_name in unique(maaslin_out_filtered$dataset)) {
+            # Get all taxa from this tool in this dataset (no deduplication)
+            tool_taxa <- maaslin_out_filtered$feature[maaslin_out_filtered$method == tool_row & 
+                                                       maaslin_out_filtered$dataset == dataset_name]
+            tool_taxa <- tool_taxa[!is.na(tool_taxa) & tool_taxa != "UNCLASSIFIED"]
+            
+            if (length(tool_taxa) > 0) {
+              # Calculate proportion of taxa found in this database
+              n_in_db <- sum(tool_taxa %in% tool_databases[[db_col]])
+              dataset_proportions <- c(dataset_proportions, n_in_db / length(tool_taxa))
+            }
+          }
+          # Average the proportions across datasets
+          if (length(dataset_proportions) > 0) {
+            coverage_matrix[tool_row, db_col] <- mean(dataset_proportions)
+          }
+        }
+      }
+    }
+    
+    # Convert to data frame for plotting
+    coverage_df <- reshape2::melt(coverage_matrix)
+    colnames(coverage_df) <- c("Tool", "Database", "Proportion")
+    coverage_df$Proportion <- round(coverage_df$Proportion, 2)
+    
+    # Plot all tools version
+    ggheatmap_coverage <- ggplot(coverage_df, aes(factor(Database, tool_names), factor(Tool, tool_names), fill = Proportion)) +
+      geom_tile(color = "white") +
+      scale_fill_gradient2(low = "white", high = "blue", mid = "#AAAAFF", midpoint = 0.5,
+                           limit = c(0,1), space = "Lab", 
+                           name="Proportion of\nsignificant taxa\nin database") +
+      xlab("Database") +
+      ylab("Significant associations") +
+      theme_minimal() + 
+      theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+                                       size = 12, hjust = 1),
+            axis.text.y = element_text(size = 12),
+            axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+            axis.title.y = element_text(size = 14, margin = margin(r = 10))) +
+      coord_fixed()
+    
+    ggheatmap_coverage + 
+      geom_text(aes(factor(Database, tool_names), factor(Tool, tool_names), label = Proportion), color = "black", size = 4) +
+      theme(
+        panel.grid.major = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "right",
+        legend.direction = "vertical",
+        legend.title=element_text(size=14)) +
+      guides(fill = guide_colorbar(barwidth = 1.5, barheight = 8,
+                                   title.position = "top", title.hjust = 0.5))
+    
+    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_database_coverage_all_tools.png"), width=22, height=18, units = 'cm', dpi=1000, bg='#ffffff')
+    
+    # Core tools version
+    coverage_df_core <- coverage_df[coverage_df$Tool %in% tool_core & coverage_df$Database %in% tool_core,]
+    
+    ggheatmap_coverage_core <- ggplot(coverage_df_core, aes(factor(Database, tool_names), factor(Tool, tool_names), fill = Proportion)) +
+      geom_tile(color = "white") +
+      scale_fill_gradient2(low = "white", high = "blue", mid = "#AAAAFF", midpoint = 0.5,
+                           limit = c(0,1), space = "Lab", 
+                           name="Proportion of\nsignificant taxa\nin database") +
+      xlab("Database") +
+      ylab("Significant associations") +
+      theme_minimal() + 
+      theme(axis.text.x = element_text(angle = 45, vjust = 1, 
+                                       size = 12, hjust = 1),
+            axis.text.y = element_text(size = 12),
+            axis.title.x = element_text(size = 14, margin = margin(t = 10)),
+            axis.title.y = element_text(size = 14, margin = margin(r = 10))) +
+      coord_fixed()
+    
+    ggheatmap_coverage_core + 
+      geom_text(aes(factor(Database, tool_names), factor(Tool, tool_names), label = Proportion), color = "black", size = 4) +
+      theme(
+        panel.grid.major = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "right",
+        legend.direction = "vertical",
+        legend.title=element_text(size=14)) +
+      guides(fill = guide_colorbar(barwidth = 1.5, barheight = 8,
+                                   title.position = "top", title.hjust = 0.5))
+    
+    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_database_coverage.png"), width=22, height=18, units = 'cm', dpi=1000, bg='#ffffff')
+  }
+  
+  # If looking over all datasets, generate counts heatmaps for both all tools and core tools
+  if (dataset == "all") {
+    # All tools version
+    signif_assoc_all <- table(maaslin_out_filtered$method, maaslin_out_filtered$dataset)
+    signif_df_all <- reshape2::melt(signif_assoc_all)
+    signif_df_all$org_value <- round(signif_df_all$value, 2)
+    signif_df_all$value <- log(signif_df_all$value)
+    signif_df_all$value[signif_df_all$value == -Inf] <- 0
+    
+    ggheatmap_all <- ggplot(signif_df_all, aes(factor(Var1, tool_names), factor(Var2, rev(c("Human gut", "Wild animal gut", "Forest soil", "Gator nest", "Acid mine runoff", "Salt marsh", "Polar ocean"))), fill = value)) +
       geom_tile(color = "white")+
       scale_fill_viridis_c(option = "plasma", begin = 0.3) + 
       theme_minimal() +
@@ -2309,7 +3059,7 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
             axis.text.y = element_text(size = 12))+
       coord_fixed()
     
-    ggheatmap + 
+    ggheatmap_all + 
       geom_text(aes(factor(Var1, tool_names), factor(Var2, rev(c("Human gut", "Wild animal gut", "Forest soil", "Gator nest", "Acid mine runoff", "Salt marsh", "Polar ocean"))), label = org_value), color = "black", size = 4) +
       theme(
         axis.title.x = element_blank(),
@@ -2320,22 +3070,48 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
         axis.ticks = element_blank(),
         legend.position = "none")
     
-    if (core_only) {
-      ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_counts.png"), width=24, height=12, units = 'cm', dpi=1000, bg='#ffffff')
-    } else {
-      ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_counts_all_tools.png"), width=24, height=12, units = 'cm', dpi=1000, bg='#ffffff')
-    }
+    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_counts_all_tools.png"), width=24, height=12, units = 'cm', dpi=1000, bg='#ffffff')
+    
+    # Core tools version
+    maaslin_out_core <- maaslin_out_filtered[maaslin_out_filtered$method %in% tool_core,]
+    signif_assoc_core <- table(maaslin_out_core$method, maaslin_out_core$dataset)
+    signif_df_core <- reshape2::melt(signif_assoc_core)
+    signif_df_core$org_value <- round(signif_df_core$value, 2)
+    signif_df_core$value <- log(signif_df_core$value)
+    signif_df_core$value[signif_df_core$value == -Inf] <- 0
+    
+    ggheatmap_core <- ggplot(signif_df_core, aes(factor(Var1, tool_names), factor(Var2, rev(c("Human gut", "Wild animal gut", "Forest soil", "Gator nest", "Acid mine runoff", "Salt marsh", "Polar ocean"))), fill = value)) +
+      geom_tile(color = "white")+
+      scale_fill_viridis_c(option = "plasma", begin = 0.3) + 
+      theme_minimal() +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, 
+                                       size = 12, hjust = 1),
+            axis.text.y = element_text(size = 12))+
+      coord_fixed()
+    
+    ggheatmap_core + 
+      geom_text(aes(factor(Var1, tool_names), factor(Var2, rev(c("Human gut", "Wild animal gut", "Forest soil", "Gator nest", "Acid mine runoff", "Salt marsh", "Polar ocean"))), label = org_value), color = "black", size = 4) +
+      theme(
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none")
+    
+    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_counts.png"), width=24, height=12, units = 'cm', dpi=1000, bg='#ffffff')
   }
   
   # Keep only the 2 most significant associations
-  tmp_sort_list <- sort(table(maaslin_out_final[maaslin_out_final$dataset != "Human gut",]$joined_name), decreasing=TRUE)
+  tmp_sort_list <- sort(table(maaslin_out_filtered[maaslin_out_filtered$dataset != "Human gut",]$joined_name), decreasing=TRUE)
   keep_sort_list <- c()
   for (dataset_item in unique(gsub("\\:.*", "", names(tmp_sort_list)))) {
     keep_sort_list <- c(keep_sort_list, tmp_sort_list[gsub("\\:.*", "", names(tmp_sort_list)) == dataset_item][1:2])
   }
   keep_sort_list <- sort(keep_sort_list, decreasing = T)
   
-  overlap_maaslin <- maaslin_out_final[maaslin_out_final$joined_name %in% names(keep_sort_list),]
+  overlap_maaslin <- maaslin_out_filtered[maaslin_out_filtered$joined_name %in% names(keep_sort_list),]
   
   # Swap NCBI IDs to common names
   level_list <- fread(paste0("analysis/databases/ncbi_taxdump/names.dmp"), sep="\t", header = F)
@@ -2354,7 +3130,6 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
   }
   
   colAdd <- c("#CF9FFF", "#A15BE4", "#00FFFF", "#0061FE", "#1434A4", "#81C784", "#2E7D32", "#FF7300", "#FBB15B", "#AC0911", "#E95420")
-  col = scale_color_manual(values = colAdd[tool_names %in% unique(overlap_maaslin$method)])
   
   overlap_maaslin$`Q-value below` <- overlap_maaslin$qval
   overlap_maaslin$`Q-value below` <- case_when(overlap_maaslin$`Q-value below` < 0.001 ~ "0.001",
@@ -2364,19 +3139,25 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
   overlap_maaslin$`Q-value below` <- factor(overlap_maaslin$`Q-value below`, c("0.25", "0.05", "0.01", "0.001"))
   
   if (nrow(overlap_maaslin) > 0) {
+    # All tools version
+    col_all = scale_color_manual(values = colAdd[tool_names %in% unique(overlap_maaslin$method)])
+    
+    pos_dodge <- position_dodge(width = 0.5)
+    
     ggplot(overlap_maaslin, aes(y=coef, x=factor(joined_name, rev(sort(unique(overlap_maaslin$joined_name)))), color = factor(method, tool_names), size = `Q-value below`)) + 
-      geom_beeswarm(cex=2.5, stroke=2) + 
+      geom_errorbar(aes(ymin = coef - coef_sd, ymax = coef + coef_sd), width = 0, alpha = 1, linewidth = 1, position = pos_dodge) +
+      geom_point(stroke=2, position = pos_dodge) + 
       theme_bw() + 
       ylab("Effect size") + 
       xlab("Association") + 
-      col + 
+      col_all + 
       scale_size_manual(values=c(1, 1.75, 2.5, 3.25)) + 
       theme(text=element_text(size=14),
             plot.margin = unit(c(2,1,1,1), "cm"),
-            legend.key.size = unit(1, 'cm'), #change legend key size
-            legend.key.height = unit(1, 'cm'), #change legend key height
-            legend.key.width = unit(1, 'cm'), #change legend key width
-            legend.title = element_text(size=14), #change legend title font size
+            legend.key.size = unit(1, 'cm'),
+            legend.key.height = unit(1, 'cm'),
+            legend.key.width = unit(1, 'cm'),
+            legend.title = element_text(size=14),
             legend.text = element_text(size=12),
             legend.position = "bottom",
             legend.direction = "horizontal") + 
@@ -2386,19 +3167,48 @@ Maaslin_comparison <- function(dataset, level, ncbi_only = TRUE, core_only = TRU
       geom_hline(yintercept = 0, linetype="dashed") + 
       coord_flip()
     
-    if (core_only) {
-      ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_effects.png"), width=28, height=20, units = 'cm', dpi=1000, bg='#ffffff')
-    } else {
-      ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_effects_all_tools.png"), width=28, height=20, units = 'cm', dpi=1000, bg='#ffffff')
-    }
+    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_effects_all_tools.png"), width=28, height=20, units = 'cm', dpi=1000, bg='#ffffff')
+    
+    # Core tools version
+    overlap_maaslin_core <- overlap_maaslin[overlap_maaslin$method %in% tool_core,]
+    col_core = scale_color_manual(values = colAdd[tool_names %in% unique(overlap_maaslin_core$method)])
+    
+    pos_dodge_core <- position_dodge(width = 0.5)
+    
+    ggplot(overlap_maaslin_core, aes(y=coef, x=factor(joined_name, rev(sort(unique(overlap_maaslin_core$joined_name)))), color = factor(method, tool_names), size = `Q-value below`)) + 
+      geom_errorbar(aes(ymin = coef - coef_sd, ymax = coef + coef_sd), width = 0, alpha = 1, linewidth = 1, position = pos_dodge_core) +
+      geom_point(stroke=2, position = pos_dodge_core) + 
+      theme_bw() + 
+      ylab("Effect size") + 
+      xlab("Association") + 
+      col_core + 
+      scale_size_manual(values=c(1, 1.75, 2.5, 3.25)) + 
+      theme(text=element_text(size=14),
+            plot.margin = unit(c(2,1,1,1), "cm"),
+            legend.key.size = unit(1, 'cm'),
+            legend.key.height = unit(1, 'cm'),
+            legend.key.width = unit(1, 'cm'),
+            legend.title = element_text(size=14),
+            legend.text = element_text(size=12),
+            legend.position = "bottom",
+            legend.direction = "horizontal") + 
+      guides(color="none") + 
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.5, 
+                                       size = 14, hjust = 1)) + 
+      geom_hline(yintercept = 0, linetype="dashed") + 
+      coord_flip()
+    
+    ggsave(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_effects.png"), width=28, height=20, units = 'cm', dpi=1000, bg='#ffffff')
   } else {
-    file.create(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only, "_Maaslin_effects.png"))
+    file.create(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_effects.png"))
+    file.create(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", ncbi_only_text, "_", threshold_text, "_Maaslin_effects_all_tools.png"))
+  }
+  
   }
 }
 make_all_Maaslin_comparison <- function() {
   for (dataset in c("all")) {
     for (level in c(7)) {
-      ncbi_only <- TRUE
       print(paste0("Processing ", dataset, " at level ", level))
       level_name <- case_when(level == 1 ~ "kingdom",
                               level == 2 ~ "phylum", 
@@ -2407,18 +3217,17 @@ make_all_Maaslin_comparison <- function() {
                               level == 5 ~ "family",
                               level == 6 ~ "genus",
                               level == 7 ~ "species")
-      if (!file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_Maaslin_effects.png"))) {
+      
+      # Check if plots exist for both thresholds
+      threshold_05_text <- "qval0.05"
+      threshold_25_text <- "qval0.25"
+      
+      if (!file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_", threshold_05_text, "_Maaslin_effects.png")) ||
+          !file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_", threshold_05_text, "_Maaslin_effects_all_tools.png")) ||
+          !file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_", threshold_25_text, "_Maaslin_effects.png")) ||
+          !file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_", threshold_25_text, "_Maaslin_effects_all_tools.png"))) {
         Maaslin_comparison(dataset, level)
       }
-      if (!file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "NCBI_only", "_Maaslin_effects_all_tools.png"))) {
-        Maaslin_comparison(dataset, level, TRUE, FALSE)
-      }
-      # if (!file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "all_taxa", "_Maaslin_effects.png"))) {
-      #   Maaslin_comparison(dataset, level, ncbi_only = FALSE)
-      # }
-      # if (!file.exists(paste0("analysis/figures/Maaslin_comparison/",dataset,"/",dataset,"_",level_name,"_", "all_taxa", "_Maaslin_effects_all_tools.png"))) {
-      #   Maaslin_comparison(dataset, level, ncbi_only = FALSE, core_only = FALSE)
-      # }
     }
   }
 }
