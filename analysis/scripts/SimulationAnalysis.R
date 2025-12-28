@@ -1287,96 +1287,114 @@ f1_vs_parameter_merged <- function(dataset, level, ncbi_only=TRUE, metric="F1") 
   
   # Create each sub-plot
   p1 <- ggplot(f1_df[f1_df$sample_size==default_params["sample_size"] & f1_df$unknown==default_params["unknown"] & f1_df$k==default_params["k"] & f1_df$sigma==default_params["sigma"] & f1_df$mut_rate==default_params["mut_rate"],],
-               aes(x=n, y=value, color=factor(Method, tool_core))) + geom_jitter(width = 0.01) +
-    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+               aes(x=n, y=value, color=factor(Method, tool_core))) + geom_jitter(width = 0.01, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
     theme_bw() +
     ylab(paste0(metric, " at the ", level_name, " level")) +
     xlab("Species count") +
     col +
     scale_x_continuous(trans='log10', breaks = c(75, 150, 300, 600)) +
-    theme(text=element_text(size=16),
+    theme(text=element_text(size=30),
           plot.margin = unit(c(1,0,1,0), "cm"),
           legend.key.size = unit(1, 'cm'), #change legend key size
           legend.key.height = unit(1, 'cm'), #change legend key height
           legend.key.width = unit(1, 'cm'), #change legend key width
           legend.title = element_text(size=12), #change legend title font size
           legend.text = element_text(size=10),
-          legend.position = "none") +
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
     guides(color=guide_legend(title="Tool"))
   
   p2 <- ggplot(f1_df[f1_df$n==default_params["n"] & f1_df$unknown==default_params["unknown"] & f1_df$k==default_params["k"] & f1_df$sigma==default_params["sigma"] & f1_df$mut_rate==default_params["mut_rate"],],
                aes(x=sample_size, y=value, color=factor(Method, tool_core))) +
-    geom_jitter(width = 0.05) +
-    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+    geom_jitter(width = 0.05, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
     theme_bw() +
     ylab("") +
     xlab("Sample size (GB)") +
-    scale_x_continuous(trans='log10', breaks = c(0.05, 0.5, 1.5, 7.5, 30)) +
+    scale_x_continuous(trans='log10', breaks = c(0.05, 0.5, 1.5, 7.5, 30), limits = c(0.04, 45)) +
     col +
-    theme(text=element_text(size=16),
+    theme(text=element_text(size=30),
           plot.margin = unit(c(1,0,1,0), "cm"),
           legend.key.size = unit(1, 'cm'), #change legend key size
           legend.key.height = unit(1, 'cm'), #change legend key height
           legend.key.width = unit(1, 'cm'), #change legend key width
           legend.title = element_text(size=12), #change legend title font size
           legend.text = element_text(size=10),
-          legend.position = "none") +
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
     guides(color=guide_legend(title="Tool"))
   
   if (level == 7) {
     p3 <- ggplot(f1_df[f1_df$n==default_params["n"] & f1_df$sample_size==default_params["sample_size"] & f1_df$k==default_params["k"] & f1_df$sigma==default_params["sigma"] & f1_df$mut_rate==default_params["mut_rate"] & f1_df$unknown != 1,],
                  aes(x=100 * unknown, y=value, color=factor(Method, tool_core))) +
-      geom_jitter(width = 1) +
-      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+      geom_jitter(width = 1, size = 2) +
+      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+      scale_x_continuous(breaks = c(0, 25, 50, 75)) +
       theme_bw() +
       ylab("") +
-      xlab("Unknown species (%)") +
+      xlab("Unknown species %") +
       col +
-      theme(text=element_text(size=16),
+      theme(text=element_text(size=30),
             plot.margin = unit(c(1,0,1,0), "cm"),
             legend.key.size = unit(1, 'cm'), #change legend key size
             legend.key.height = unit(1, 'cm'), #change legend key height
             legend.key.width = unit(1, 'cm'), #change legend key width
             legend.title = element_text(size=12), #change legend title font size
             legend.text = element_text(size=10),
-            legend.position = "none") +
+            legend.position = "none",
+            panel.grid.major = element_line(size = 1.5),
+            panel.grid.minor = element_line(size = 0.5),
+            panel.border = element_rect(size = 1.5, fill = NA)) +
       guides(color=guide_legend(title="Tool"))
   } else {
     p3 <- ggplot(f1_df[f1_df$n==default_params["n"] & f1_df$sample_size==default_params["sample_size"] & f1_df$k==default_params["k"] & f1_df$sigma==default_params["sigma"] & f1_df$mut_rate==default_params["mut_rate"],],
                  aes(x=100 * unknown, y=value, color=factor(Method, tool_core))) +
-      geom_jitter(width = 1) +
-      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+      geom_jitter(width = 1, size = 2) +
+      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+      scale_x_continuous(breaks = c(0, 25, 50, 75, 100)) +
       theme_bw() +
       ylab("") +
-      xlab("Unknown species (%)") +
+      xlab("Unknown species %") +
       col +
-      theme(text=element_text(size=16),
+      theme(text=element_text(size=30),
             plot.margin = unit(c(1,0,1,0), "cm"),
             legend.key.size = unit(1, 'cm'), #change legend key size
             legend.key.height = unit(1, 'cm'), #change legend key height
             legend.key.width = unit(1, 'cm'), #change legend key width
             legend.title = element_text(size=12), #change legend title font size
             legend.text = element_text(size=10),
-            legend.position = "none") +
+            legend.position = "none",
+            panel.grid.major = element_line(size = 1.5),
+            panel.grid.minor = element_line(size = 0.5),
+            panel.border = element_rect(size = 1.5, fill = NA)) +
       guides(color=guide_legend(title="Tool"))
   }
   
   p4 <- ggplot(f1_df[f1_df$n==default_params["n"] & f1_df$sample_size==default_params["sample_size"] & f1_df$unknown==default_params["unknown"] & f1_df$k==default_params["k"] & f1_df$sigma==default_params["sigma"],],
                aes(x=mut_rate, y=value, color=factor(Method, tool_core))) +
-    geom_jitter(width = 0.001) +
-    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+    geom_jitter(width = 0.001, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+    scale_x_continuous(limits = c(0, 0.055), breaks = c(0, 0.01, 0.02, 0.05)) +
     theme_bw() +
     ylab("") +
     xlab("Mutation rate") +
     col +
-    theme(text=element_text(size=16),
+    theme(text=element_text(size=30),
           plot.margin = unit(c(1,0,1,0), "cm"),
           legend.key.size = unit(1, 'cm'), #change legend key size
           legend.key.height = unit(1, 'cm'), #change legend key height
           legend.key.width = unit(1, 'cm'), #change legend key width
           legend.title = element_text(size=12), #change legend title font size
           legend.text = element_text(size=10),
-          legend.position = "none") +
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
     guides(color=guide_legend(title="Tool"))
   
   g <- arrangeGrob(
@@ -1385,7 +1403,7 @@ f1_vs_parameter_merged <- function(dataset, level, ncbi_only=TRUE, metric="F1") 
   
   ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
   dir.create(file.path("analysis/figures/", metric, "_vs_parameter/",dataset,"/merged/"), showWarnings = FALSE)
-  ggsave(paste0("analysis/figures/", metric, "_vs_parameter/",dataset,"/merged/",dataset,"_",level_name,"_", ncbi_only, ".png"), g, width=44, height=10, units = 'cm', dpi=1000, bg='#ffffff')
+  ggsave(paste0("analysis/figures/", metric, "_vs_parameter/",dataset,"/merged/",dataset,"_",level_name,"_", ncbi_only, ".png"), g, width=60, height=14, units = 'cm', dpi=1000, bg='#ffffff')
 }
 make_all_f1_vs_parameter_merged <- function() {
   dataset <- "soil"
@@ -1402,6 +1420,7 @@ make_all_f1_vs_parameter_merged <- function() {
   }
 }
 make_all_f1_vs_parameter_merged()
+
 
 # Create a heatmap for how F1, precision, and recall change with the parameters
 f1_vs_parameter_merged_heatmap <- function(dataset, level, ncbi_only=TRUE, metric="F1") {
@@ -1690,100 +1709,118 @@ bray_vs_parameter_merged <- function(dataset, level, ncbi_only=TRUE) {
   
   # Make each individual plot
   p1 <- ggplot(bray_df[bray_df$sample_size==default_params["sample_size"] & bray_df$unknown==default_params["unknown"] & bray_df$k==default_params["k"] & bray_df$sigma==default_params["sigma"] & bray_df$mut_rate==default_params["mut_rate"],],
-               aes(x=n, y=value, color=factor(Method, tool_core))) + geom_jitter(width = 0.01) +
-    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+               aes(x=n, y=value, color=factor(Method, tool_core))) + geom_jitter(width = 0.01, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
     theme_bw() +
-    ylab(paste0("1 - Bray Curtis dissimilarity\nat the ", level_name, " level")) +
+    ylab(paste0("1 - BC dissimilarity\nat the ", level_name, " level")) +
     xlab("Species count") +
     col +
     scale_x_continuous(trans='log10', breaks = c(75, 150, 300, 600)) +
-    theme(text=element_text(size=16),
+    theme(text=element_text(size=30),
           plot.margin = unit(c(1,0,1,0), "cm"),
           legend.key.size = unit(1, 'cm'), #change legend key size
           legend.key.height = unit(1, 'cm'), #change legend key height
           legend.key.width = unit(1, 'cm'), #change legend key width
           legend.title = element_text(size=12), #change legend title font size
           legend.text = element_text(size=10),
-          legend.position = "none") +
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
     guides(color=guide_legend(title="Tool"))
   
   ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
   
   p2 <- ggplot(bray_df[bray_df$n==default_params["n"] & bray_df$unknown==default_params["unknown"] & bray_df$k==default_params["k"] & bray_df$sigma==default_params["sigma"] & bray_df$mut_rate==default_params["mut_rate"],],
                aes(x=sample_size, y=value, color=factor(Method, tool_core))) +
-    geom_jitter(width = 0.05) +
-    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+    geom_jitter(width = 0.05, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
     theme_bw() +
     ylab("") +
     xlab("Sample size (GB)") +
-    scale_x_continuous(trans='log10', breaks = c(0.05, 0.5, 1.5, 7.5, 30)) +
+    scale_x_continuous(trans='log10', breaks = c(0.05, 0.5, 1.5, 7.5, 30), limits = c(0.04, 45)) +
     col +
-    theme(text=element_text(size=16),
+    theme(text=element_text(size=30),
           plot.margin = unit(c(1,0,1,0), "cm"),
           legend.key.size = unit(1, 'cm'), #change legend key size
           legend.key.height = unit(1, 'cm'), #change legend key height
           legend.key.width = unit(1, 'cm'), #change legend key width
           legend.title = element_text(size=12), #change legend title font size
           legend.text = element_text(size=10),
-          legend.position = "none") +
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
     guides(color=guide_legend(title="Tool"))
   
   if (level == 7) {
     p3 <- ggplot(bray_df[bray_df$n==default_params["n"] & bray_df$sample_size==default_params["sample_size"] & bray_df$k==default_params["k"] & bray_df$sigma==default_params["sigma"] & bray_df$mut_rate==default_params["mut_rate"] & bray_df$unknown != 1,],
                  aes(x=100 * unknown, y=value, color=factor(Method, tool_core))) +
-      geom_jitter(width = 1) +
-      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+      geom_jitter(width = 1, size = 2) +
+      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+      scale_x_continuous(breaks = c(0, 25, 50, 75)) +
       theme_bw() +
       ylab("") +
       xlab("Unknown species (%)") +
       scale_x_continuous(breaks=c(0,25,50,75)) + 
       col +
-      theme(text=element_text(size=16),
+      theme(text=element_text(size=30),
             plot.margin = unit(c(1,0,1,0), "cm"),
             legend.key.size = unit(1, 'cm'), #change legend key size
             legend.key.height = unit(1, 'cm'), #change legend key height
             legend.key.width = unit(1, 'cm'), #change legend key width
             legend.title = element_text(size=12), #change legend title font size
             legend.text = element_text(size=10),
-            legend.position = "none") +
+            legend.position = "none",
+            panel.grid.major = element_line(size = 1.5),
+            panel.grid.minor = element_line(size = 0.5),
+            panel.border = element_rect(size = 1.5, fill = NA)) +
       guides(color=guide_legend(title="Tool"))
   } else {
     p3 <- ggplot(bray_df[bray_df$n==default_params["n"] & bray_df$sample_size==default_params["sample_size"] & bray_df$k==default_params["k"] & bray_df$sigma==default_params["sigma"] & bray_df$mut_rate==default_params["mut_rate"],],
                  aes(x=100 * unknown, y=value, color=factor(Method, tool_core))) +
-      geom_jitter(width = 1) +
-      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+      geom_jitter(width = 1, size = 2) +
+      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+      scale_x_continuous(breaks = c(0, 25, 50, 75, 100)) +
       theme_bw() +
       ylab("") +
       scale_x_continuous(breaks=c(0,25,50,75,100)) + 
       xlab("Unknown species (%)") +
       col +
-      theme(text=element_text(size=16),
+      theme(text=element_text(size=30),
             plot.margin = unit(c(1,0,1,0), "cm"),
             legend.key.size = unit(1, 'cm'), #change legend key size
             legend.key.height = unit(1, 'cm'), #change legend key height
             legend.key.width = unit(1, 'cm'), #change legend key width
             legend.title = element_text(size=12), #change legend title font size
             legend.text = element_text(size=10),
-            legend.position = "none") +
+            legend.position = "none",
+            panel.grid.major = element_line(size = 1.5),
+            panel.grid.minor = element_line(size = 0.5),
+            panel.border = element_rect(size = 1.5, fill = NA)) +
       guides(color=guide_legend(title="Tool"))
   }
   
   p4 <- ggplot(bray_df[bray_df$n==default_params["n"] & bray_df$sample_size==default_params["sample_size"] & bray_df$unknown==default_params["unknown"] & bray_df$k==default_params["k"] & bray_df$sigma==default_params["sigma"],],
                aes(x=mut_rate, y=value, color=factor(Method, tool_core))) +
-    geom_jitter(width = 0.001) +
-    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F) +
+    geom_jitter(width = 0.001, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+    scale_x_continuous(limits = c(0, 0.055), breaks = c(0, 0.01, 0.02, 0.05)) +
     theme_bw() +
     ylab("") +
     xlab("Mutation rate") +
     col +
-    theme(text=element_text(size=16),
+    theme(text=element_text(size=30),
           plot.margin = unit(c(1,0,1,0), "cm"),
           legend.key.size = unit(1, 'cm'), #change legend key size
           legend.key.height = unit(1, 'cm'), #change legend key height
           legend.key.width = unit(1, 'cm'), #change legend key width
           legend.title = element_text(size=12), #change legend title font size
           legend.text = element_text(size=10),
-          legend.position = "none") +
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
     guides(color=guide_legend(title="Tool"))
   
   g <- arrangeGrob(
@@ -1791,7 +1828,7 @@ bray_vs_parameter_merged <- function(dataset, level, ncbi_only=TRUE) {
     widths = c(1.1, 1, 1, 1), nrow = 1)
   
   dir.create(file.path("analysis/figures/bray_vs_parameter/",dataset,"/merged/"), showWarnings = FALSE)
-  ggsave(paste0("analysis/figures/bray_vs_parameter/",dataset,"/merged/",dataset,"_",level_name,"_", ncbi_only, ".png"), g, width=44, height=10, units = 'cm', dpi=1000, bg='#ffffff')
+  ggsave(paste0("analysis/figures/bray_vs_parameter/",dataset,"/merged/",dataset,"_",level_name,"_", ncbi_only, ".png"), g, width=60, height=14, units = 'cm', dpi=1000, bg='#ffffff')
 }
 make_all_bray_vs_parameter_merged <- function() {
   dataset = "soil"
@@ -2358,9 +2395,111 @@ find_reconstruction_limit <- function() {
 }
 find_reconstruction_limit()
 
-
-
-
+find_most_abundant_unknown_species_missed_phylum <- function() {
+  dataset <- "soil"
+  unknown_proportion <- "5"
+  
+  unknown_taxa <- read.csv('analysis/databases/ncbi_taxdump/unknown_taxa.tsv', header = F)[,1]
+  print(paste0("Debug: Loaded ", length(unknown_taxa), " unknown taxa"))
+  
+  in_files <- list.files(paste0("analysis/simulation_outputs/", dataset, "/true_profile/profiles"))
+  in_files <- paste0("analysis/simulation_outputs/", dataset, "/true_profile/profiles/", in_files)
+  in_files <- in_files[grepl(paste0("analysis/simulation_outputs/", dataset, "/true_profile/profiles/profile\\.n\\.300\\.size\\.7\\.5\\.k\\.100\\.sigma\\.1\\.0\\.up\\.0\\.", unknown_proportion, "\\.mut_rate\\.0\\.0_sample_[0-9].txt"), in_files)]
+  print(paste0("Debug: Found ", length(in_files), " matching profile files"))
+  
+  metaphlan3_phylum <- preprocess(dataset, level = 2, real = FALSE)
+  metaphlan3_phylum <- metaphlan3_phylum[[4]]
+  detected_phylum_taxids <- as.integer(metaphlan3_phylum$TaxIDs[metaphlan3_phylum$TaxIDs != "UNCLASSIFIED"])
+  print(paste0("Debug: MetaPhlAn 3 detected ", length(detected_phylum_taxids), " phyla"))
+  
+  genome_abundances <- data.frame(matrix(nrow = 0, ncol = 3))
+  colnames(genome_abundances) <- c("genome_id", "phylum_TaxID", "total_abundance")
+  
+  for (file in in_files) {
+    profile <- read.csv(file, sep='\t', skip = 4)
+    
+    profile <- profile[!grepl("^2759", profile[,3]),]
+    
+    profile_strains <- profile[profile[,2] == "strain",]
+    
+    for (i in 1:nrow(profile_strains)) {
+      taxid_hierarchical <- as.character(profile_strains[i, 3])
+      abundance <- as.numeric(profile_strains[i, 5])
+      genome_id <- as.character(profile_strains[i, 6])
+      
+      if (genome_id == "" || is.na(genome_id)) next
+      
+      if (grepl("\\|", taxid_hierarchical)) {
+        taxid_parts <- strsplit(taxid_hierarchical, "\\|")[[1]]
+        
+        if (length(taxid_parts) >= 2) {
+          phylum_taxid_str <- taxid_parts[2]
+          if (phylum_taxid_str == "" || is.na(phylum_taxid_str)) next
+          phylum_taxid <- as.integer(phylum_taxid_str)
+          
+          species_taxid_str <- ""
+          if (length(taxid_parts) >= 7) {
+            species_taxid_str <- taxid_parts[7]
+          }
+          
+          is_species_unknown <- FALSE
+          if (species_taxid_str == "" || is.na(species_taxid_str)) {
+            is_species_unknown <- TRUE
+          } else {
+            species_taxid <- as.integer(species_taxid_str)
+            is_species_unknown <- species_taxid %in% unknown_taxa
+          }
+          
+          phylum_is_known <- !(phylum_taxid %in% unknown_taxa)
+          
+          phylum_missed <- !(phylum_taxid %in% detected_phylum_taxids)
+          
+          if (is_species_unknown && phylum_is_known && phylum_missed) {
+            genome_abundances <- rbind(genome_abundances, 
+                                      data.frame("genome_id" = genome_id,
+                                                "phylum_TaxID" = phylum_taxid,
+                                                "total_abundance" = abundance))
+          }
+        }
+      }
+    }
+  }
+  
+  if (nrow(genome_abundances) > 0) {
+    genome_abundances <- aggregate(total_abundance ~ genome_id + phylum_TaxID, 
+                                   data = genome_abundances, FUN = sum)
+    genome_abundances <- genome_abundances[order(-genome_abundances$total_abundance),]
+    most_abundant <- genome_abundances[1,]
+    
+    level_list <- fread(paste0("analysis/databases/ncbi_taxdump/names.dmp"), sep="\t", header = F)
+    level_list <- level_list[,c(1,3,7)]
+    colnames(level_list) <- c("TaxID", "Name", "Status")
+    level_list <- level_list[level_list$Status == "scientific name",]
+    
+    phylum_name <- level_list$Name[level_list$TaxID == most_abundant$phylum_TaxID]
+    if (length(phylum_name) == 0) {
+      phylum_name <- "Unknown"
+    } else {
+      phylum_name <- phylum_name[1]
+    }
+    
+    result <- data.frame(
+      "Genome_ID" = most_abundant$genome_id,
+      "Phylum_TaxID" = most_abundant$phylum_TaxID,
+      "Phylum_Name" = phylum_name,
+      "Total_Abundance" = most_abundant$total_abundance,
+      "Mean_Abundance" = most_abundant$total_abundance / length(in_files)
+    )
+    
+    print(head(genome_abundances, 10))
+    
+    return(result)
+  } else {
+    print("No genomes found meeting criteria")
+    return(NULL)
+  }
+}
+find_most_abundant_unknown_species_missed_phylum()
 
 
 

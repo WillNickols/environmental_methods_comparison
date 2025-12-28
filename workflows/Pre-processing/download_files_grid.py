@@ -34,7 +34,7 @@ for file in files:
             )
         workflow.add_task_gridable(command,
             time=int(args.time),
-			mem=4000,
+			mem=8000,
 			cores=1,
 			partition=args.grid_partition)
 

@@ -11,12 +11,18 @@ make_upset_plot <- function(tax_level, only_NCBI = FALSE) {
   df = read.csv(paste0('analysis/databases/taxa_lists/',tax_level,'.tsv'), sep='\t')
   to_plot = as.list(df[, 1:(ncol(df) - 1)])
   to_plot = lapply(to_plot, function(group) return(group[!is.na(group)]) )
-  if (only_NCBI) {
-    to_plot = lapply(to_plot, function(group) return(group[!is.na(as.numeric(group))]) )
-  }
   
   # Remove taxa with these keywords
   to_plot = lapply(to_plot, function(group) return(group[!grepl("unclassified|noname|incertae|/", group)]) )
+  
+  # Count taxa in database with and without NCBI
+  tmp_ncbi_only = lapply(to_plot, function(group) return(group[!is.na(as.numeric(group))]) )
+  cbind(lapply(to_plot, function(group) return(length(group[group != ""]) )), 
+        lapply(tmp_ncbi_only, function(group) return(length(group[group != ""]) )))
+
+  if (only_NCBI) {
+    to_plot = lapply(to_plot, function(group) return(group[!is.na(as.numeric(group))]) )
+  }
   
   names(to_plot) <- c("Centrifuge", "GTDB-Tk 2", "Kraken 2 / Bracken 2", "MetaPhlAn2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "PhyloPhlAn 3")
   level <- case_when(tax_level == "kingdom" ~ "Kingdom",
