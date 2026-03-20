@@ -17,6 +17,13 @@ source("analysis/scripts/helpers.R")
 preprocess_all_simulated()
 preprocess_all_truths()
 
+threshold = 0.05
+tool_names = c("Centrifuge", "Kraken 2 / Bracken 2", "MetaPhlAn 2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "GTDB-Tk MEGAHIT", "GTDB-Tk metaSPAdes", "PhyloPhlAn MEGAHIT", "PhyloPhlAn metaSPAdes")
+tool_core = c("Kraken 2 / Bracken 2", "MetaPhlAn 4", "mOTUs 3", "GTDB-Tk MEGAHIT", "PhyloPhlAn MEGAHIT")
+colAdd <- c("#CF9FFF", "#A15BE4", "#00FFFF", "#0061FE", "#1434A4", "#81C784", "#2E7D32", "#FF7300", "#FBB15B", "#AC0911", "#E95420")
+col = scale_color_manual(values = colAdd)
+fil = scale_fill_manual(values = colAdd)
+
 # Check the F1 for many tools at many abundance thresholds
 # Outputs dataframe of (number of tools) x (number of thresholds)
 # Using NCBI names only
@@ -58,13 +65,6 @@ out_df <- data.frame(test_abundance_thresholds(c(0, 0.00001, 0.0001, 0.001, 0.01
 out_df <- data.frame(cbind("Thresholds" = rownames(out_df), out_df), check.rows = F)
 dir.create(paste0("analysis/figures/thresholding/"), showWarnings = FALSE, recursive = T)
 write.table(out_df, "analysis/figures/thresholding/thresholds.tsv", sep="\t", row.names = F)
-
-threshold = 0.05
-tool_names = c("Centrifuge", "Kraken 2 / Bracken 2", "MetaPhlAn 2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "GTDB-Tk MEGAHIT", "GTDB-Tk metaSPAdes", "PhyloPhlAn MEGAHIT", "PhyloPhlAn metaSPAdes")
-tool_core = c("Kraken 2 / Bracken 2", "MetaPhlAn 4", "mOTUs 3", "GTDB-Tk MEGAHIT", "PhyloPhlAn MEGAHIT")
-colAdd <- c("#CF9FFF", "#A15BE4", "#00FFFF", "#0061FE", "#1434A4", "#81C784", "#2E7D32", "#FF7300", "#FBB15B", "#AC0911", "#E95420")
-col = scale_color_manual(values = colAdd)
-fil = scale_fill_manual(values = colAdd)
 
 # Create an example of the phyla present in the simulated datasets
 phyla_example <- function() {
@@ -2501,5 +2501,806 @@ find_most_abundant_unknown_species_missed_phylum <- function() {
 }
 find_most_abundant_unknown_species_missed_phylum()
 
+###############################################################################
+# Phylogenetic UniFrac analysis (simulation truth vs. tool)
+# Uses the global mashtree-based phylogenetic tree with real branch lengths
+###############################################################################
 
+phylo_tree_path <- "analysis/databases/Phylogenetic_trees/phylogenetic_tree.nwk"
 
+# Label converts per dataset (maps deprecated TaxIDs to current ones present in the tree)
+get_label_converts <- function(dataset) {
+  if (dataset == "soil") {
+    return(c('2599805'=931866, '1404649'=2823807, '2735433'=3014751, '2829818'=2952571, '2840472'=2840469, 
+             '2884447'=2792859, '80870'=80867, '1532'=33035, '2778071'=29523, '285567'=1942, '290385'=104623, '37480'=67362,
+             '423539'=3074428, '50340'=53407, '84292'=162393, '88075'=88074, '96101'=46163, '1497613'=1505087, 
+             '1915400'=67332, '335659'=1404864, '90270'=2754056, '80870'=80867, '1532'=33035, 
+             '285567'=1942, '290385'=104623, '37480'=67362, '423539'=3074428, '50340'=53407,
+             '84292'=162393, '88075'=88074, '96101'=46163, '335659'=1404864, '90270'=2754056))
+  } else if (dataset == "gut") {
+    return(c('2841037'=3028070, '1404649'=2823807, '2884447'=2792859, '1532'=33035, '1841867'=2897707, 
+             '1118061'=2585118, '1453999'=2954383, '1457154'=2954382, '1532'=33035, '1898205'=2485925,
+             '1960941'=2942470))
+  } else if (dataset == "ocean") {
+    return(c('2841037'=3028070, '29570'=77097, '1404649'=2823807, '2884447'=2792859, '158080'=141390, '50340'=53407, '81037'=77608, 
+             '1304902'=2731756, '1453999'=2954383, '1457154'=2954382, '29570'=77097, '158080'=141390,
+             '50340'=53407, '81037'=77608, '1960941'=2942470))
+  } else {
+    return(c())
+  }
+}
+
+# Core samples plot for phylogenetic UniFrac (species level only, like prf1_summary)
+phylo_unifrac_summary <- function(ncbi_only, core_five = FALSE) {
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  
+  plot_df = data.frame(matrix(nrow = 0, ncol = 5))
+  colnames(plot_df) <- c("Tool", "Dataset", "Level", "Metric", "Value")
+  level = 7
+  for (dataset in list.files("analysis/simulation_outputs")) {
+    if (ncbi_only) {
+      profiles <- remove_non_ncbi(preprocess(dataset, level, FALSE))
+    } else {
+      profiles <- remove_unknown(preprocess(dataset, level, FALSE))
+    }
+    truth = renormalize(remove_unclassified(preprocess_simulation_truths(dataset, level)))
+    profiles = lapply(profiles, renormalize)
+    profiles = lapply(profiles, threshold_sample, threshold)
+    profiles = lapply(profiles, renormalize)
+    
+    label_converts <- get_label_converts(dataset)
+    if (length(label_converts) > 0) {
+      truth <- update_labels(truth, label_converts)
+      profiles <- lapply(profiles, function(x) update_labels(x, label_converts))
+    }
+    
+    colnames(truth)[1] <- "TaxIDs"
+    
+    all_ids <- unique(c(unlist(lapply(profiles, function(x) x$TaxIDs)), truth$TaxIDs))
+    tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+    tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+    cat(sprintf("[phylo_unifrac_summary] Dataset: %s\n", dataset))
+    cat("  Profiles:\n")
+    profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+    truth_in_tree <- truth$TaxIDs %in% tree_pruned$tip.label
+    truth_sp_frac <- sum(truth_in_tree) / nrow(truth)
+    truth_abund_fracs <- colSums(truth[truth_in_tree, -1, drop = FALSE]) / colSums(truth[, -1, drop = FALSE])
+    truth_abund_fracs[is.nan(truth_abund_fracs)] <- 0
+    cat(sprintf("  Truth: species=%.1f%% (%d/%d), abundance: median=%.1f%% [%.1f%%–%.1f%%]\n",
+                truth_sp_frac * 100, sum(truth_in_tree), nrow(truth),
+                median(truth_abund_fracs) * 100, min(truth_abund_fracs) * 100, max(truth_abund_fracs) * 100))
+    truth <- truth[truth$TaxIDs %in% tree_pruned$tip.label,]
+    truth <- renormalize(truth)
+    
+    remove_samples <- names(which(colSums(truth[,-1]) == 0))
+    if (length(remove_samples) > 0) {
+      truth <- truth %>% dplyr::select(-all_of(remove_samples))
+      profiles <- lapply(profiles, function(x) dplyr::select(x, -all_of(remove_samples)))
+    }
+    
+    for (i in 1:length(profiles)) {
+      sample_names = colnames(profiles[[i]])[-1]
+      if (dataset %in% c("soil", "ocean")) {
+        standards = grepl("profile\\.n\\.300\\.size\\.7\\.5\\.k\\.100\\.sigma\\.1\\.0\\.up\\.0\\.75\\.mut_rate\\.0\\.0_", sample_names)
+      } else {
+        standards = grepl("profile\\.n\\.300\\.size\\.7\\.5\\.k\\.100\\.sigma\\.1\\.0\\.up\\.0\\.5\\.mut_rate\\.0\\.0_", sample_names)
+      }
+      
+      dists <- calc_unifrac(truth, profiles[[i]], tree = tree_pruned)
+      df_addition <- data.frame(cbind(tool_names[i], dataset, level, "Phylogenetic UniFrac", 1 - dists[sample_names[standards]]))
+      colnames(df_addition) <- c("Tool", "Dataset", "Level", "Metric", "Value")
+      plot_df <- rbind(plot_df, df_addition)
+    }
+  }
+  plot_df$Dataset <- case_when(plot_df$Dataset == "soil" ~ "Soil",
+                               plot_df$Dataset == "ocean" ~ "Ocean",
+                               plot_df$Dataset == "gut" ~ "Animal gut")
+  plot_df$Value <- as.numeric(plot_df$Value)
+  
+  plot_df$Tool <- factor(plot_df$Tool, c("Centrifuge", "Kraken 2 / Bracken 2", "MetaPhlAn 2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "GTDB-Tk MEGAHIT", "GTDB-Tk metaSPAdes", "PhyloPhlAn MEGAHIT", "PhyloPhlAn metaSPAdes"))
+  
+  if (core_five) {
+    plot_df <- plot_df[plot_df$Tool %in% tool_core,]
+    colAdd_tmp <- colAdd[tool_names %in% tool_core]
+    col_tmp = scale_color_manual(values = colAdd_tmp)
+    fil_tmp = scale_fill_manual(values = colAdd_tmp)
+  } else {
+    col_tmp = col
+    fil_tmp = fil
+  }
+  
+  plot_df$Metric <- "1 - Phylogenetic UniFrac"
+  
+  p1 <- ggplot(plot_df, aes(x=Tool, y=Value, fill=Tool)) + 
+    geom_point(pch = 21, position = position_jitterdodge(jitter.width = 0), size=3, alpha=0.7) +
+    facet_nested(Dataset ~ Metric) +
+    theme_linedraw() + 
+    ylim(0, 1) + 
+    theme(text = element_text(size = 15),
+          axis.text.x = element_text(angle = 90, vjust = 0.5, 
+                                     size = 12, hjust = 1),
+          legend.position = "none",
+          strip.text = element_text(colour = 'black'),
+          strip.background = element_blank(),
+          panel.border = element_rect(colour = "black", fill = NA),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank()) + 
+    col_tmp + fil_tmp
+
+  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  core_five <- ifelse(core_five, "core_tools", "all_tools")
+  
+  dir.create("analysis/figures/simulation_core/", showWarnings = FALSE, recursive = TRUE)
+  ggsave(paste0("analysis/figures/simulation_core/phylo_unifrac_", ncbi_only, "_", core_five, ".png"), p1, width = 3, height = 6)
+}
+
+if (!file.exists(paste0("analysis/figures/simulation_core/phylo_unifrac_NCBI_only_core_tools.png"))) {
+  phylo_unifrac_summary(TRUE, TRUE)
+}
+
+# Show how phylogenetic UniFrac from true profile changes with sample features
+phylo_unifrac_vs_parameter_individual <- function(dataset, level, ncbi_only=TRUE) {
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  
+  data <- preprocess(dataset, level, FALSE)
+  
+  if (ncbi_only) {
+    profiles <- remove_non_ncbi(data)
+  } else {
+    profiles <- remove_unknown(data)
+  }
+  
+  profiles = lapply(profiles, renormalize)
+  profiles = lapply(profiles, threshold_sample, threshold)
+  profiles = lapply(profiles, renormalize)
+  
+  truth = renormalize(remove_unclassified(preprocess_simulation_truths(dataset, level)))
+  
+  label_converts <- get_label_converts(dataset)
+  if (length(label_converts) > 0) {
+    truth <- update_labels(truth, label_converts)
+    profiles <- lapply(profiles, function(x) update_labels(x, label_converts))
+  }
+  
+  colnames(truth)[1] <- "TaxIDs"
+  
+  all_ids <- unique(c(unlist(lapply(profiles, function(x) x$TaxIDs)), truth$TaxIDs))
+  tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+  tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+  cat(sprintf("[phylo_unifrac_vs_parameter] Dataset: %s, level: %d\n", dataset, level))
+  cat("  Profiles:\n")
+  profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+  truth_in_tree <- truth$TaxIDs %in% tree_pruned$tip.label
+  truth_sp_frac <- sum(truth_in_tree) / nrow(truth)
+  truth_abund_fracs <- colSums(truth[truth_in_tree, -1, drop = FALSE]) / colSums(truth[, -1, drop = FALSE])
+  truth_abund_fracs[is.nan(truth_abund_fracs)] <- 0
+  cat(sprintf("  Truth: species=%.1f%% (%d/%d), abundance: median=%.1f%% [%.1f%%–%.1f%%]\n",
+              truth_sp_frac * 100, sum(truth_in_tree), nrow(truth),
+              median(truth_abund_fracs) * 100, min(truth_abund_fracs) * 100, max(truth_abund_fracs) * 100))
+  truth <- truth[truth$TaxIDs %in% tree_pruned$tip.label,]
+  truth <- renormalize(truth)
+  
+  remove_samples <- names(which(colSums(truth[,-1]) == 0))
+  if (length(remove_samples) > 0) {
+    truth <- truth %>% dplyr::select(-all_of(remove_samples))
+    profiles <- lapply(profiles, function(x) dplyr::select(x, -all_of(remove_samples)))
+  }
+  
+  unifrac_df <- data.frame(matrix(nrow = 0, ncol = 8))
+  colnames(unifrac_df) <- c("Method", "n", "sample_size", "k", "sigma", "unknown", "mut_rate", "value")
+  for (i in 1:length(profiles)) {
+    variable_names = gsub("_sample_.*", "", colnames(profiles[[i]])[-1])
+    dists <- calc_unifrac(truth, profiles[[i]], tree = tree_pruned)
+    df_append <- data.frame(tool_names[i],
+                             gsub(".*\\.n\\.", "", variable_names) %>% gsub(pattern="\\.size.*", replacement = "") %>% as.numeric(),
+                             gsub(".*\\.size\\.", "", variable_names) %>% gsub(pattern="\\.k.*", replacement = "") %>% as.numeric(),
+                             gsub(".*\\.k\\.", "", variable_names) %>% gsub(pattern="\\.sigma.*", replacement = "") %>% as.numeric(),
+                             gsub(".*\\.sigma\\.", "", variable_names) %>% gsub(pattern="\\.up.*", replacement = "") %>% as.numeric(),
+                             gsub(".*\\.up\\.", "", variable_names) %>% gsub(pattern="\\.mut_rate.*", replacement = "") %>% as.numeric(),
+                             gsub(".*\\.mut_rate\\.", "", variable_names) %>% gsub(pattern="_sample_.*", replacement = "") %>% as.numeric(),
+                             1 - dists[colnames(profiles[[i]])[-1]]
+                             )
+    colnames(df_append) <- c("Method", "n", "sample_size", "k", "sigma", "unknown", "mut_rate", "value")
+    unifrac_df <- data.frame(rbind(unifrac_df, df_append))
+  }
+  
+  if (dataset == "gut") {
+    default_params <- c("n"=300, "sample_size"=7.5, "k"=100, "sigma"=1, "unknown"=0.5, "mut_rate"=0)
+  } else {
+    default_params <- c("n"=300, "sample_size"=7.5, "k"=100, "sigma"=1, "unknown"=0.75, "mut_rate"=0)
+  }
+  
+  colAdd_tmp <- colAdd[tool_names %in% unifrac_df$Method]
+  col_tmp = scale_color_manual(values = colAdd_tmp)
+  
+  unifrac_df$Method <- factor(unifrac_df$Method, c("Centrifuge", "Kraken 2 / Bracken 2", "MetaPhlAn 2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "GTDB-Tk MEGAHIT", "GTDB-Tk metaSPAdes", "PhyloPhlAn MEGAHIT", "PhyloPhlAn metaSPAdes"))
+  
+  p1 <- ggplot(unifrac_df[unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],], 
+               aes(x=n, y=value, color=Method)) + geom_jitter(width = 0.01) +
+    geom_smooth(method = "glm", 
+                method.args = list(family = "binomial"), 
+                se = FALSE, linewidth=1, alpha=0.15, formula='y~x') +
+    theme_classic() + 
+    ylab("1 - Phylogenetic UniFrac") + 
+    xlab("Species count") + 
+    col_tmp + 
+    scale_x_continuous(trans='log10', breaks = c(75, 150, 300, 600)) + 
+    theme(text=element_text(size=12),
+          plot.margin = unit(c(2,1,1,1), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10)) + 
+    guides(color=guide_legend(title="Tool"))
+  
+  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  dir.create(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/n/"), showWarnings = FALSE, recursive = T)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/n/",dataset,"_",ncbi_only, ".png"), p1, width=20, height=20, units = 'cm', dpi=1000)
+  
+  p2 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],], 
+               aes(x=sample_size, y=value, color=Method)) + 
+    geom_jitter(width = 0.05) +
+    geom_smooth(method = "glm", 
+                method.args = list(family = "binomial"), 
+                se = FALSE, linewidth=1, alpha=0.15, formula='y~x') +
+    theme_classic() + 
+    ylab("1 - Phylogenetic UniFrac") + 
+    xlab("Sample size (GB)") + 
+    scale_x_continuous(trans='log10', breaks = c(0.05, 0.5, 1.5, 7.5, 30)) + 
+    col_tmp + 
+    theme(text=element_text(size=12),
+          plot.margin = unit(c(2,1,1,1), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10)) + 
+    guides(color=guide_legend(title="Tool"))
+  
+  dir.create(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/sample_size/"), showWarnings = FALSE, recursive = T)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/sample_size/",dataset,"_",ncbi_only, ".png"), p2, width=20, height=20, units = 'cm', dpi=1000)
+  
+  if (level == 7) {
+    p3 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],], 
+                 aes(x=100 * unknown, y=value, color=Method)) + 
+      geom_jitter(width = 1) +
+      geom_smooth(method = 'glm', formula = 'y~log(100-x+0.001)', size=1, alpha=0.15) +
+      theme_classic() + 
+      ylab("1 - Phylogenetic UniFrac") + 
+      xlab("Unknown species (%)") + 
+      col_tmp + 
+      theme(text=element_text(size=12),
+            plot.margin = unit(c(2,1,1,1), "cm"),
+            legend.key.size = unit(1, 'cm'),
+            legend.key.height = unit(1, 'cm'),
+            legend.key.width = unit(1, 'cm'),
+            legend.title = element_text(size=12),
+            legend.text = element_text(size=10)) + 
+      guides(color=guide_legend(title="Tool"))
+  } else {
+    p3 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],], 
+                 aes(x=100 * unknown, y=value, color=Method)) + 
+      geom_jitter(width = 1) +
+      geom_smooth(method = "glm", 
+                  method.args = list(family = "binomial"), 
+                  se = FALSE, linewidth=1, alpha=0.15, formula='y~x') +
+      theme_classic() + 
+      ylab("1 - Phylogenetic UniFrac") + 
+      xlab("Unknown species (%)") + 
+      col_tmp + 
+      theme(text=element_text(size=12),
+            plot.margin = unit(c(2,1,1,1), "cm"),
+            legend.key.size = unit(1, 'cm'),
+            legend.key.height = unit(1, 'cm'),
+            legend.key.width = unit(1, 'cm'),
+            legend.title = element_text(size=12),
+            legend.text = element_text(size=10)) + 
+      guides(color=guide_legend(title="Tool"))
+  }
+  
+  dir.create(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/unknown_prop/"), showWarnings = FALSE, recursive = T)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/unknown_prop/",dataset,"_",ncbi_only, ".png"), p3, width=20, height=20, units = 'cm', dpi=1000)
+  
+  p4 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"],], 
+               aes(x=mut_rate, y=value, color=Method)) + 
+    geom_jitter(width = 0.001) +
+    geom_smooth(method = "glm", 
+                method.args = list(family = "binomial"), 
+                se = FALSE, linewidth=1, alpha=0.15, formula='y~x') +
+    theme_classic() + 
+    ylab("1 - Phylogenetic UniFrac") + 
+    xlab("Mutation rate") + 
+    col_tmp + 
+    theme(text=element_text(size=12),
+          plot.margin = unit(c(2,1,1,1), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10)) + 
+    guides(color=guide_legend(title="Tool"))
+  
+  dir.create(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/mut_rate/"), showWarnings = FALSE, recursive = T)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/mut_rate/",dataset,"_",ncbi_only, ".png"), p4, width=20, height=20, units = 'cm', dpi=1000)
+  
+  p5 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],], 
+               aes(x=k, y=value, color=Method)) + 
+    geom_jitter(width = 0.01) +
+    geom_smooth(method = "glm", 
+                method.args = list(family = "binomial"), 
+                se = FALSE, linewidth=1, alpha=0.15, formula='y~x') +
+    theme_classic() + 
+    ylab("1 - Phylogenetic UniFrac") + 
+    xlab("Genome size distribution\n(lower k is more skewed)") + 
+    scale_x_continuous(trans='log10', breaks = c(40, 100, 250)) + 
+    col_tmp + 
+    theme(text=element_text(size=12),
+          plot.margin = unit(c(2,1,1,1), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10)) + 
+    guides(color=guide_legend(title="Tool"))
+  
+  dir.create(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/k/"), showWarnings = FALSE, recursive = T)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/k/",dataset,"_",ncbi_only, ".png"), p5, width=20, height=20, units = 'cm', dpi=1000)
+  
+  p6 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$mut_rate==default_params["mut_rate"],], 
+               aes(x=sigma, y=value, color=Method)) + 
+    geom_jitter(width = 0.01) +
+    geom_smooth(method = "glm", 
+                method.args = list(family = "binomial"), 
+                se = FALSE, linewidth=1, alpha=0.15, formula='y~x') +
+    theme_classic() + 
+    ylab("1 - Phylogenetic UniFrac") + 
+    xlab("Abundance skew") +
+    scale_x_continuous(trans='log10', breaks = c(0.5, 1, 2, 4)) + 
+    col_tmp + 
+    theme(text=element_text(size=12),
+          plot.margin = unit(c(2,1,1,1), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10)) + 
+    guides(color=guide_legend(title="Tool"))
+  dir.create(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/sigma/"), showWarnings = FALSE, recursive = T)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/sigma/",dataset,"_",ncbi_only, ".png"), p6, width=20, height=20, units = 'cm', dpi=1000)
+}
+make_all_phylo_unifrac_vs_parameter_individual <- function() {
+  for (dataset in list.files("analysis/simulation_outputs")) {
+    for (level in c(7)) {
+      print(paste0("Processing ", dataset, " at level ", level))
+      if (!file.exists(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/sigma/",dataset,"_", "NCBI_only", ".png"))) {
+        phylo_unifrac_vs_parameter_individual(dataset, level)
+      }
+    }
+  }
+}
+make_all_phylo_unifrac_vs_parameter_individual()
+
+phylo_unifrac_vs_parameter_merged <- function(dataset, level, ncbi_only=TRUE) {
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  
+  data <- preprocess(dataset, level, FALSE)
+  
+  if (ncbi_only) {
+    profiles <- remove_non_ncbi(data)
+  } else {
+    profiles <- remove_unknown(data)
+  }
+  
+  profiles = lapply(profiles, renormalize)
+  profiles = lapply(profiles, threshold_sample, threshold)
+  profiles = lapply(profiles, renormalize)
+  
+  truth = renormalize(remove_unclassified(preprocess_simulation_truths(dataset, level)))
+  
+  label_converts <- get_label_converts(dataset)
+  if (length(label_converts) > 0) {
+    truth <- update_labels(truth, label_converts)
+    profiles <- lapply(profiles, function(x) update_labels(x, label_converts))
+  }
+  
+  colnames(truth)[1] <- "TaxIDs"
+  
+  all_ids <- unique(c(unlist(lapply(profiles, function(x) x$TaxIDs)), truth$TaxIDs))
+  tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+  tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+  cat(sprintf("[phylo_unifrac_vs_parameter_merged] Dataset: %s, level: %d\n", dataset, level))
+  cat("  Profiles:\n")
+  profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+  truth_in_tree <- truth$TaxIDs %in% tree_pruned$tip.label
+  truth_sp_frac <- sum(truth_in_tree) / nrow(truth)
+  truth_abund_fracs <- colSums(truth[truth_in_tree, -1, drop = FALSE]) / colSums(truth[, -1, drop = FALSE])
+  truth_abund_fracs[is.nan(truth_abund_fracs)] <- 0
+  cat(sprintf("  Truth: species=%.1f%% (%d/%d), abundance: median=%.1f%% [%.1f%%–%.1f%%]\n",
+              truth_sp_frac * 100, sum(truth_in_tree), nrow(truth),
+              median(truth_abund_fracs) * 100, min(truth_abund_fracs) * 100, max(truth_abund_fracs) * 100))
+  truth <- truth[truth$TaxIDs %in% tree_pruned$tip.label,]
+  truth <- renormalize(truth)
+  
+  remove_samples <- names(which(colSums(truth[,-1]) == 0))
+  if (length(remove_samples) > 0) {
+    truth <- truth %>% dplyr::select(-all_of(remove_samples))
+    profiles <- lapply(profiles, function(x) dplyr::select(x, -all_of(remove_samples)))
+  }
+  
+  unifrac_df <- data.frame(matrix(nrow = 0, ncol = 8))
+  colnames(unifrac_df) <- c("Method", "n", "sample_size", "k", "sigma", "unknown", "mut_rate", "value")
+  for (i in 1:length(profiles)) {
+    variable_names = gsub("_sample_.*", "", colnames(profiles[[i]])[-1])
+    dists <- calc_unifrac(truth, profiles[[i]], tree = tree_pruned)
+    df_append <- data.frame(tool_names[i],
+                            gsub(".*\\.n\\.", "", variable_names) %>% gsub(pattern="\\.size.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.size\\.", "", variable_names) %>% gsub(pattern="\\.k.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.k\\.", "", variable_names) %>% gsub(pattern="\\.sigma.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.sigma\\.", "", variable_names) %>% gsub(pattern="\\.up.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.up\\.", "", variable_names) %>% gsub(pattern="\\.mut_rate.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.mut_rate\\.", "", variable_names) %>% gsub(pattern="_sample_.*", replacement = "") %>% as.numeric(),
+                            1 - dists[colnames(profiles[[i]])[-1]]
+    )
+    colnames(df_append) <- c("Method", "n", "sample_size", "k", "sigma", "unknown", "mut_rate", "value")
+    unifrac_df <- data.frame(rbind(unifrac_df, df_append))
+  }
+  
+  unifrac_df$Method <- factor(unifrac_df$Method, rev(c("Centrifuge", "Kraken 2 / Bracken 2", "MetaPhlAn 2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "GTDB-Tk MEGAHIT", "GTDB-Tk metaSPAdes", "PhyloPhlAn MEGAHIT", "PhyloPhlAn metaSPAdes")))
+  
+  unifrac_df <- unifrac_df[unifrac_df$Method %in% tool_core,]
+  
+  if (dataset == "gut") {
+    default_params <- c("n"=300, "sample_size"=7.5, "k"=100, "sigma"=1, "unknown"=0.5, "mut_rate"=0)
+  } else {
+    default_params <- c("n"=300, "sample_size"=7.5, "k"=100, "sigma"=1, "unknown"=0.75, "mut_rate"=0)
+  }
+  
+  colAdd_tmp <- colAdd[tool_names %in% tool_core]
+  tool_names_tmp <- tool_names[tool_names %in% tool_core]
+  col_tmp = scale_color_manual(values = colAdd_tmp)
+  fil_tmp = scale_fill_manual(values = colAdd_tmp)
+  
+  p1 <- ggplot(unifrac_df[unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],],
+               aes(x=n, y=value, color=factor(Method, tool_core))) + geom_jitter(width = 0.01, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+    theme_bw() +
+    ylab("1 - Phylogenetic UniFrac") +
+    xlab("Species count") +
+    col_tmp +
+    scale_x_continuous(trans='log10', breaks = c(75, 150, 300, 600)) +
+    theme(text=element_text(size=30),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
+    guides(color=guide_legend(title="Tool"))
+  
+  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  
+  p2 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],],
+               aes(x=sample_size, y=value, color=factor(Method, tool_core))) +
+    geom_jitter(width = 0.05, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+    theme_bw() +
+    ylab("") +
+    xlab("Sample size (GB)") +
+    scale_x_continuous(trans='log10', breaks = c(0.05, 0.5, 1.5, 7.5, 30), limits = c(0.04, 45)) +
+    col_tmp +
+    theme(text=element_text(size=30),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
+    guides(color=guide_legend(title="Tool"))
+  
+  if (level == 7) {
+    p3 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"] & unifrac_df$unknown != 1,],
+                 aes(x=100 * unknown, y=value, color=factor(Method, tool_core))) +
+      geom_jitter(width = 1, size = 2) +
+      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+      scale_x_continuous(breaks = c(0, 25, 50, 75)) +
+      theme_bw() +
+      ylab("") +
+      xlab("Unknown species (%)") +
+      scale_x_continuous(breaks=c(0,25,50,75)) + 
+      col_tmp +
+      theme(text=element_text(size=30),
+            plot.margin = unit(c(1,0,1,0), "cm"),
+            legend.key.size = unit(1, 'cm'),
+            legend.key.height = unit(1, 'cm'),
+            legend.key.width = unit(1, 'cm'),
+            legend.title = element_text(size=12),
+            legend.text = element_text(size=10),
+            legend.position = "none",
+            panel.grid.major = element_line(size = 1.5),
+            panel.grid.minor = element_line(size = 0.5),
+            panel.border = element_rect(size = 1.5, fill = NA)) +
+      guides(color=guide_legend(title="Tool"))
+  } else {
+    p3 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],],
+                 aes(x=100 * unknown, y=value, color=factor(Method, tool_core))) +
+      geom_jitter(width = 1, size = 2) +
+      geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+      scale_x_continuous(breaks = c(0, 25, 50, 75, 100)) +
+      theme_bw() +
+      ylab("") +
+      scale_x_continuous(breaks=c(0,25,50,75,100)) + 
+      xlab("Unknown species (%)") +
+      col_tmp +
+      theme(text=element_text(size=30),
+            plot.margin = unit(c(1,0,1,0), "cm"),
+            legend.key.size = unit(1, 'cm'),
+            legend.key.height = unit(1, 'cm'),
+            legend.key.width = unit(1, 'cm'),
+            legend.title = element_text(size=12),
+            legend.text = element_text(size=10),
+            legend.position = "none",
+            panel.grid.major = element_line(size = 1.5),
+            panel.grid.minor = element_line(size = 0.5),
+            panel.border = element_rect(size = 1.5, fill = NA)) +
+      guides(color=guide_legend(title="Tool"))
+  }
+  
+  p4 <- ggplot(unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"],],
+               aes(x=mut_rate, y=value, color=factor(Method, tool_core))) +
+    geom_jitter(width = 0.001, size = 2) +
+    geom_smooth(method = drm, method.args = list(fct = L.4()), se = F, linewidth = 2) +
+    scale_x_continuous(limits = c(0, 0.055), breaks = c(0, 0.01, 0.02, 0.05)) +
+    theme_bw() +
+    ylab("") +
+    xlab("Mutation rate") +
+    col_tmp +
+    theme(text=element_text(size=30),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          panel.grid.major = element_line(size = 1.5),
+          panel.grid.minor = element_line(size = 0.5),
+          panel.border = element_rect(size = 1.5, fill = NA)) +
+    guides(color=guide_legend(title="Tool"))
+  
+  g <- arrangeGrob(
+    grobs = list(p1, p2, p3, p4),
+    widths = c(1.1, 1, 1, 1), nrow = 1)
+  
+  dir.create(file.path("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/merged/"), showWarnings = FALSE, recursive = TRUE)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/merged/",dataset,"_", ncbi_only, ".png"), g, width=60, height=14, units = 'cm', dpi=1000, bg='#ffffff')
+}
+make_all_phylo_unifrac_vs_parameter_merged <- function() {
+  for (dataset in list.files("analysis/simulation_outputs")) {
+    for (level in c(7)) {
+      phylo_unifrac_vs_parameter_merged(dataset, level)
+    }
+  }
+}
+make_all_phylo_unifrac_vs_parameter_merged()
+
+phylo_unifrac_vs_parameter_merged_heatmap <- function(dataset, level, ncbi_only=TRUE) {
+  data <- preprocess(dataset, level)
+
+  if (ncbi_only) {
+    profiles <- remove_non_ncbi(data)
+  } else {
+    profiles <- remove_unknown(data)
+  }
+
+  profiles = lapply(profiles, renormalize)
+  profiles = lapply(profiles, threshold_sample, threshold)
+  profiles = lapply(profiles, renormalize)
+
+  truth = renormalize(remove_unclassified(preprocess_simulation_truths(dataset, level)))
+
+  label_converts <- get_label_converts(dataset)
+  if (length(label_converts) > 0) {
+    truth <- update_labels(truth, label_converts)
+    profiles <- lapply(profiles, function(x) update_labels(x, label_converts))
+  }
+
+  colnames(truth)[1] <- "TaxIDs"
+
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  all_ids <- unique(c(unlist(lapply(profiles, function(x) x$TaxIDs)), truth$TaxIDs))
+  tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+  tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+  cat(sprintf("[phylo_unifrac_vs_parameter_merged_heatmap] Dataset: %s\n", dataset))
+  profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+  truth <- truth[truth$TaxIDs %in% tree_pruned$tip.label,]
+  truth <- renormalize(truth)
+
+  remove_samples <- names(which(colSums(truth[,-1]) == 0))
+  if (length(remove_samples) > 0) {
+    truth <- truth %>% dplyr::select(-all_of(remove_samples))
+    profiles <- lapply(profiles, function(x) dplyr::select(x, -all_of(remove_samples)))
+  }
+
+  unifrac_df <- data.frame(matrix(nrow = 0, ncol = 8))
+  colnames(unifrac_df) <- c("Method", "n", "sample_size", "k", "sigma", "unknown", "mut_rate", "value")
+  for (i in 1:length(profiles)) {
+    variable_names = gsub("_sample_.*", "", colnames(profiles[[i]])[-1])
+    dists <- calc_unifrac(truth, profiles[[i]], tree = tree_pruned)
+    df_append <- data.frame(tool_names[i],
+                            gsub(".*\\.n\\.", "", variable_names) %>% gsub(pattern="\\.size.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.size\\.", "", variable_names) %>% gsub(pattern="\\.k.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.k\\.", "", variable_names) %>% gsub(pattern="\\.sigma.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.sigma\\.", "", variable_names) %>% gsub(pattern="\\.up.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.up\\.", "", variable_names) %>% gsub(pattern="\\.mut_rate.*", replacement = "") %>% as.numeric(),
+                            gsub(".*\\.mut_rate\\.", "", variable_names) %>% gsub(pattern="_sample_.*", replacement = "") %>% as.numeric(),
+                            1 - dists[colnames(profiles[[i]])[-1]]
+    )
+    colnames(df_append) <- c("Method", "n", "sample_size", "k", "sigma", "unknown", "mut_rate", "value")
+    unifrac_df <- data.frame(rbind(unifrac_df, df_append))
+  }
+
+  unifrac_df$Method <- factor(unifrac_df$Method, rev(c("Centrifuge", "Kraken 2 / Bracken 2", "MetaPhlAn 2", "MetaPhlAn 3", "MetaPhlAn 4", "Metaxa 2", "mOTUs 3", "GTDB-Tk MEGAHIT", "GTDB-Tk metaSPAdes", "PhyloPhlAn MEGAHIT", "PhyloPhlAn metaSPAdes")))
+
+  if (dataset == "gut") {
+    default_params <- c("n"=300, "sample_size"=7.5, "k"=100, "sigma"=1, "unknown"=0.5, "mut_rate"=0)
+  } else {
+    default_params <- c("n"=300, "sample_size"=7.5, "k"=100, "sigma"=1, "unknown"=0.75, "mut_rate"=0)
+  }
+
+  p1 <- unifrac_df[unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],] %>%
+    complete(n, Method) %>% aggregate(value ~ n + sample_size + unknown + k + sigma + mut_rate + Method, FUN = mean) %>%
+    complete(n, Method) %>%
+    ggplot(aes(x=factor(n), y=Method, fill=value)) +
+    geom_tile(color="gray", size=1) +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1),
+                         name="1 - Phylogenetic UniFrac") +
+    theme_classic() +
+    xlab("Species count") +
+    theme(text=element_text(size=16),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none") +
+    guides(color=guide_legend(title="Tool"))
+
+  p2 <- unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],] %>%
+    complete(sample_size, Method) %>% aggregate(value ~ n + sample_size + unknown + k + sigma + mut_rate + Method, FUN = mean) %>%
+    complete(sample_size, Method) %>%
+    ggplot(aes(x=factor(sample_size), y=Method, fill=value)) +
+    geom_tile(color="gray", size=1) +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1),
+                         name="1 - Phylogenetic UniFrac", na.value = "gray") +
+    theme_classic() +
+    xlab("Sample size (GB)") +
+    theme(text=element_text(size=16),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),
+          axis.title.y=element_blank()
+    ) +
+    guides(color=guide_legend(title="Tool"))
+
+  p3 <- unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"] & unifrac_df$mut_rate==default_params["mut_rate"],] %>%
+    complete(unknown, Method) %>% aggregate(value ~ n + sample_size + unknown + k + sigma + mut_rate + Method, FUN = mean) %>%
+    complete(unknown, Method) %>%
+    ggplot(aes(x=factor(100 * unknown), y=Method, fill=value)) +
+    geom_tile(color="gray", size=1) +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1),
+                         name="1 - Phylogenetic UniFrac", na.value = "gray") +
+    theme_classic() +
+    xlab("Unknown species (%)") +
+    theme(text=element_text(size=16),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),
+          axis.title.y=element_blank()) +
+    guides(color=guide_legend(title="Tool"))
+
+  p4 <- unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$k==default_params["k"] & unifrac_df$sigma==default_params["sigma"],] %>%
+    complete(mut_rate, Method) %>% aggregate(value ~ n + sample_size + unknown + k + sigma + mut_rate + Method, FUN = mean) %>%
+    complete(mut_rate, Method) %>%
+    ggplot(aes(x=factor(mut_rate), y=Method, fill=value)) +
+    geom_tile(color="gray", size=1) +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1),
+                         name="1 - Phylogenetic UniFrac", na.value = "gray") +
+    theme_classic() +
+    xlab("Mutation rate") +
+    theme(text=element_text(size=16),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),
+          axis.title.y=element_blank()) +
+    guides(color=guide_legend(title="Tool"))
+
+  p5 <- unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$mut_rate==default_params["mut_rate"] & unifrac_df$sigma==default_params["sigma"],] %>%
+    complete(k, Method) %>% aggregate(value ~ n + sample_size + unknown + k + sigma + mut_rate + Method, FUN = mean) %>%
+    complete(k, Method) %>%
+    ggplot(aes(x=factor(k), y=Method, fill=value)) +
+    geom_tile(color="gray", size=1) +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1),
+                         name="1 - Phylogenetic UniFrac", na.value = "gray") +
+    theme_classic() +
+    xlab("Genome skew") +
+    theme(text=element_text(size=16),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=12),
+          legend.text = element_text(size=10),
+          legend.position = "none",
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),
+          axis.title.y=element_blank()) +
+    guides(color=guide_legend(title="Tool"))
+
+  p6 <- unifrac_df[unifrac_df$n==default_params["n"] & unifrac_df$sample_size==default_params["sample_size"] & unifrac_df$unknown==default_params["unknown"] & unifrac_df$mut_rate==default_params["mut_rate"] & unifrac_df$k==default_params["k"],] %>%
+    complete(sigma, Method) %>% aggregate(value ~ n + sample_size + unknown + k + sigma + mut_rate + Method, FUN = mean) %>%
+    complete(sigma, Method) %>%
+    ggplot(aes(x=factor(sigma), y=Method, fill=value)) +
+    geom_tile(color="gray", size=1) +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1),
+                         name="1 - Phylogenetic UniFrac", na.value = "gray") +
+    theme_classic() +
+    xlab("Abundance skew") +
+    theme(text=element_text(size=16),
+          plot.margin = unit(c(1,0,1,0), "cm"),
+          legend.key.size = unit(1, 'cm'),
+          legend.key.height = unit(1, 'cm'),
+          legend.key.width = unit(1, 'cm'),
+          legend.title = element_text(size=14),
+          legend.text = element_text(size=12),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank(),
+          axis.title.y=element_blank()) +
+    guides(color=guide_legend(title="Tool"))
+
+  g <- arrangeGrob(
+    grobs = list(p1, p2, p3, p4, p5, p6),
+    widths = c(1.9, 1.2, 1.2, 1, 0.75, 2), nrow = 1)
+
+  dir.create(file.path("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/merged/"), showWarnings = FALSE, recursive = TRUE)
+  ggsave(paste0("analysis/figures/phylo_unifrac_vs_parameter/",dataset,"/merged/",dataset,"_", ncbi_only, "_heatmap.png"), g, width=50, height=14, units = 'cm', dpi=1000, bg='#ffffff')
+}
+make_all_phylo_unifrac_vs_parameter_merged_heatmap <- function() {
+  for (dataset in list.files("analysis/simulation_outputs")) {
+    phylo_unifrac_vs_parameter_merged_heatmap(dataset, 7)
+  }
+}
+make_all_phylo_unifrac_vs_parameter_merged_heatmap()

@@ -3234,3 +3234,541 @@ make_all_Maaslin_comparison <- function() {
 make_all_Maaslin_comparison()
 
 
+###############################################################################
+# Phylogenetic UniFrac analysis (tool-vs-tool on real data)
+# Uses the global mashtree-based phylogenetic tree with real branch lengths
+###############################################################################
+
+phylo_tree_path <- "analysis/databases/Phylogenetic_trees/phylogenetic_tree.nwk"
+
+# Get UniFrac distances comparing different profilers in the same dataset
+grid_unifrac <- function(dataset, level, ncbi_only, core_only = TRUE) {
+  if (!(dataset %in% c("acid_mine", "animal_gut", "cat_gut", "coastal_sediment", "dog_gut", "forest_soil", "human", "saltmarsh", "all"))) {
+    tool_names <- tool_names[-c(9, 11)]
+    colAdd <- colAdd[-c(9, 11)]
+    col = scale_color_manual(values = colAdd)
+    fil = scale_fill_manual(values = colAdd)
+  }
+  set.seed(1)
+  
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  
+  if (dataset == "all") {
+    melted_cormat = data.frame(matrix(ncol = 2, nrow = 0))
+    colnames(melted_cormat) <- c("Var1", "Var2")
+    melted_cormat$Var1 <- as.character(melted_cormat$Var1)
+    melted_cormat$Var2 <- as.character(melted_cormat$Var2)
+    for (dataset_tmp in list.files("analysis/real_data_outputs")[!list.files("analysis/real_data_outputs") %in% c("human", "overall_dists")]) {
+      if (!(dataset_tmp %in% c("acid_mine", "animal_gut", "cat_gut", "coastal_sediment", "dog_gut", "forest_soil", "human", "saltmarsh"))) {
+        tool_names_tmp <- tool_names[-c(9, 11)]
+      } else {
+        tool_names_tmp <- tool_names
+      }
+      
+      data <- preprocess(dataset_tmp, level)
+      
+      if (ncbi_only) {
+        profiles <- remove_non_ncbi(data)
+      } else {
+        profiles <- remove_unknown(data)
+      }
+      
+      profiles = lapply(profiles, renormalize)
+      profiles = lapply(profiles, threshold_sample, threshold)
+      profiles = lapply(profiles, renormalize)
+      
+      # Prune tree and profiles to shared TaxIDs
+      all_ids <- unique(unlist(lapply(profiles, function(x) x$TaxIDs)))
+      tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+      if (length(tips_to_keep) < 3) next
+      tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+      cat(sprintf("[grid_unifrac] Dataset: %s (in 'all' aggregate)\n", dataset_tmp))
+      profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+      
+      cormat = matrix(nrow = length(data), ncol = length(data))
+      for (i in 1:nrow(cormat)) {
+        for (j in 1:ncol(cormat)) {
+          cormat[i,j] <- mean(calc_unifrac(profiles[[i]], profiles[[j]], tree = tree_pruned), na.rm = TRUE)
+          if (is.na(cormat[i,j])) {
+            cormat[i,j] <- 1
+          }
+        }
+      }
+      
+      colnames(cormat) <- tool_names_tmp
+      rownames(cormat) <- tool_names_tmp
+      melted_cormat_tmp <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+      melted_cormat_tmp$Var1 <- as.character(melted_cormat_tmp$Var1)
+      melted_cormat_tmp$Var2 <- as.character(melted_cormat_tmp$Var2)
+      melted_cormat <- full_join(melted_cormat, melted_cormat_tmp, by = c("Var1", "Var2"))
+    }
+    melted_cormat <- data.frame("Var1" = melted_cormat$Var1,
+                                "Var2" = melted_cormat$Var2,
+                                "value" = rowMeans(melted_cormat[,-c(1,2)], na.rm = TRUE))
+    
+  } else {
+    data <- preprocess(dataset, level)
+    
+    if (ncbi_only) {
+      profiles <- remove_non_ncbi(data)
+    } else {
+      profiles <- remove_unknown(data)
+    }
+    
+    profiles = lapply(profiles, renormalize)
+    profiles = lapply(profiles, threshold_sample, threshold)
+    profiles = lapply(profiles, renormalize)
+    
+    all_ids <- unique(unlist(lapply(profiles, function(x) x$TaxIDs)))
+    tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+    tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+    cat(sprintf("[grid_unifrac] Dataset: %s\n", dataset))
+    profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+    
+    cormat = matrix(nrow = length(data), ncol = length(data))
+    for (i in 1:nrow(cormat)) {
+      for (j in 1:ncol(cormat)) {
+        cormat[i,j] <- mean(calc_unifrac(profiles[[i]], profiles[[j]], tree = tree_pruned), na.rm = TRUE)
+        if (is.na(cormat[i,j])) {
+          cormat[i,j] <- 1
+        }
+      }
+    }
+    
+    colnames(cormat) <- tool_names
+    rownames(cormat) <- tool_names
+    melted_cormat <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+  }
+  
+  melted_cormat <- melted_cormat[order(melted_cormat$Var2),]
+  melted_cormat <- melted_cormat[order(melted_cormat$Var1),]
+  
+  if (core_only) {
+    melted_cormat <- melted_cormat[melted_cormat$Var1 %in% tool_core & melted_cormat$Var2 %in% tool_core,]
+  }
+  melted_cormat <- melted_cormat[melted_cormat$Var1 != melted_cormat$Var2,]
+  
+  print(mean(melted_cormat$value))
+  
+  level_name <- case_when(level == 1 ~ "kingdom",
+                          level == 2 ~ "phylum", 
+                          level == 3 ~ "class",
+                          level == 4 ~ "order",
+                          level == 5 ~ "family",
+                          level == 6 ~ "genus",
+                          level == 7 ~ "species")
+  
+  melted_cormat$value <- 1 - round(melted_cormat$value, 2)
+  ggheatmap <- ggplot(melted_cormat, aes(factor(Var2, tool_names), factor(Var1, tool_names), fill = value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = max(melted_cormat$value) / 2,
+                         limit = c(0, max(melted_cormat$value)), space = "Lab",
+                         name = "1 - Phylogenetic\nUniFrac") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1,
+                                     size = 24, hjust = 1),
+          axis.text.y = element_text(size = 24),
+          text = element_text(size = 20),
+          legend.text = element_text(size = 24)) +
+    coord_fixed()
+  
+  ggheatmap +
+    geom_text(aes(factor(Var2, tool_names), factor(Var1, tool_names), label = value), color = "black", size = 9) +
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.border = element_blank(),
+      panel.background = element_blank(),
+      axis.ticks = element_blank(),
+      legend.title = element_text(size = 24),
+      legend.text = element_text(size = 24))
+  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  dir.create(file.path("analysis/figures/unifrac_grid/", dataset, "/"), showWarnings = FALSE, recursive = TRUE)
+  
+  if (core_only) {
+    ggsave(paste0("analysis/figures/unifrac_grid/", dataset, "/", dataset, "_", level_name, "_", ncbi_only, ".png"), width = 24, height = 18, units = 'cm', dpi = 1000, bg = '#ffffff')
+  } else {
+    ggsave(paste0("analysis/figures/unifrac_grid/", dataset, "/", dataset, "_", level_name, "_", ncbi_only, "_all_tools.png"), width = 48, height = 36, units = 'cm', dpi = 1000, bg = '#ffffff')
+  }
+}
+make_all_grid_unifrac <- function() {
+  for (dataset in c("all")) {
+    for (level in c(7)) {
+      print(paste0("Processing ", dataset, " at level ", level))
+      level_name <- case_when(level == 1 ~ "kingdom",
+                              level == 2 ~ "phylum", 
+                              level == 3 ~ "class",
+                              level == 4 ~ "order",
+                              level == 5 ~ "family",
+                              level == 6 ~ "genus",
+                              level == 7 ~ "species")
+      if (!file.exists(paste0("analysis/figures/unifrac_grid/", dataset, "/", dataset, "_", level_name, "_NCBI_only.png"))) {
+        grid_unifrac(dataset, level, TRUE)
+      }
+      if (!file.exists(paste0("analysis/figures/unifrac_grid/", dataset, "/", dataset, "_", level_name, "_NCBI_only_all_tools.png"))) {
+        grid_unifrac(dataset, level, TRUE, FALSE)
+      }
+    }
+  }
+}
+make_all_grid_unifrac()
+
+# Make UniFrac matrices grouped by tool type
+grid_unifrac_by_tool_type <- function(level, ncbi_only) {
+  out_df <- data.frame(matrix(nrow = 0, ncol = 4))
+  colnames(out_df) <- c("Var1", "Var2", "value", "dataset")
+  
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  
+  for (dataset_tmp in list.files("analysis/real_data_outputs")[!list.files("analysis/real_data_outputs") %in% c("overall_dists")]) {
+    if (!(dataset_tmp %in% c("acid_mine", "animal_gut", "cat_gut", "coastal_sediment", "dog_gut", "forest_soil", "human", "saltmarsh"))) {
+      tool_names_tmp <- tool_names[-c(9, 11)]
+    } else {
+      tool_names_tmp <- tool_names
+    }
+    set.seed(1)
+    
+    data <- preprocess(dataset_tmp, level)
+    
+    if (ncbi_only) {
+      profiles <- remove_non_ncbi(data)
+    } else {
+      profiles <- remove_unknown(data)
+    }
+    
+    profiles = lapply(profiles, renormalize)
+    profiles = lapply(profiles, threshold_sample, threshold)
+    profiles = lapply(profiles, renormalize)
+    
+    all_ids <- unique(unlist(lapply(profiles, function(x) x$TaxIDs)))
+    tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+    if (length(tips_to_keep) < 3) next
+    tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+    cat(sprintf("[grid_unifrac_by_tool_type] Dataset: %s\n", dataset_tmp))
+    profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+    
+    cormat = matrix(nrow = length(data), ncol = length(data))
+    for (i in 1:nrow(cormat)) {
+      for (j in 1:ncol(cormat)) {
+        cormat[i,j] <- mean(calc_unifrac(profiles[[i]], profiles[[j]], tree = tree_pruned), na.rm = TRUE)
+        if (is.na(cormat[i,j])) {
+          cormat[i,j] <- 1
+        }
+      }
+    }
+    
+    colnames(cormat) <- tool_names_tmp
+    rownames(cormat) <- tool_names_tmp
+    melted_cormat <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+    melted_cormat <- melted_cormat[melted_cormat$Var1 != melted_cormat$Var2,]
+    melted_cormat$Var1 <- case_when(grepl("Centrifuge|Kraken", melted_cormat$Var1) ~ "K-mer",
+                                    grepl("MetaPhlAn", melted_cormat$Var1) ~ "Unique marker",
+                                    grepl("Metaxa|mOTUs", melted_cormat$Var1) ~ "Universal marker",
+                                    grepl("GTDB|PhyloPhlAn", melted_cormat$Var1) ~ "Assembly")
+    melted_cormat$Var2 <- case_when(grepl("Centrifuge|Kraken", melted_cormat$Var2) ~ "K-mer",
+                                    grepl("MetaPhlAn", melted_cormat$Var2) ~ "Unique marker",
+                                    grepl("Metaxa|mOTUs", melted_cormat$Var2) ~ "Universal marker",
+                                    grepl("GTDB|PhyloPhlAn", melted_cormat$Var2) ~ "Assembly")
+    melted_cormat$dataset <- dataset_tmp
+    out_df <- rbind(out_df, melted_cormat)
+  }
+  
+  out_df$dataset <- case_when(out_df$dataset == "acid_mine" ~ "Acid mine drainage",
+                              out_df$dataset == "animal_gut" ~ "Wild animal gut",
+                              out_df$dataset == "cat_gut" ~ "Cat gut",
+                              out_df$dataset == "coastal_sediment" ~ "Coastal sediment",
+                              out_df$dataset == "dog_gut" ~ "Dog gut",
+                              out_df$dataset == "forest_soil" ~ "Forest soil",
+                              out_df$dataset == "gator_soil" ~ "Gator nest",
+                              out_df$dataset == "human" ~ "Human gut",
+                              out_df$dataset == "saltmarsh" ~ "Salt marsh",
+                              out_df$dataset == "tara_polar" ~ "Polar ocean",
+                              out_df$dataset == "all" ~ "all")
+  
+  out_df <- aggregate(value ~ Var1 + Var2 + dataset, data = out_df, FUN = mean)
+  
+  level_name <- case_when(level == 1 ~ "kingdom",
+                          level == 2 ~ "phylum", 
+                          level == 3 ~ "class",
+                          level == 4 ~ "order",
+                          level == 5 ~ "family",
+                          level == 6 ~ "genus",
+                          level == 7 ~ "species")
+  
+  out_df$value <- 1 - round(out_df$value, 2)
+  tool_type_names <- c("K-mer", "Unique marker", "Universal marker", "Assembly")
+  ggheatmap <- ggplot(out_df, aes(factor(Var2, tool_type_names), factor(Var1, tool_type_names), fill = value)) +
+    geom_tile(color = "white") +
+    scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = 0.5,
+                         limit = c(0, 1), space = "Lab",
+                         name = "1 - Phylogenetic\nUniFrac") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5,
+                                     size = 14, hjust = 1),
+          axis.text.y = element_text(size = 14)) +
+    coord_fixed() +
+    facet_wrap(~factor(dataset, c("Human gut", "Cat gut", "Dog gut", "Wild animal gut", "Forest soil", "Gator nest",
+                                  "Acid mine drainage", "Salt marsh", "Coastal sediment", "Polar ocean")), nrow = 1)
+  
+  ggheatmap +
+    geom_text(aes(factor(Var2, tool_type_names), factor(Var1, tool_type_names), label = value), color = "black", size = 4.5) +
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.border = element_blank(),
+      panel.background = element_blank(),
+      axis.ticks = element_blank(),
+      text = element_text(size = 20),
+      legend.title = element_text(size = 14))
+  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  dir.create(file.path("analysis/figures/unifrac_tool_type/"), showWarnings = FALSE, recursive = TRUE)
+  ggsave(paste0("analysis/figures/unifrac_tool_type/", level_name, "_", ncbi_only, ".png"), width = 60, height = 10, units = 'cm', dpi = 1000, bg = '#ffffff')
+}
+make_all_grid_unifrac_by_tool_type <- function() {
+  for (level in c(7)) {
+    level_name <- case_when(level == 1 ~ "kingdom",
+                            level == 2 ~ "phylum", 
+                            level == 3 ~ "class",
+                            level == 4 ~ "order",
+                            level == 5 ~ "family",
+                            level == 6 ~ "genus",
+                            level == 7 ~ "species")
+    if (!file.exists(paste0("analysis/figures/unifrac_tool_type/", level_name, "_", "NCBI_only", ".png"))) {
+      grid_unifrac_by_tool_type(level, TRUE)
+    }
+  }
+}
+make_all_grid_unifrac_by_tool_type()
+
+# Mantel test the UniFrac dissimilarity matrices generated by each pair of tools
+grid_unifrac_mantel <- function(dataset, level, ncbi_only, core_only = TRUE) {
+  if (!(dataset %in% c("acid_mine", "animal_gut", "cat_gut", "coastal_sediment", "dog_gut", "forest_soil", "human", "saltmarsh", "all"))) {
+    tool_names <- tool_names[-c(9, 11)]
+    colAdd <- colAdd[-c(9, 11)]
+    col = scale_color_manual(values = colAdd)
+    fil = scale_fill_manual(values = colAdd)
+  }
+  set.seed(1)
+  
+  phylo_tree <- phangorn::midpoint(ape::read.tree(phylo_tree_path))
+  
+  if (dataset == "all") {
+    melted_cormat = data.frame(matrix(ncol = 2, nrow = 0))
+    colnames(melted_cormat) <- c("Var1", "Var2")
+    melted_cormat$Var1 <- as.character(melted_cormat$Var1)
+    melted_cormat$Var2 <- as.character(melted_cormat$Var2)
+    for (dataset_tmp in list.files("analysis/real_data_outputs")[!list.files("analysis/real_data_outputs") %in% c("human", "overall_dists")]) {
+      if (!(dataset_tmp %in% c("acid_mine", "animal_gut", "cat_gut", "coastal_sediment", "dog_gut", "forest_soil", "human", "saltmarsh"))) {
+        tool_names_tmp <- tool_names[-c(9, 11)]
+      } else {
+        tool_names_tmp <- tool_names
+      }
+      
+      data <- preprocess(dataset_tmp, level, real = TRUE, by_dataset = TRUE)
+      
+      if (ncbi_only) {
+        profiles <- remove_non_ncbi(data)
+      } else {
+        profiles <- remove_unknown(data)
+      }
+      
+      profiles = lapply(profiles, renormalize)
+      profiles = lapply(profiles, threshold_sample, threshold)
+      profiles = lapply(profiles, renormalize)
+      
+      all_ids <- unique(unlist(lapply(profiles, function(x) x$TaxIDs)))
+      tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+      if (length(tips_to_keep) < 3) next
+      tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+      cat(sprintf("[grid_unifrac_mantel] Dataset: %s (in 'all' aggregate)\n", dataset_tmp))
+      profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+      
+      # Build per-tool UniFrac distance matrices and run Mantel tests
+      unifrac_dists <- list()
+      for (i in 1:length(profiles)) {
+        prof_in_tree <- profiles[[i]][profiles[[i]]$TaxIDs %in% tree_pruned$tip.label,]
+        if (nrow(prof_in_tree) > 0 && ncol(prof_in_tree) > 2) {
+          unifrac_dists[[i]] <- calc_unifrac_dist_matrix(prof_in_tree, tree_pruned)
+        } else {
+          unifrac_dists[[i]] <- NULL
+        }
+      }
+      
+      cormat = matrix(nrow = length(data), ncol = length(data))
+      for (i in 1:length(data)) {
+        for (j in 1:length(data)) {
+          if (i <= j) {
+            if (!is.null(unifrac_dists[[i]]) && !is.null(unifrac_dists[[j]])) {
+              mantel_out <- vegan::mantel(unifrac_dists[[i]], unifrac_dists[[j]], permutations = 9999)
+              cormat[i,j] <- mantel_out$statistic
+            } else {
+              cormat[i,j] <- NA
+            }
+          }
+        }
+      }
+      
+      colnames(cormat) <- tool_names_tmp
+      rownames(cormat) <- tool_names_tmp
+      melted_cormat_tmp <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+      melted_cormat_tmp$Var1 <- as.character(melted_cormat_tmp$Var1)
+      melted_cormat_tmp$Var2 <- as.character(melted_cormat_tmp$Var2)
+      melted_cormat <- full_join(melted_cormat, melted_cormat_tmp, by = c("Var1", "Var2"))
+    }
+    sds = apply(melted_cormat[,-c(1,2)], 1, sd, na.rm = TRUE)
+    ns = rowSums(!is.na(melted_cormat[,-c(1,2)]))
+    ses = sds / ns
+    means = rowMeans(melted_cormat[,-c(1,2)], na.rm = TRUE)
+    tstats = abs(means) / ses
+    pvals <- pt(tstats, ns - 1, lower.tail = FALSE)
+    melted_cormat <- data.frame("Var1" = melted_cormat$Var1,
+                                "Var2" = melted_cormat$Var2,
+                                "value" = means,
+                                "stars" = case_when(pvals < 0.001 ~ "***",
+                                                    pvals < 0.01 ~ "**",
+                                                    pvals < 0.05 ~ "*",
+                                                    TRUE ~ ""))
+  } else {
+    data <- preprocess(dataset, level, real = TRUE, by_dataset = TRUE)
+    
+    if (ncbi_only) {
+      profiles <- remove_non_ncbi(data)
+    } else {
+      profiles <- remove_unknown(data)
+    }
+    
+    profiles = lapply(profiles, renormalize)
+    profiles = lapply(profiles, threshold_sample, threshold)
+    profiles = lapply(profiles, renormalize)
+    
+    all_ids <- unique(unlist(lapply(profiles, function(x) x$TaxIDs)))
+    tips_to_keep <- phylo_tree$tip.label[phylo_tree$tip.label %in% all_ids]
+    tree_pruned <- ape::keep.tip(phylo_tree, tips_to_keep)
+    cat(sprintf("[grid_unifrac_mantel] Dataset: %s\n", dataset))
+    profiles <- prune_profiles_to_tree(profiles, tree_pruned)
+    
+    unifrac_dists <- list()
+    for (i in 1:length(profiles)) {
+      prof_in_tree <- profiles[[i]][profiles[[i]]$TaxIDs %in% tree_pruned$tip.label,]
+      if (nrow(prof_in_tree) > 0 && ncol(prof_in_tree) > 2) {
+        unifrac_dists[[i]] <- calc_unifrac_dist_matrix(prof_in_tree, tree_pruned)
+      } else {
+        unifrac_dists[[i]] <- NULL
+      }
+    }
+    
+    cormat = matrix(nrow = length(data), ncol = length(data))
+    signif_mat = matrix(nrow = length(data), ncol = length(data))
+    for (i in 1:length(data)) {
+      for (j in 1:length(data)) {
+        if (i <= j) {
+          if (!is.null(unifrac_dists[[i]]) && !is.null(unifrac_dists[[j]])) {
+            mantel_out <- vegan::mantel(unifrac_dists[[i]], unifrac_dists[[j]], permutations = 9999)
+            cormat[i,j] <- mantel_out$statistic
+            signif_mat[i,j] <- mantel_out$signif
+          } else {
+            cormat[i,j] <- NA
+            signif_mat[i,j] <- NA
+          }
+        }
+      }
+    }
+    
+    colnames(cormat) <- tool_names
+    rownames(cormat) <- tool_names
+    colnames(signif_mat) <- tool_names
+    rownames(signif_mat) <- tool_names
+    melted_cormat <- reshape2::melt(get_upper_tri(cormat), na.rm = T)
+    melted_signif <- reshape2::melt(get_upper_tri(signif_mat), na.rm = T)
+    melted_signif$value <- case_when(melted_signif$value < 0.001 ~ "***",
+                                     melted_signif$value < 0.01 ~ "**",
+                                     melted_signif$value < 0.05 ~ "*",
+                                     TRUE ~ "")
+    
+    melted_cormat$stars <- melted_signif$value
+  }
+  
+  melted_cormat <- melted_cormat[order(melted_cormat$Var2),]
+  melted_cormat <- melted_cormat[order(melted_cormat$Var1),]
+  
+  if (core_only) {
+    melted_cormat <- melted_cormat[melted_cormat$Var1 %in% tool_core & melted_cormat$Var2 %in% tool_core,]
+  }
+  melted_cormat <- melted_cormat[melted_cormat$Var1 != melted_cormat$Var2,]
+  
+  level_name <- case_when(level == 1 ~ "kingdom",
+                          level == 2 ~ "phylum", 
+                          level == 3 ~ "class",
+                          level == 4 ~ "order",
+                          level == 5 ~ "family",
+                          level == 6 ~ "genus",
+                          level == 7 ~ "species")
+  
+  if (sum(melted_cormat$value < 0, na.rm = TRUE) > 0) {
+    scale_fill_special <- scale_fill_gradient2(low = "blue", high = "red", mid = "white", midpoint = 0,
+                                               limit = c(min(melted_cormat$value) * 1.1, max(melted_cormat$value) * 1.1), space = "Lab",
+                                               name = "Mantel r\n(UniFrac)")
+  } else {
+    scale_fill_special <- scale_fill_gradient2(low = "white", high = "red", mid = "#FFBBBB", midpoint = mean(c(min(melted_cormat$value), max(melted_cormat$value))),
+                                               limit = c(min(melted_cormat$value) * 0.9, max(melted_cormat$value) * 1.1), space = "Lab",
+                                               name = "Mantel r\n(UniFrac)")
+  }
+  
+  melted_cormat$value <- round(melted_cormat$value, 2)
+  melted_cormat$Var2 <- as.character(melted_cormat$Var2)
+  
+  ggheatmap <- ggplot(melted_cormat, aes(factor(Var2, tool_names), factor(Var1, tool_names), fill = value)) +
+    geom_tile(color = "white") +
+    scale_fill_special +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, vjust = 1,
+                                     size = 12, hjust = 1),
+          axis.text.y = element_text(size = 12)) +
+    coord_fixed()
+  
+  ggheatmap +
+    geom_text(aes(factor(Var2, tool_names), factor(Var1, tool_names), label = paste0(value, "\n", stars)), color = "black", size = 4) +
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.border = element_blank(),
+      panel.background = element_blank(),
+      axis.ticks = element_blank(),
+      legend.justification = c(1, 0),
+      legend.position = c(0.57, 0.75),
+      legend.direction = "horizontal",
+      legend.title = element_text(size = 14)) +
+    guides(fill = guide_colorbar(barwidth = 5.5, barheight = 1,
+                                 title.position = "top", title.hjust = 0.5))
+  ncbi_only <- ifelse(ncbi_only, "NCBI_only", "all_taxa")
+  dir.create(file.path("analysis/figures/unifrac_mantel/", dataset, "/"), showWarnings = FALSE, recursive = TRUE)
+  if (core_only) {
+    ggsave(paste0("analysis/figures/unifrac_mantel/", dataset, "/", dataset, "_", level_name, "_", ncbi_only, ".png"), width = 13, height = 11, units = 'cm', dpi = 1000, bg = '#ffffff')
+  } else {
+    ggsave(paste0("analysis/figures/unifrac_mantel/", dataset, "/", dataset, "_", level_name, "_", ncbi_only, "_all_tools.png"), width = 19.5, height = 17.5, units = 'cm', dpi = 1000, bg = '#ffffff')
+  }
+}
+make_all_grid_unifrac_mantel <- function() {
+  for (dataset in c(list.files("analysis/real_data_outputs")[!list.files("analysis/real_data_outputs") %in% c("overall_dists")], "all")) {
+    for (level in c(2, 5, 6, 7)) {
+      print(paste0("Processing ", dataset, " at level ", level))
+      level_name <- case_when(level == 1 ~ "kingdom",
+                              level == 2 ~ "phylum", 
+                              level == 3 ~ "class",
+                              level == 4 ~ "order",
+                              level == 5 ~ "family",
+                              level == 6 ~ "genus",
+                              level == 7 ~ "species")
+      if (!file.exists(paste0("analysis/figures/unifrac_mantel/", dataset, "/", dataset, "_", level_name, "_NCBI_only.png"))) {
+        grid_unifrac_mantel(dataset, level, TRUE)
+      }
+      if (!file.exists(paste0("analysis/figures/unifrac_mantel/", dataset, "/", dataset, "_", level_name, "_NCBI_only_all_tools.png"))) {
+        grid_unifrac_mantel(dataset, level, TRUE, FALSE)
+      }
+    }
+  }
+}
+make_all_grid_unifrac_mantel()

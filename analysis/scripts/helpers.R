@@ -785,21 +785,93 @@ calc_unifrac <- function(profile_1, profile_2, dist_type = 1, tree) {
   joined_df[is.na(joined_df)] <- 0
   joined_df[joined_df < 0] <- 0
   
+  joined_df <- joined_df[joined_df$TaxIDs %in% tree$tip.label,]
+  
+  sample_names <- unique(gsub(pattern="^prof1_|^prof2_", "", colnames(joined_df)[-1]))
+  
+  if (nrow(joined_df) == 0) {
+    output <- rep(1, length(sample_names))
+    names(output) <- sample_names
+    return(output)
+  }
+  
+  if (nrow(joined_df) <= 1) {
+    output <- rep(0, length(sample_names))
+    names(output) <- sample_names
+    return(output)
+  }
+  
   ##we need to now flip joined_df
+  taxid_names <- joined_df$TaxIDs
   joined_df_t <- t(joined_df)
   colnames(joined_df_t) <- unlist(joined_df_t[1,])
-  joined_df_t <- joined_df_t[-1,]
+  joined_df_t <- joined_df_t[-1,, drop = FALSE]
   joined_df_t <- data.frame(joined_df_t, check.names = F)
+  colnames(joined_df_t) <- taxid_names
   joined_df_t <- joined_df_t %>% mutate_all(as.numeric)
   #calculate unifrac distance
   dist_mat <- GUniFrac::GUniFrac(joined_df_t, tree)$unifracs
   dist_mat <- dist_mat[,,"d_1"]
   
   output <- vector()
-  for (colname in unique(gsub(pattern="^prof1_|^prof2_", "", colnames(dist_mat)))) {
+  for (colname in sample_names) {
     same_ids <- colnames(dist_mat)[grepl(paste0(colname,"$"), colnames(dist_mat))]
     output[colname] <- dist_mat[same_ids[1], same_ids[2]]
   }
   
   return(output)
+}
+
+# Remove TaxIDs not present in a phylogenetic tree from a list of profiles, then renormalize.
+# Used for phylogenetic UniFrac analysis where not all TaxIDs have reference genomes.
+prune_profiles_to_tree <- function(profiles, tree) {
+  tree_tips <- tree$tip.label
+  
+  species_fracs <- c()
+  abundance_fracs <- c()
+  for (i in 1:length(profiles)) {
+    n_total <- nrow(profiles[[i]])
+    if (n_total == 0) {
+      species_fracs <- c(species_fracs, 0)
+      next
+    }
+    in_tree <- profiles[[i]]$TaxIDs %in% tree_tips
+    n_in_tree <- sum(in_tree)
+    species_fracs <- c(species_fracs, n_in_tree / n_total)
+    
+    totals <- colSums(profiles[[i]][, -1, drop = FALSE])
+    in_tree_totals <- colSums(profiles[[i]][in_tree, -1, drop = FALSE])
+    per_sample_abund <- ifelse(totals > 0, in_tree_totals / totals, 0)
+    abundance_fracs <- c(abundance_fracs, per_sample_abund)
+  }
+  cat(sprintf("  Tree coverage (%d tools, %d tool*sample combos):\n", length(profiles), length(abundance_fracs)))
+  cat(sprintf("    Species in tree:   median=%.1f%% [%.1f%%–%.1f%%] (per tool)\n",
+              median(species_fracs) * 100, min(species_fracs) * 100, max(species_fracs) * 100))
+  if (length(abundance_fracs) > 0) {
+    cat(sprintf("    Abundance in tree: median=%.1f%% [%.1f%%–%.1f%%] (per tool*sample)\n",
+                median(abundance_fracs) * 100, min(abundance_fracs) * 100, max(abundance_fracs) * 100))
+  } else {
+    cat("    Abundance in tree: no samples with nonzero abundance\n")
+  }
+  
+  for (i in 1:length(profiles)) {
+    missing <- which(!(profiles[[i]]$TaxIDs %in% tree_tips))
+    if (length(missing) > 0) {
+      profiles[[i]] <- profiles[[i]][-missing,]
+    }
+    profiles[[i]] <- renormalize(profiles[[i]])
+  }
+  return(profiles)
+}
+
+# Build a UniFrac distance matrix (sample x sample) within a single profile using a tree.
+# Returns a dist object suitable for mantel tests.
+calc_unifrac_dist_matrix <- function(profile, tree) {
+  profile$TaxIDs <- as.character(profile$TaxIDs)
+  profile_t <- t(profile[,-1])
+  colnames(profile_t) <- profile$TaxIDs
+  profile_t <- data.frame(profile_t, check.names = FALSE)
+  profile_t <- profile_t %>% mutate_all(as.numeric)
+  unifrac_result <- GUniFrac::GUniFrac(profile_t, tree)$unifracs
+  return(as.dist(unifrac_result[,,"d_1"]))
 }
